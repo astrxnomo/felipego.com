@@ -1,0 +1,23 @@
+---
+import {Home, BriefcaseBusiness, LibraryBig, GraduationCap, FileBadge} from 'lucide-astro'
+
+let navItems = [
+    {href: "/felipego/#top", icon: Home, alt: "Home"},
+    {href: "/felipego/#experience", icon: BriefcaseBusiness, alt: "Experience"},
+    {href: "/felipego/#projects", icon: LibraryBig, alt: "Projects"},
+    {href: "/felipego/#studies", icon: GraduationCap, alt: "Studies"},
+    {href: "/felipego/#certificates", icon: FileBadge, alt: "Certificates"}
+
+];
+---
+
+<div class="fixed bottom-0 p-2 z-10 flex items-center justify-center w-full mx-auto"> 
+    <nav class="flex gap-1 rounded-full justify-center items-center border border-neutral-800 backdrop-blur-md bg-neutral-900/30 ">
+        {navItems.map(link => (
+            <a href={link.href} class="rounded-full hover:bg-neutral-800/50 hover:text-neutral-50 py-2 px-4 opacity-80 duration-150 hover:opacity-100">
+                <link.icon size={20} />
+            </a>
+        ))}
+    </nav> 
+    
+</div>

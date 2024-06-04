@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import Navbar from '../components/Navbar.astro';
+import Presentation from '../components/Presentation.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Studies from '../components/Education.astro';
+import Certificates from '../components/Certificates.astro';
+
+---
+
+<Layout title="Felipe Giraldo - felipego.com">
+	<Navbar />
+	<main class="container p-5 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
+		<Presentation />
+		<Experience />
+		<Projects />
+		<Studies />
+		<Certificates />
+	</main>
+</Layout>

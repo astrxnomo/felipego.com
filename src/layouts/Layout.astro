@@ -1,0 +1,76 @@
+---
+import '@fontsource/inter';
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="icon" type="image/svg+xml" href="/felipego/favicon.svg" />
+        <link rel="canonical" href="https://felipego.com" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
+        <meta property="og:image" content="/felipego/projects-imgs/felipego.png" />
+        <meta property="og:url" content="https://felipego.com" />
+        <meta name="twitter:card" content="/felipego/projects-imgs/felipego.png" />
+        <meta name="twitter:site" content="@astrxnomo" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
+        <meta name="twitter:image" content="/felipego/projects-imgs/felipego.png" />
+        <title>{title}</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Felipe Giraldo",
+				"url": "https://felipego.com",
+				"image": "/felipego/projects-imgs/felipego.png",
+				"sameAs": [
+					"https://twitter.com/astrxnomo",
+					"https://github.com/astrxnomo",
+					"https://instagram.com/astrxnomo",
+					"https://linkedin.com/in/felipegiraldoo",
+					"https://www.tiktok.com/@astrxnomo"
+				],
+				"jobTitle": "Full Stack Developer"
+			}
+			</script>
+	</head>
+
+	<body>
+		<slot/>
+	</body>
+</html>
+
+
+<style is:global>
+	:root {
+		color-scheme: dark;
+	}
+
+	html {
+		font-family: 'Inter', sans-serif;
+		background: #171717;
+		scroll-behavior: smooth;
+    }
+
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		overscroll-behavior: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+    }
+
+	
+</style>

@@ -1,0 +1,29 @@
+---
+import Section from './Section.astro'
+import EducationItem from './EducationItem.astro'
+import {GraduationCap} from 'lucide-astro'
+
+
+let education = [
+    {
+        time: '2021 - Present',
+        title: 'Computer Systems Administration',
+        educationUrl: 'https://unal.edu.co/',
+        educationName: 'Universidad Nacional de Colombia',
+    },
+]
+
+---
+
+<Section id="studies">
+
+    <h2 class="text-2xl font-medium flex gap-3 items-center text-neutral-200">
+        <GraduationCap />
+        Education
+    </h2>
+
+    <ol class="relative space-y-1 border-s-2 border-neutral-800">
+        {education.map(education => <EducationItem education={education}/>)}
+    </ol>
+
+</Section>
