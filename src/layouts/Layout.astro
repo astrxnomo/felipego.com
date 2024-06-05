@@ -1,5 +1,5 @@
 ---
-import '@fontsource/inter';
+import '@fontsource-variable/inter';
 
 const { title } = Astro.props;
 ---
@@ -15,13 +15,13 @@ const { title } = Astro.props;
         <link rel="canonical" href="https://felipego.com" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
-        <meta property="og:image" content="projects-imgs/felipego.png" />
+        <meta property="og:image" content="projects-imgs/felipego.jpg" />
         <meta property="og:url" content="https://felipego.com" />
-        <meta name="twitter:card" content="projects-imgs/felipego.png" />
+        <meta name="twitter:card" content="projects-imgs/felipego.jpg" />
         <meta name="twitter:site" content="@astrxnomo" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
-        <meta name="twitter:image" content="projects-imgs/felipego.png" />
+        <meta name="twitter:image" content="projects-imgs/felipego.jpg" />
         <title>{title}</title>
 		<script type="application/ld+json">
 			{
@@ -29,7 +29,7 @@ const { title } = Astro.props;
 				"@type": "Person",
 				"name": "Felipe Giraldo",
 				"url": "https://felipego.com",
-				"image": "projects-imgs/felipego.png",
+				"image": "projects-imgs/felipego.jpg",
 				"sameAs": [
 					"https://twitter.com/astrxnomo",
 					"https://github.com/astrxnomo",
@@ -54,7 +54,7 @@ const { title } = Astro.props;
 	}
 
 	html {
-		font-family: 'Inter', sans-serif;
+		font-family: 'Inter Variable', sans-serif;
 		background: #171717;
 		scroll-behavior: smooth;
     }
@@ -64,6 +64,5 @@ const { title } = Astro.props;
 		flex-direction: column;
 		min-height: 100vh;
 	}
-
 	
 </style>
