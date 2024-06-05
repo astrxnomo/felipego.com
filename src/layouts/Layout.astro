@@ -1,54 +1,61 @@
 ---
 import '@fontsource-variable/inter';
 
-const { title } = Astro.props;
+let metadata = {
+  title: "Felipe Giraldo's Portfolio",
+  description: "A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer.",
+  url: "https://felipego.com",
+  image: "https://felipego.com/projects-imgs/felipego.jpg",
+  twitterHandle: "@astrxnomo",
+  keywords: "Full Stack Developer, Computer Systems Administration, UNAL, Colombia, Felipe Giraldo, Luis Felipe Giraldo Ortega, Manizales, Frontend, Backend",
+  author: "Felipe Giraldo"
+}
+---
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-	<meta charset="UTF-8" />
-	<meta name="description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
-	<meta name="viewport" content="width=device-width" />
-	<meta name="generator" content={Astro.generator} />
-	<link rel="icon" type="image/svg+xml" href="favicon.svg" />
-
-	<link rel="canonical" href="https://felipego.com" />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
-	<meta property="og:image" content="https://felipego.com/projects-imgs/felipego.jpg" />
-	<meta property="og:url" content="https://felipego.com" />
-	<meta name="twitter:site" content="@astrxnomo" />
-	<meta name="twitter:title" content={title} />
-	<meta name="twitter:description" content="A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer." />
-	<meta name="twitter:image" content="https://felipego.com/projects-imgs/felipego.jpg" />
-	<meta name="twitter:creator" content="@astrxnomo" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="geo.region" content="CO" />
-	<meta name="geo.placename" content="Colombia" />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="Felipe Giraldo's Portfolio" />
-	<meta name="keywords" content="Full Stack Developer, Computer Systems Administration, UNAL, Colombia, Felipe Giraldo, Luis Felipe Giraldo Ortega, Manizales, Frontend, Backend" />
-	<meta name="author" content="Felipe Giraldo" />
-
-        <title>{title}</title>
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+		
+		<link rel="canonical" href={metadata.url} />
+		<meta property="og:title" content={metadata.title} />
+		<meta property="og:description" content={metadata.description} />
+		<meta property="og:image" content={metadata.image} />
+		<meta property="og:url" content={metadata.url} />
+		<meta name="twitter:site" content={metadata.twitterHandle} />
+		<meta name="twitter:title" content={metadata.title} />
+		<meta name="twitter:description" content={metadata.description} />
+		<meta name="twitter:image" content={metadata.image} />
+		<meta name="twitter:creator" content={metadata.twitterHandle} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="geo.region" content="CO" />
+		<meta name="geo.placename" content="Colombia" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={metadata.title} />
+		<meta name="keywords" content={metadata.keywords} />
+		<meta name="author" content={metadata.author} />
+		
+		<title>{metadata.title}</title>
 		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "Person",
-				"name": "Felipe Giraldo",
-				"url": "https://felipego.com",
-				"image": "projects-imgs/felipego.jpg",
-				"sameAs": [
-					"https://twitter.com/astrxnomo",
-					"https://github.com/astrxnomo",
-					"https://instagram.com/astrxnomo",
-					"https://linkedin.com/in/felipegiraldoo",
-					"https://www.tiktok.com/@astrxnomo"
-				],
-				"jobTitle": "Full Stack Developer"
-			}
-			</script>
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Felipe Giraldo",
+			"url": {metadata.url},
+			"image": {metadata.image},
+			"sameAs": [
+				"https://twitter.com/astrxnomo",
+				"https://github.com/astrxnomo",
+				"https://instagram.com/astrxnomo",
+				"https://linkedin.com/in/felipegiraldoo",
+				"https://www.tiktok.com/@astrxnomo"
+			],
+			"jobTitle": "Full Stack Developer"
+		}
+		</script>
 	</head>
 
 	<body>
