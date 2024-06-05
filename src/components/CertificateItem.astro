@@ -13,16 +13,14 @@ const {certificate} = Astro.props
 
             <h3 class="text-lg font-semibold text-neutral-200">{certificate.title}</h3> 
             
-            <a href={certificate.certificatorUrl} target="_blank" class="text-sm font-medium duration-150 text-neutral-400 hover:text-neutral-200">
+            <a href={certificate.certificatorUrl} target="_blank" class=" text-sm font-medium duration-150 text-neutral-400 hover:text-neutral-200">
                 <span>{certificate.certificatorName}</span> 
             </a>
 
-            <div>
-                <a href={certificate.credentialUrl} target="_blank" class="inline-flex gap-1 items-center text-xs font-medium justify-center rounded-xl bg-neutral-800 hover:text-neutral-50 py-2 px-3 opacity-80 transition-opacity duration-150 hover:opacity-100 group">
-                    Credential
-                    <ArrowUpRight class="size-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-[1.5px] duration-200"/>
-                </a>
-            </div>
+            <a href={certificate.credentialUrl} target="_blank" class="mt-1.5 inline-flex gap-1 items-center text-xs font-medium justify-center rounded-xl bg-neutral-800 hover:text-neutral-50 py-2 px-3 opacity-80 transition-opacity duration-150 hover:opacity-100 group w-28 h-8">
+                Credential
+                <ArrowUpRight class="size-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-[1.5px] duration-200"/>
+            </a>
 
         </div>
         
