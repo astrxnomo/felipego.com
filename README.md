@@ -8,3 +8,5 @@ Welcome to my personal portfolio! It showcases my work as a developer and the te
 - **GitHub Actions**: This is a CI/CD tool that automates the deployment of the website.
 
 Feel free to explore the repository to understand how these technologies are used in the project.
+
+![Portfolio Screenshot](https://felipego.com/projects-imgs/felipego.jpg)
