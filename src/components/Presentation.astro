@@ -1,6 +1,6 @@
 ---
 import Section from './Section.astro'
-import {Github, Linkedin, Instagram, Dot, MapPin, ArrowUpRight,Sparkle} from 'lucide-astro'
+import {Github, Linkedin, Instagram, MapPin, ArrowUpRight,Sparkle} from 'lucide-astro'
 
 let avatar = "avatar.gif";
 let technologies = ['HTML', 'CSS', 'JavaScript', 'Python', 'PHP', 'Java', 'Git', 'Linux','React', 'Astro', 'Laravel', 'MySQL','Tailwind', 'Bootstrap'];
@@ -27,8 +27,11 @@ let contactEmail = "hi@felipego.com";
         <div class="flex flex-col gap-6 grow">
             <div class="flex justify-between items-center flex-wrap ">
 
-                <a href="https://www.linkedin.com/in/felipegiraldoo/" class="flex items-center text-xs font-medium pe-3 rounded-xl bg-green-800/40 text-green-200 opacity-80 transition-opacity duration-150 hover:opacity-100" target="_blank">
-                    <Dot size={28} class="text-green-400" />
+                <a href="https://www.linkedin.com/in/felipegiraldoo/" class="flex items-center text-xs gap-1.5 font-medium py-1.5 px-3 rounded-xl bg-green-800/40 text-green-200 opacity-80 transition-opacity duration-150 hover:opacity-100" target="_blank">
+                    <span class="flex size-2 items-center">
+                        <span class="absolute inline-flex size-1.5 animate-ping rounded-full opacity-75 bg-green-300"></span>
+                        <span class="relative inline-flex size-1.5 rounded-full bg-green-400"></span>
+                    </span>
                     Available for work
                 </a>
 
