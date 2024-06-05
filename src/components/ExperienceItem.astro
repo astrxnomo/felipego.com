@@ -7,8 +7,8 @@ const {experience} = Astro.props
     <time class="mb-2 font-mono text-xs font-normal leading-none text-neutral-400">{experience.time}</time> 
 
     <div class="mt-2 flex flex-col space-y-0.5">
-        <h3 class="text-lg font-semibold tracking-tight text-neutral-200">{experience.title}</h3> 
-        <a href={experience.companyUrl} target="_blank" rel="noopener" class="group flex w-max items-center text-pretty text-sm transition-colors duration-150 border-neutral-800 text-neutral-400 hover:text-neutral-200">
+        <h3 class="text-lg font-semibold text-neutral-200">{experience.title}</h3> 
+        <a href={experience.companyUrl} target="_blank" class="text-sm font-medium duration-150 text-neutral-400 hover:text-neutral-200">
             <span>{experience.companyName}</span> 
         </a>
     </div> 

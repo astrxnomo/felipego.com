@@ -11,9 +11,9 @@ const {certificate} = Astro.props
         
             <time class="mt-2 mb-1 font-mono text-xs font-normal leading-none text-neutral-400">{certificate.time}</time> 
 
-            <h3 class="text-lg font-semibold tracking-tight text-neutral-200">{certificate.title}</h3> 
+            <h3 class="text-lg font-semibold text-neutral-200">{certificate.title}</h3> 
             
-            <a href={certificate.certificatorUrl} target="_blank" class="mb-2 flex w-max items-center text-pretty text-sm transition-colors duration-150 border-neutral-800 text-neutral-400 hover:text-neutral-200">
+            <a href={certificate.certificatorUrl} target="_blank" class="text-sm font-medium duration-150 text-neutral-400 hover:text-neutral-200">
                 <span>{certificate.certificatorName}</span> 
             </a>
 
