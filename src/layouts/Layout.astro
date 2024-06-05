@@ -31,6 +31,8 @@ let metadata = {
         <meta name="twitter:image" content={metadata.image} />
         <meta name="twitter:creator" content={metadata.twitterHandle} />
         <meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://felipego.com">
+		<meta name="twitter:domain" content="felipego.com">
         <meta name="geo.region" content="CO" />
         <meta name="geo.placename" content="Colombia" />
         <meta property="og:type" content="website" />
@@ -41,16 +43,28 @@ let metadata = {
         
         <title>{metadata.title}</title>
         
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Felipe Giraldo",
-            "url": {metadata.url},
-            "image": {metadata.image},
-            "description": {metadata.description}
-        }
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Felipe Giraldo",
+				"url": "https://felipego.com",
+				"image": "projects-imgs/felipego.png",
+				"sameAs": [
+					"https://twitter.com/astrxnomo",
+					"https://github.com/astrxnomo",
+					"https://www.linkedin.com/in/felipegiraldoo",
+					"https://www.instagram.com/astrxnomo",
+					"https://www.facebook.com/astrxnomo",
+					"https://www.tiktok.com/@astrxnomo",
+					"https://www.youtube.com/channel/UC",
+					"https://www.twitch.tv/astrxnomo",
+					"https://www.pinterest.com/astrxnomo",
+					"https://www.dev.to/astrxnomo"
+				]
+			}
         </script>
+		
 	</head>
 
 	<body>
