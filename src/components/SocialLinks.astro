@@ -1,0 +1,18 @@
+---
+import {Github, Linkedin, Instagram} from 'lucide-astro'
+
+
+let socialLinks = [
+    {url: "https://github.com/astrxnomo", icon: Github},
+    {url: "https://www.linkedin.com/in/felipegiraldoo/", icon: Linkedin},
+    {url: "https://www.instagram.com/astrxnomo/", icon: Instagram}
+];
+---
+
+<div class="flex gap-2">
+    {socialLinks.map(link => (
+        <a href={link.url} class="inline-flex items-center justify-center rounded-xl bg-neutral-800 p-2 opacity-80 transition-opacity duration-150 hover:opacity-100" target="_blank">
+            <link.icon class="size-4"/>
+        </a>
+    ))}
+</div>
