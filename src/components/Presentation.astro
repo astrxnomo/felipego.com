@@ -1,21 +1,18 @@
 ---
 import Section from './Section.astro'
-import {Github, Linkedin, Instagram, MapPin, ArrowUpRight,Sparkle} from 'lucide-astro'
+import SocialLinks from './SocialLinks.astro'
+import {MapPin, ArrowUpRight,Sparkle} from 'lucide-astro'
 
 let avatar = "avatar.gif";
 let technologies = ['HTML', 'CSS', 'JavaScript', 'Python', 'PHP', 'Java', 'Git', 'Linux','React', 'Astro', 'Laravel', 'MySQL','Tailwind', 'Bootstrap'];
-let socialLinks = [
-    {url: "https://github.com/astrxnomo", icon: Github},
-    {url: "https://www.linkedin.com/in/felipegiraldoo/", icon: Linkedin},
-    {url: "https://www.instagram.com/astrxnomo/", icon: Instagram}
-];
+
 let name = "Felipe Giraldo";
 let description = "A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer. My goal is to create efficient, scalable and easy to use applications that can make a difference.";
 let location = "Colombia";
 let contactEmail = "hi@felipego.com";
 ---
 
-<Section>
+<Section className="animate-pulse-fade-in animate-duration-500">
 
     <div class="flex flex-col md:flex-row gap-6">
 
@@ -35,13 +32,8 @@ let contactEmail = "hi@felipego.com";
                     Available for work
                 </a>
 
-                <div class="flex gap-2">
-                    {socialLinks.map(link => (
-                        <a href={link.url} class="inline-flex items-center justify-center rounded-xl bg-neutral-800 p-2 opacity-80 transition-opacity duration-150 hover:opacity-100" target="_blank">
-                            <link.icon class="size-4"/>
-                        </a>
-                    ))}
-                </div>
+                <SocialLinks />
+
             </div>
 
             <div class="flex flex-col gap-2 ">

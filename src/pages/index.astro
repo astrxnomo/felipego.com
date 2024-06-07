@@ -7,16 +7,18 @@ import Experience from '../components/Experience.astro';
 import Projects from '../components/Projects.astro';
 import Studies from '../components/Education.astro';
 import Certificates from '../components/Certificates.astro';
+import Footer from '../components/Footer.astro';
 
 ---
 
 <Layout>
 	<Navbar />
-	<main class="container p-5 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
+	<main class="container p-5 mb-12 mt-4 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
 		<Presentation />
 		<Experience />
 		<Projects />
 		<Studies />
 		<Certificates />
+		<Footer />
 	</main>
 </Layout>
