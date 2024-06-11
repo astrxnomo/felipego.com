@@ -1,14 +1,15 @@
 ---
 import '@fontsource-variable/inter';
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 
 let metadata = {
-  title: "Felipe Giraldo's Portfolio",
-  description: "A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer.",
-  url: "https://felipego.com",
-  image: "https://felipego.com/projects-imgs/felipego.jpg",
-  twitterHandle: "@astrxnomo",
-  keywords: "Full Stack Developer, Computer Systems Administration, UNAL, Colombia, Felipe Giraldo, Luis Felipe Giraldo Ortega, Manizales, Frontend, Backend",
-  author: "Felipe Giraldo"
+	title: "Felipe Giraldo's Portfolio",
+	description: "A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer.",
+	url: "https://felipego.com",
+	image: "https://felipego.com/projects-imgs/felipego.jpg",
+	twitterHandle: "@astrxnomo",
+	keywords: "Full Stack Developer, Computer Systems Administration, UNAL, Colombia, Felipe Giraldo, Luis Felipe Giraldo Ortega, Manizales, Frontend, Backend",
+	author: "Felipe Giraldo"
 }
 ---
 
@@ -69,6 +70,7 @@ let metadata = {
 
 	<body>
 		<slot/>
+		<SpeedInsights/>
 	</body>
 </html>
 
