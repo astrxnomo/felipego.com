@@ -1,9 +1,9 @@
 ---
-import Section from './Section.astro'
-import SocialLinks from './SocialLinks.astro'
+import SectionContainer from '../SectionContainer.astro'
+import SocialLinks from '../SocialLinks.astro'
 import {MapPin, ArrowUpRight,Sparkle} from 'lucide-astro'
 
-let avatar = "avatar.gif";
+let avatar = "/src/assets/avatar.gif";
 let technologies = ['HTML', 'CSS', 'JavaScript', 'Python', 'PHP', 'Java', 'Git', 'Linux','React', 'Astro', 'Laravel', 'MySQL','Tailwind', 'Bootstrap'];
 
 let name = "Felipe Giraldo";
@@ -12,7 +12,7 @@ let location = "Colombia";
 let contactEmail = "hi@felipego.com";
 ---
 
-<Section className="animate-pulse-fade-in animate-duration-500">
+<SectionContainer className="animate-pulse-fade-in animate-duration-500">
 
     <div class="flex flex-col md:flex-row gap-6">
 
@@ -76,4 +76,4 @@ let contactEmail = "hi@felipego.com";
         </ul>
     </div>
     
-</Section>
+</SectionContainer>

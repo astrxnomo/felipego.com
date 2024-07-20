@@ -1,6 +1,8 @@
 ---
 import '@fontsource-variable/inter';
 import SpeedInsights from "@vercel/speed-insights/astro"
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 let metadata = {
 	title: "Felipe Giraldo's Portfolio",
@@ -15,6 +17,7 @@ let metadata = {
 
 <!doctype html>
 <html lang="en">
+
 	<head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -69,8 +72,15 @@ let metadata = {
 	</head>
 
 	<body>
-		<slot/>
 		<SpeedInsights />
+
+		<Navbar />
+
+		<main class="p-5 mt-4 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
+			<slot/>
+		</main>
+
+		<Footer />
 	</body>
 </html>
 

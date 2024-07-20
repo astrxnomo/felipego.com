@@ -1,11 +1,11 @@
 ---
-import Section from './Section.astro'
-import ExperienceItem from './ExperienceItem.astro'
+import SectionContainer from '../SectionContainer.astro'
+import ExperienceItem from '../items/ExperienceItem.astro'
 import {BriefcaseBusiness} from 'lucide-astro'
 
 
 
-let experiences = [
+const EXPERIENCE = [
     {
         time: '2021 - 2023',
         title: 'Developer & Event Coordinator',
@@ -16,7 +16,7 @@ let experiences = [
 ]
 ---
 
-<Section id="experience" className="animate-pulse-fade-in animate-delay-200 animate-duration-500">
+<SectionContainer id="experience" className="animate-pulse-fade-in animate-delay-200 animate-duration-500">
     
     <h2 class="text-2xl font-semibold flex gap-3 items-center text-neutral-200">
         <BriefcaseBusiness />
@@ -25,7 +25,7 @@ let experiences = [
 
 
     <ol class="relative space-y-1 border-s-2 border-neutral-800">
-        {experiences.map(experience => <ExperienceItem experience={experience} />)}
+        {EXPERIENCE.map(experience => <ExperienceItem experience={experience} />)}
     </ol>
 
-</Section>
+</SectionContainer>

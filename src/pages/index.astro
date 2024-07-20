@@ -1,24 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-import Navbar from '../components/Navbar.astro';
-import Presentation from '../components/Presentation.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
-import Studies from '../components/Education.astro';
-import Certificates from '../components/Certificates.astro';
-import Footer from '../components/Footer.astro';
-
+import HeroSection from '../components/sections/HeroSection.astro';
+import ExperienceSection from '../components/sections/ExperienceSection.astro';
+import ProjectSection from '../components/sections/ProjectSection.astro';
+import EducationSection from '../components/sections/EducationSection.astro';
+import CertificateSection from '../components/sections/CertificateSection.astro';
 ---
 
 <Layout>
-	<Navbar />
-	<main class="container p-5 mb-12 mt-4 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
-		<Presentation />
-		<Experience />
-		<Projects />
-		<Studies />
-		<Certificates />
-		<Footer />
-	</main>
+	<HeroSection />
+	<ExperienceSection />
+	<ProjectSection />
+	<EducationSection />
+	<CertificateSection />
 </Layout>

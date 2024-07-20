@@ -1,10 +1,10 @@
 ---
-import Section from './Section.astro'
-import EducationItem from './EducationItem.astro'
+import SectionContainer from '../SectionContainer.astro'
+import EducationItem from '../items/EducationItem.astro'
 import {GraduationCap} from 'lucide-astro'
 
 
-let education = [
+const EDUCATION = [
     {
         time: '2021 - Present',
         title: 'Computer Systems Administration',
@@ -15,7 +15,7 @@ let education = [
 
 ---
 
-<Section id="studies" className="animate-pulse-fade-in animate-delay-400 animate-duration-500">
+<SectionContainer id="studies" className="animate-pulse-fade-in animate-delay-400 animate-duration-500">
 
     <h2 class="text-2xl font-semibold flex gap-3 items-center text-neutral-200">
         <GraduationCap />
@@ -23,7 +23,7 @@ let education = [
     </h2>
 
     <ol class="relative space-y-1 border-s-2 border-neutral-800">
-        {education.map(education => <EducationItem education={education}/>)}
+        {EDUCATION.map(education => <EducationItem education={education}/>)}
     </ol>
 
-</Section>
+</SectionContainer>

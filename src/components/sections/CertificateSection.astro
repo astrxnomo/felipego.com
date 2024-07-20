@@ -1,18 +1,18 @@
 ---
-import Section from './Section.astro'
-import CertificateItem from './CertificateItem.astro'
+import SectionContainer from '../SectionContainer.astro'
+import CertificateItem from '../items/CertificateItem.astro'
 
 import {FileBadge, MoveRight} from 'lucide-astro'
 
 
-let certificates = [
+const CERTIFICATES = [
     {
         time: '2023 - Dic',
         title: 'Introduction to Cloud Semester 2',
         certificatorUrl: 'https://aws.amazon.com/es/training/awsacademy/',
         certificatorName: 'AWS',
         credentialUrl: 'https://www.credly.com/go/uYsxPX7y',
-        img: 'certiticates-badges/aws-semester-2.png',
+        img: '/src/assets/certiticates-badges/aws-semester-2.png',
     },
     {
         time: '2023 - Nov',
@@ -20,7 +20,7 @@ let certificates = [
         certificatorUrl: 'https://www.netacad.com/',
         certificatorName: 'Cisco',
         credentialUrl: 'https://www.linkedin.com/in/felipegiraldoo/details/certifications/1635554683185/single-media-viewer/?profileId=ACoAADjfmwkB-xzTn8jFv_1kiogEe_xOtcM80gQ',
-        img: 'certiticates-badges/linux-unhatched.png'
+        img: '/src/assets/certiticates-badges/linux-unhatched.png'
     },
     {
         time: '2023 - Sep',
@@ -28,12 +28,12 @@ let certificates = [
         certificatorUrl: 'https://aws.amazon.com/es/training/awsacademy/',
         certificatorName: 'AWS',
         credentialUrl: 'https://www.credly.com/go/uYsxPX7y',
-        img: 'certiticates-badges/aws-semester-1.png'
+        img: '/src/assets/certiticates-badges/aws-semester-1.png'
     }
 ]
 ---
 
-<Section id="certificates" className="animate-pulse-fade-in animate-delay-500 animate-duration-500">
+<SectionContainer id="certificates" className="animate-pulse-fade-in animate-delay-500 animate-duration-500">
 
     <h2 class="text-2xl font-semibold flex gap-3 items-center text-neutral-200">
         <FileBadge />
@@ -42,7 +42,8 @@ let certificates = [
     
 
     <ol class="relative space-y-1 border-s-2 border-neutral-800">
-        {certificates.map(certificate => <CertificateItem certificate={certificate}/>)}
+        {
+            CERTIFICATES.map(certificate => <CertificateItem certificate={certificate}/>)}
     </ol>
 
     <a href="https://www.linkedin.com/in/felipegiraldoo/details/certifications/" target="_blank" class="inline-flex items-center text-sm justify-center rounded-xl bg-neutral-800 dark:hover:text-neutral-50 py-2 px-4 opacity-80 transition-opacity duration-150 hover:opacity-100 w-full md:w-auto group gap-2 font-medium ">
@@ -50,5 +51,5 @@ let certificates = [
         <MoveRight class="size-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-[1.5px] duration-200"/>
     </a>
 
-</Section>
+</SectionContainer>
 
