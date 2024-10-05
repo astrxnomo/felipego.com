@@ -1,15 +1,15 @@
 ---
-const {education} = Astro.props
+const { time, title, educationUrl, educationName, details } = Astro.props;
 ---
 
 <li class="ms-3 p-4 rounded-xl hover:bg-neutral-800/20 duration-100">
     <div class="absolute -start-[6.5px] mt-2 h-3 w-3 rounded-full border border-neutral-600 bg-neutral-800"></div> 
-    <time class="mb-2 font-mono text-xs font-normal leading-none text-neutral-400">{education.time}</time> 
+    <time class="mb-2 font-mono text-xs font-normal leading-none text-neutral-400">{time}</time> 
 
     <div class="mt-1 flex flex-col space-y-0.5">
-        <h3 class="text-lg font-semibold text-neutral-200">{education.title}</h3> 
-        <a href={education.educationUrl} target="_blank" class="text-sm font-medium duration-150 text-neutral-400 hover:text-neutral-200">
-            <span>{education.educationName}</span> 
+        <h3 class="text-lg font-semibold text-neutral-200">{title}</h3> 
+        <a href={educationUrl} target="_blank" class="text-sm font-medium duration-150 text-neutral-400 hover:text-neutral-200">
+            <span>{educationName}</span> 
         </a>
         
     </div> 

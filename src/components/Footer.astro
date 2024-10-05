@@ -1,13 +1,13 @@
 ---
-import Container from './SectionContainer.astro'
-import SocialLinks from './SocialLinks.astro'
+import SectionContainer from './items/SectionContainer.astro'
+import SocialLinks from './items/SocialLinks.astro'
 
 import {Sprout} from 'lucide-astro'
 
 ---
 
-<footer class="p-5 pt-0 mb-12 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
-    <Container id="footer" className="animate-pulse-fade-in animate-delay-500 animate-duration-600">
+<footer class="pt-0 mb-12 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
+    <SectionContainer id="footer" className="animate-pulse-fade-in animate-delay-500 animate-duration-600">
         <div class="flex justify-between">
             <div class="flex items-center gap-1 text-sm">
                 <Sprout size={18} />
@@ -18,5 +18,5 @@ import {Sprout} from 'lucide-astro'
     
             <SocialLinks />
         </div>
-    </Container>
+    </SectionContainer>
 </footer>

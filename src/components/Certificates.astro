@@ -1,8 +1,8 @@
 ---
-import SectionContainer from '../SectionContainer.astro'
-import CertificateItem from '../items/CertificateItem.astro'
+import SectionContainer from './items/SectionContainer.astro'
+import CertificateItem from './items/CertificateItem.astro'
 import { FileBadge, MoveRight, } from 'lucide-astro'
-import { getCertificates } from '../../data/notion';
+import { getCertificates } from '../data/notion'
 
 const certificates = await getCertificates();
 ---

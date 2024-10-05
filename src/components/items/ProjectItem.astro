@@ -1,30 +1,30 @@
 ---
 import { Github, ScreenShare } from 'lucide-astro';
 
-let { project } = Astro.props;
+const { title, description, technologies, img, githubLink, previewLink } = Astro.props;
 ---
 
 <div class="flex flex-col gap-3 rounded-xl p-4 hover:bg-neutral-800/20 duration-100">
     <div class="flex flex-col">
-        <h3 class="text-lg font-semibold text-neutral-300">{project.title}</h3>
-        <p class="text-sm text-neutral-400 mb-2">{project.description}</p>
+        <h3 class="text-lg font-semibold text-neutral-300">{title}</h3>
+        <p class="text-sm text-neutral-400 mb-2">{description}</p>
         <div class="flex gap-1 mb-2">
-            {project.technologies.map(tech => (
+            {technologies.map(tech => (
                 <span class="flex gap-1 items-center text-xs px-2.5 py-0.5 rounded-lg bg-neutral-800/50 text-neutral-400">
                     {tech}
                 </span>
             ))}
         </div>
-        <img class="rounded-xl h-40 object-cover object-top" src={project.image} alt="Project image example" />
+        <img class="rounded-xl h-40 object-cover object-top" src={img} alt="Project image example" />
     </div> 
     <div class="flex gap-2 mt-1">
-        {project.githubLink && 
-            <a href={project.githubLink} class="inline-flex items-center justify-center rounded-xl bg-neutral-800 p-2 opacity-80 transition-opacity duration-150 hover:opacity-100 grow" target="_blank">
+        {githubLink && 
+            <a href={githubLink} class="inline-flex items-center justify-center rounded-xl bg-neutral-800 p-2 opacity-80 transition-opacity duration-150 hover:opacity-100 grow" target="_blank">
                 <Github class="size-4"/>
             </a>
         }
-        {project.liveLink &&        
-            <a href={project.liveLink} class="inline-flex items-center justify-center rounded-xl bg-neutral-800 p-2 opacity-80 transition-opacity duration-150 hover:opacity-100 grow" target={project.liveLink !== "/#top" && "_blank"}>
+        {previewLink &&        
+            <a href={previewLink} class="inline-flex items-center justify-center rounded-xl bg-neutral-800 p-2 opacity-80 transition-opacity duration-150 hover:opacity-100 grow" {...(previewLink !== "/#top" && { target: "_blank" })}>
                 <ScreenShare class="size-4"/>
             </a>
         }

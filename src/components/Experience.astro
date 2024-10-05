@@ -1,8 +1,8 @@
 ---
-import SectionContainer from '../SectionContainer.astro';
-import ExperienceItem from '../items/ExperienceItem.astro';
-import { BriefcaseBusiness } from 'lucide-astro';
-import { getExperience } from '../../data/notion';
+import SectionContainer from './items/SectionContainer.astro'
+import ExperienceItem from './items/ExperienceItem.astro'
+import { BriefcaseBusiness } from 'lucide-astro'
+import { getExperience } from '../data/notion'
 
 const experienceData = await getExperience();
 ---

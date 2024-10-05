@@ -3,10 +3,11 @@ import { Client } from "@notionhq/client";
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 const DATABASE_IDS = {
-    certificates: process.env.NOTION_CERTIFICATES_DB_ID,
+    profile: process.env.NOTION_PROFILE_DB_ID,
+    experience: process.env.NOTION_EXPERIENCE_DB_ID,
     projects: process.env.NOTION_PROJECTS_DB_ID,
     education: process.env.NOTION_EDUCATION_DB_ID,
-    experience: process.env.NOTION_EXPERIENCE_DB_ID,
+    certificates: process.env.NOTION_CERTIFICATES_DB_ID
 };
 
 async function queryDatabase(databaseId) {
@@ -19,19 +20,34 @@ async function queryDatabase(databaseId) {
     return response.results;
 }
 
-export async function getCertificates() {
-    const results = await queryDatabase(DATABASE_IDS.certificates);
+export async function getProfile() {
+    const results = await queryDatabase(DATABASE_IDS.profile);
+    const page = results[0];
+    const { properties } = page;
+    return {
+        id: properties.id?.number || '',
+        name: properties.name?.title?.[0]?.plain_text || '',
+        description: properties.description?.rich_text?.[0]?.plain_text || '',
+        location: properties.location?.rich_text?.[0]?.plain_text || '',
+        contactEmail: properties.contactEmail?.rich_text?.[0]?.plain_text || '',
+        technologies: properties.technologies?.multi_select?.map(tag => tag.name) || [],
+        avatar: properties.avatar?.files?.[0]?.file?.url || '',
+        workLabel: properties.workLabel?.rich_text?.[0]?.plain_text || '',
+        workUrl: properties.workUrl?.url || '',
+    };
+}
+
+export async function getExperience() {
+    const results = await queryDatabase(DATABASE_IDS.experience);
     return results.map((page) => {
         const { properties } = page;
         return {
             id: properties.id?.number || '',
-            slug: properties.slug?.rich_text?.[0]?.plain_text || '',
             time: properties.time?.rich_text?.[0]?.plain_text || '',
             title: properties.title?.title?.[0]?.plain_text || '',
-            certificatorUrl: properties.certificatorUrl?.url || '',
-            certificatorName: properties.certificatorName?.rich_text?.[0]?.plain_text || '',
-            credentialUrl: properties.credentialUrl?.url || '',
-            img: properties.img?.files?.[0]?.file?.url || '',
+            companyUrl: properties.companyUrl?.url || '',
+            companyName: properties.companyName?.rich_text?.[0]?.plain_text || '',
+            description: properties.description?.rich_text?.[0]?.plain_text || '',
         };
     });
 }
@@ -42,11 +58,11 @@ export async function getProjects() {
         const { properties } = page;
         return {
             id: properties.id?.number || '',
-            name: properties.name?.title?.[0]?.plain_text || '',
+            title: properties.title?.title?.[0]?.plain_text || '',
             description: properties.description?.rich_text?.[0]?.plain_text || '',
             technologies: properties.technologies?.multi_select?.map(tag => tag.name) || [],
-            githubLink: properties.githubLink?.url || '',
-            liveLink: properties.liveLink?.url || '',
+            githubLink: properties.githubLink?.url,
+            previewLink: properties.previewLink?.url,
             img: properties.img?.files?.[0]?.file?.url || '',
         };
     });
@@ -58,27 +74,28 @@ export async function getEducation() {
         const { properties } = page;
         return {
             id: properties.id?.number || '',
-            institution: properties.institution?.title?.[0]?.plain_text || '',
-            degree: properties.degree?.rich_text?.[0]?.plain_text || '',
-            fieldOfStudy: properties.fieldOfStudy?.rich_text?.[0]?.plain_text || '',
-            startDate: properties.startDate?.date?.start || '',
-            endDate: properties.endDate?.date?.end || '',
-            img: properties.img?.files?.[0]?.file?.url || '',
+            time: properties.time?.rich_text?.[0]?.plain_text || '',
+            title: properties.title?.title?.[0]?.plain_text || '',
+            educationName: properties.educationName?.rich_text?.[0]?.plain_text || '',
+            educationUrl: properties.educationUrl?.url || '',
+            details: properties.details?.multi_select?.map(item => item.name) || [],
         };
     });
 }
 
-export async function getExperience() {
-    const results = await queryDatabase(DATABASE_IDS.experience);
+export async function getCertificates() {
+    const results = await queryDatabase(DATABASE_IDS.certificates);
     return results.map((page) => {
         const { properties } = page;
         return {
             id: properties.id?.number || '',
+            slug: properties.slug?.rich_text?.[0]?.plain_text || '',
             time: properties.time?.rich_text?.[0]?.plain_text || '',
             title: properties.title?.title?.[0]?.plain_text || '',
-            companyUrl: properties.companyUrl?.rich_text?.[0]?.plain_text || '',
-            companyName: properties.companyName?.rich_text?.[0]?.plain_text || '',
-            description: properties.description?.rich_text?.[0]?.plain_text || '',
+            certificatorName: properties.certificatorName?.rich_text?.[0]?.plain_text || '',
+            certificatorUrl: properties.certificatorUrl?.url || '',
+            credentialUrl: properties.credentialUrl?.url || '',
+            img: properties.img?.files?.[0]?.file?.url || '',
         };
     });
 }
