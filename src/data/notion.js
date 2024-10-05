@@ -1,7 +1,4 @@
 import { Client } from "@notionhq/client";
-import { config } from "dotenv";
-
-config(); // Cargar variables de entorno desde el archivo .env
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
