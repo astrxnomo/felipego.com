@@ -13,9 +13,14 @@ const DATABASE_IDS = {
 async function queryDatabase(databaseId) {
     const response = await notion.databases.query({
         database_id: databaseId,
-        sorts: [
-            { property: 'id', direction: 'descending' },
-        ],
+        filter: { 
+            property: 'show', 
+            checkbox: { equals: true } 
+        },
+        sorts: [{ 
+            property: 'id', 
+            direction: 'descending' 
+        },],
     });
     return response.results;
 }
