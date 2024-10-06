@@ -11,7 +11,17 @@ const { time, title, educationUrl, educationName, details } = Astro.props;
         <a href={educationUrl} target="_blank" class="text-sm font-medium duration-150 text-neutral-400 hover:text-neutral-200">
             <span>{educationName}</span> 
         </a>
-        
+
+        <div class="p-1">
+            <ol>
+                {details.map(detail => (
+                    <li class="flex gap-1 items-center text-xs px-2.5 py-0.5 text-neutral-400/85">
+                        {detail}
+                    </li>
+                ))}
+            </ol>
+        </div>
+
     </div> 
 </li>
 
