@@ -10,8 +10,6 @@ export const DATABASE_IDS = {
   certificates: process.env.NOTION_CERTIFICATES_DB_ID
 } as const
 
-export type DatabaseId = keyof typeof DATABASE_IDS
-
 export interface NotionPage {
   id: string
   properties: Record<string, any>

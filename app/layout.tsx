@@ -1,4 +1,3 @@
-import { ThemeSwitcher } from '@/components/theme-switcher'
 import { GeistSans } from 'geist/font/sans'
 import { ThemeProvider } from 'next-themes'
 import './globals.css'
@@ -21,30 +20,16 @@ export default function RootLayout ({
 }) {
   return (
     <html lang="en" className={GeistSans.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
+      <body className="bg-neutral-100 dark:bg-background">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <Particles className="fixed inset-0 -z-10 animate-fade-in" quantity={80}/>
           <main className="p-5 mt-4 w-full mx-auto flex flex-col gap-6 md:max-w-4xl">
-              <Particles className="absolute inset-0 -z-10 animate-fade-in" quantity={80}/>
-                {children}
-              <footer className="w-full flex items-center justify-center text-center text-xs gap-8 py-16">
-                <p>
-                  Develop by{' '}
-                  <a
-                    href="https://felipego.com"
-                    target="_blank"
-                    className="font-bold hover:underline"
-                    rel="noreferrer"
-                  >
-                    felipego.com
-                  </a>
-                </p>
-                <ThemeSwitcher />
-              </footer>
+              {children}
           </main>
         </ThemeProvider>
       </body>

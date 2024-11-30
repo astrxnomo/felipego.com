@@ -3,14 +3,12 @@
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -20,7 +18,6 @@ const ThemeSwitcher = () => {
   }
 
   return (
-    <>
     <div className="relative inline-grid h-9 grid-cols-[1fr_1fr] items-center text-sm font-medium">
       <Switch
         id="switch-12"
@@ -35,10 +32,6 @@ const ThemeSwitcher = () => {
         <Sun size={16} strokeWidth={2} aria-hidden="true" />
       </span>
     </div>
-    <Label htmlFor="switch-12" className="sr-only">
-      Labeled switch
-    </Label>
-    </>
   )
 }
 

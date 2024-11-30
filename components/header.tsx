@@ -16,8 +16,9 @@ export default async function Header () {
     workLabel: string
     workUrl: string
   }
+
   return (
-    <section className="flex flex-col p-8 gap-6 rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900/50 animate-pulse-fade-in animate-duration-500">
+    <section className="flex flex-col p-8 gap-6 rounded-2xl overflow-hidden bg-neutral-200/30 border dark:bg-neutral-900/50 animate-pulse-fade-in animate-duration-500">
         <div className="flex flex-col md:flex-row gap-6">
         <figure className="flex justify-center items-center object-fit flex-shrink-0 relative">
             <Image
@@ -40,7 +41,7 @@ export default async function Header () {
             <SocialLinks />
             </div>
             <div className="flex flex-col gap-2">
-            <h1 className="text-neutral-900 dark:text-neutral-200 text-3xl font-semibold">{name}</h1>
+            <h1 className="text-neutral-800 dark:text-neutral-200 text-3xl font-semibold">{name}</h1>
             <p className="text-neutral-600 dark:text-neutral-400 text-sm">{description}</p>
             </div>
             <div className="flex flex-col grow justify-end">
@@ -58,22 +59,22 @@ export default async function Header () {
         </div>
         </div>
         <div className="w-full inline-flex flex-nowrap text-sm font-medium text-neutral-500 dark:text-neutral-400 overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-5 [&_img]:max-w-none animate-infinite-scroll prevent-select">
-            {technologies.map((tech: string, index: number) => (
-            <>
-                <li>{tech}</li>
-                {index < technologies.length && <Sparkle className="size-3"/>}
-            </>
-            ))}
-        </ul>
-        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-5 [&_img]:max-w-none animate-infinite-scroll" aria-hidden="true">
-            {technologies.map((tech: string, index: number) => (
-            <>
-                <li>{tech}</li>
-                {index < technologies.length && <Sparkle className="size-3"/>}
-            </>
-            ))}
-        </ul>
+            <ul className="flex items-center justify-center md:justify-start [&_li]:mx-5 [&_img]:max-w-none animate-infinite-scroll prevent-select">
+                {technologies.map((tech: string, index: number) => (
+                <>
+                    <li>{tech}</li>
+                    {index < technologies.length && <Sparkle className="size-3"/>}
+                </>
+                ))}
+            </ul>
+            <ul className="flex items-center justify-center md:justify-start [&_li]:mx-5 [&_img]:max-w-none animate-infinite-scroll" aria-hidden="true">
+                {technologies.map((tech: string, index: number) => (
+                <>
+                    <li>{tech}</li>
+                    {index < technologies.length && <Sparkle className="size-3"/>}
+                </>
+                ))}
+            </ul>
         </div>
     </section>
   )
