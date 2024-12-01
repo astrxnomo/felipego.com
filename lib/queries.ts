@@ -1,34 +1,27 @@
-import { Client } from '@notionhq/client'
+import { notion, DATABASE_IDS } from '@/lib/notion'
+import { type NotionPage, type Certificate, type Experience, type Project, type Education, type Profile } from '@/lib/types'
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY })
-
-const DATABASE_IDS = {
-  profile: process.env.NOTION_PROFILE_DB_ID,
-  experience: process.env.NOTION_EXPERIENCE_DB_ID,
-  projects: process.env.NOTION_PROJECTS_DB_ID,
-  education: process.env.NOTION_EDUCATION_DB_ID,
-  certificates: process.env.NOTION_CERTIFICATES_DB_ID
-}
-
-async function queryDatabase (databaseId: string) {
+async function queryDatabase<T> (databaseId: string): Promise<T[]> {
   const response = await notion.databases.query({
     database_id: databaseId,
     filter: {
       property: 'show',
       checkbox: { equals: true }
     },
-    sorts: [{
-      property: 'id',
-      direction: 'descending'
-    }]
+    sorts: [
+      {
+        property: 'id',
+        direction: 'descending'
+      }
+    ]
   })
-  return response.results
+  return response.results as T[]
 }
 
-export async function getProfile () {
-  const results = await queryDatabase(DATABASE_IDS.profile ?? '')
+export async function getProfile (): Promise<Profile> {
+  const results = await queryDatabase<NotionPage>(DATABASE_IDS.profile ?? '')
   const page = results[0]
-  const { properties } = page as any
+  const { properties } = page
   return {
     id: properties.id?.number || '',
     name: properties.name?.title?.[0]?.plain_text || '',
@@ -42,10 +35,10 @@ export async function getProfile () {
   }
 }
 
-export async function getExperience () {
-  const results = await queryDatabase(DATABASE_IDS.experience ?? '')
+export async function getExperience (): Promise<Experience[]> {
+  const results = await queryDatabase<NotionPage>(DATABASE_IDS.experience ?? '')
   return results.map((page) => {
-    const { properties } = page as any
+    const { properties } = page
     return {
       id: properties.id?.number || '',
       time: properties.time?.rich_text?.[0]?.plain_text || '',
@@ -57,10 +50,10 @@ export async function getExperience () {
   })
 }
 
-export async function getProjects () {
-  const results = await queryDatabase(DATABASE_IDS.projects ?? '')
+export async function getProjects (): Promise<Project[]> {
+  const results = await queryDatabase<NotionPage>(DATABASE_IDS.projects ?? '')
   return results.map((page) => {
-    const { properties } = page as any
+    const { properties } = page
     return {
       id: properties.id?.number || '',
       title: properties.title?.title?.[0]?.plain_text || '',
@@ -73,10 +66,10 @@ export async function getProjects () {
   })
 }
 
-export async function getEducation () {
-  const results = await queryDatabase(DATABASE_IDS.education ?? '')
+export async function getEducation (): Promise<Education[]> {
+  const results = await queryDatabase<NotionPage>(DATABASE_IDS.education ?? '')
   return results.map((page) => {
-    const { properties } = page as any
+    const { properties } = page
     return {
       id: properties.id?.number || '',
       time: properties.time?.rich_text?.[0]?.plain_text || '',
@@ -88,10 +81,10 @@ export async function getEducation () {
   })
 }
 
-export async function getCertificates () {
-  const results = await queryDatabase(DATABASE_IDS.certificates ?? '')
+export async function getCertificates (): Promise<Certificate[]> {
+  const results = await queryDatabase<NotionPage>(DATABASE_IDS.certificates ?? '')
   return results.map((page) => {
-    const { properties } = page as any
+    const { properties } = page
     return {
       id: properties.id?.number || '',
       slug: properties.slug?.rich_text?.[0]?.plain_text || '',

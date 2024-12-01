@@ -9,8 +9,3 @@ export const DATABASE_IDS = {
   education: process.env.NOTION_EDUCATION_DB_ID,
   certificates: process.env.NOTION_CERTIFICATES_DB_ID
 } as const
-
-export interface NotionPage {
-  id: string
-  properties: Record<string, any>
-}
