@@ -49,7 +49,15 @@ function CertificateItem ({ time, title, certificatorUrl, certificatorName, cred
         </div>
 
         <div className="flex flex-col justify-center items-center">
-          <Image src={img} alt="Certificate badge" className="rounded-xl object-contain size-full" width={96} height={96} />
+          <div className="w-24 h-24 max-w-full max-h-full relative aspect-square">
+            <Image
+              src={img}
+              alt="Certificate badge"
+              className="rounded-xl object-contain"
+              fill
+              sizes="(max-width: 96px) 100vw, 96px"
+            />
+          </div>
         </div>
       </div>
     </li>

@@ -42,7 +42,15 @@ function ProjectItem ({ title, description, technologies, img, githubLink, previ
           ))}
         </div>
 
-        <Image className="rounded-xl h-40 object-cover object-top" src={img} alt="Project image example" width={360} height={160}/>
+        <div className="relative w-full h-40">
+          <Image
+            className="rounded-xl object-cover object-top"
+            src={img}
+            alt="Project image example"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
       </div>
       <div className="flex gap-2 mt-1">
         {githubLink &&
