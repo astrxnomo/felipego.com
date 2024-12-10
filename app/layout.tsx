@@ -43,6 +43,7 @@ export const metadata = {
     'Luis Felipe Giraldo Ortega',
     'Manizales',
     'Caldas',
+    'Web Developer',
     'Programador',
     'Paginas web',
     'Frontend',
