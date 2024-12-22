@@ -1,49 +1,37 @@
 import { NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 
-// Deploy Hook URL from Vercel
-const DEPLOY_HOOK_URL = process.env.VERCEL_DEPLOY_HOOK_NOTION_UPDATE
+const VERCEL_DEPLOY_HOOK_NOTION_UPDATE = process.env.VERCEL_DEPLOY_HOOK_NOTION_UPDATE
+const NOTION_WEBHOOK_KEY = process.env.NOTION_WEBHOOK_KEY
 
 export async function POST (request: Request) {
   try {
-    const body = await request.json()
+    const notionSecret = request.headers.get('X-Notion-Secret')
 
-    // Log the webhook payload for debugging
-    console.log('Received webhook from Notion:', body)
+    if (!notionSecret || notionSecret !== NOTION_WEBHOOK_KEY) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
-    // Revalidate the entire site
+    await request.json()
     revalidatePath('/')
 
-    // Trigger a new deployment on Vercel using the Deploy Hook URL
-    console.log('Attempting to trigger Vercel deployment with URL:', DEPLOY_HOOK_URL)
-    try {
-      if (!DEPLOY_HOOK_URL) {
-        throw new Error('DEPLOY_HOOK_URL is not defined')
-      }
-
-      const response = await fetch(DEPLOY_HOOK_URL, {
+    if (VERCEL_DEPLOY_HOOK_NOTION_UPDATE) {
+      const response = await fetch(VERCEL_DEPLOY_HOOK_NOTION_UPDATE, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         }
       })
 
-      console.log('Vercel deployment response status:', response.status)
-      const responseText = await response.text()
-      console.log('Vercel deployment response body:', responseText)
-
-      if (response.ok) {
-        console.log('Successfully triggered Vercel deployment')
-      } else {
-        console.error('Failed to trigger Vercel deployment:', responseText)
+      if (!response.ok) {
+        throw new Error('Error triggering deployment on Vercel')
       }
-    } catch (error) {
-      console.error('Error triggering Vercel deployment:', error)
+    } else {
+      throw new Error('VERCEL_DEPLOY_HOOK_NOTION_UPDATE is not defined')
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Error processing webhook:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
