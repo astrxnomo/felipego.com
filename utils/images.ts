@@ -3,8 +3,7 @@ import { put } from '@vercel/blob'
 
 export const isNotionUrl = (url: string): boolean => {
   return url.startsWith('https://prod-files-secure.s3.us-west-2.amazonaws.com') ||
-         url.startsWith('https://s3.us-west-2.amazonaws.com') ||
-          url.startsWith('https://img.notionusercontent.com')
+         url.startsWith('https://s3.us-west-2.amazonaws.com')
 }
 
 export async function uploadToVercelBlob (url: string, filename: string): Promise<string> {
