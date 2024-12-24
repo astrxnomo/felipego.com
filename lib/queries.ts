@@ -1,8 +1,6 @@
 import { notion, DATABASE_IDS } from '@/lib/notion'
 import { type NotionPage, type Certificate, type Experience, type Project, type Education, type Profile } from '@/lib/types'
 
-export const revalidate = 3600
-
 async function queryDatabase<T> (databaseId: string): Promise<T[]> {
   const response = await notion.databases.query({
     database_id: databaseId,
