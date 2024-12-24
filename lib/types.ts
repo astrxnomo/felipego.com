@@ -48,7 +48,7 @@ export interface Profile {
   location: string
   contactEmail: string
   technologies: string[]
-  avatar: string
+  img: string
   workLabel: string
   workUrl: string
 }

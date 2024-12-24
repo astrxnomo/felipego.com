@@ -37,7 +37,7 @@ export async function getProfile (): Promise<Profile> {
     location: properties.location?.rich_text?.[0]?.plain_text || '',
     contactEmail: properties.contactEmail?.rich_text?.[0]?.plain_text || '',
     technologies: properties.technologies?.multi_select?.map((tag: { name: string }) => tag.name) || [],
-    avatar: avatarUrl,
+    img: avatarUrl,
     workLabel: properties.workLabel?.rich_text?.[0]?.plain_text || '',
     workUrl: properties.workUrl?.url || ''
   }
