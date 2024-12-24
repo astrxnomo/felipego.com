@@ -15,7 +15,7 @@ export default async function Header () {
             <figure className="flex justify-center items-center object-fit flex-shrink-0 relative">
                 <Image
                 className="rounded-2xl"
-                src={profileData.avatar}
+                src={profileData.img}
                 alt="Profile image"
                 width={224}
                 height={224}
