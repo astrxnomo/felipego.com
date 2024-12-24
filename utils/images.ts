@@ -38,5 +38,5 @@ export async function processImageUrl (url: string, id: string, prefix: string):
     })
     return newUrl
   }
-  return url
+  return url.startsWith('http') ? url : `https://${url}`
 }
