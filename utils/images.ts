@@ -46,12 +46,12 @@ export async function processImageUrl (url: string, id: string, prefix: string):
           }
         }
       })
-      console.log(`Updated image URL for page ID: ${id}`)
+      console.log(`Updated image URL: ${newUrl} for page ID: ${id}`)
     } catch (error) {
       console.error(`Error updating Notion page ID ${id}:`, error)
     }
     return newUrl
   }
-  console.log(`Image URL for page ID ${id} is an external URL`)
+  console.log(`Image URL for page ID ${id} is an external URL: ${url}`)
   return url
 }
