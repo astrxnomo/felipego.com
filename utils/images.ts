@@ -36,7 +36,9 @@ export async function processImageUrl (url: string, id: string, prefix: string):
         }
       }
     })
+    console.log(`Updated image URL for ${id}`)
     return newUrl
   }
-  return url.startsWith('http') ? url : `https://${url}`
+  console.log(`Image URL for ${id} is a External URL`)
+  return url
 }
