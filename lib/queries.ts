@@ -25,7 +25,7 @@ export async function getProfile (): Promise<Profile> {
   const { properties } = page
 
   const avatarUrl = await processImageUrl(
-    properties.avatar?.files?.[0]?.file?.url || '',
+    properties.img?.files?.[0]?.file?.url || '',
     page.id,
     'avatar'
   )
