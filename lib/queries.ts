@@ -1,5 +1,6 @@
 import { notion, DATABASE_IDS } from '@/lib/notion'
-import { type NotionPage, type Certificate, type Experience, type Project, type Education, type Profile } from '@/lib/types'
+import { processImageUrl } from '@/utils/images'
+import { type NotionPage, type Profile, type Project, type Certificate, type Experience, type Education } from '@/lib/types'
 
 async function queryDatabase<T> (databaseId: string): Promise<T[]> {
   const response = await notion.databases.query({
@@ -22,6 +23,13 @@ export async function getProfile (): Promise<Profile> {
   const results = await queryDatabase<NotionPage>(DATABASE_IDS.profile ?? '')
   const page = results[0]
   const { properties } = page
+
+  const avatarUrl = await processImageUrl(
+    properties.avatar?.files?.[0]?.file?.url || '',
+    page.id,
+    'avatar'
+  )
+
   return {
     id: properties.id?.number || '',
     name: properties.name?.title?.[0]?.plain_text || '',
@@ -29,10 +37,53 @@ export async function getProfile (): Promise<Profile> {
     location: properties.location?.rich_text?.[0]?.plain_text || '',
     contactEmail: properties.contactEmail?.rich_text?.[0]?.plain_text || '',
     technologies: properties.technologies?.multi_select?.map((tag: { name: string }) => tag.name) || [],
-    avatar: properties.avatar?.files?.[0]?.file?.url || '',
+    avatar: avatarUrl,
     workLabel: properties.workLabel?.rich_text?.[0]?.plain_text || '',
     workUrl: properties.workUrl?.url || ''
   }
+}
+
+export async function getProjects (): Promise<Project[]> {
+  const results = await queryDatabase<NotionPage>(DATABASE_IDS.projects ?? '')
+  return await Promise.all(results.map(async (page) => {
+    const { properties } = page
+    const imgUrl = await processImageUrl(
+      properties.img?.files?.[0]?.file?.url || '',
+      page.id,
+      'project'
+    )
+    return {
+      id: properties.id?.number || '',
+      title: properties.title?.title?.[0]?.plain_text || '',
+      description: properties.description?.rich_text?.[0]?.plain_text || '',
+      technologies: properties.technologies?.multi_select?.map((tag: { name: string }) => tag.name) || [],
+      githubLink: properties.githubLink?.url,
+      previewLink: properties.previewLink?.url,
+      img: imgUrl
+    }
+  }))
+}
+
+export async function getCertificates (): Promise<Certificate[]> {
+  const results = await queryDatabase<NotionPage>(DATABASE_IDS.certificates ?? '')
+  return await Promise.all(results.map(async (page) => {
+    const { properties } = page
+    const imgUrl = await processImageUrl(
+      properties.img?.files?.[0]?.file?.url || '',
+      page.id,
+      'certificate'
+    )
+    return {
+      id: properties.id?.number || '',
+      slug: properties.slug?.rich_text?.[0]?.plain_text || '',
+      time: properties.time?.rich_text?.[0]?.plain_text || '',
+      title: properties.title?.title?.[0]?.plain_text || '',
+      certificatorName: properties.certificatorName?.rich_text?.[0]?.plain_text || '',
+      certificatorUrl: properties.certificatorUrl?.url || '',
+      credentialUrl: properties.credentialUrl?.url || '',
+      img: imgUrl
+    }
+  }))
 }
 
 export async function getExperience (): Promise<Experience[]> {
@@ -50,22 +101,6 @@ export async function getExperience (): Promise<Experience[]> {
   })
 }
 
-export async function getProjects (): Promise<Project[]> {
-  const results = await queryDatabase<NotionPage>(DATABASE_IDS.projects ?? '')
-  return results.map((page) => {
-    const { properties } = page
-    return {
-      id: properties.id?.number || '',
-      title: properties.title?.title?.[0]?.plain_text || '',
-      description: properties.description?.rich_text?.[0]?.plain_text || '',
-      technologies: properties.technologies?.multi_select?.map((tag: { name: string }) => tag.name) || [],
-      githubLink: properties.githubLink?.url,
-      previewLink: properties.previewLink?.url,
-      img: properties.img?.files?.[0]?.file?.url || ''
-    }
-  })
-}
-
 export async function getEducation (): Promise<Education[]> {
   const results = await queryDatabase<NotionPage>(DATABASE_IDS.education ?? '')
   return results.map((page) => {
@@ -77,23 +112,6 @@ export async function getEducation (): Promise<Education[]> {
       educationName: properties.educationName?.rich_text?.[0]?.plain_text || '',
       educationUrl: properties.educationUrl?.url || '',
       details: properties.details?.multi_select?.map((item: { name: string }) => item.name) || []
-    }
-  })
-}
-
-export async function getCertificates (): Promise<Certificate[]> {
-  const results = await queryDatabase<NotionPage>(DATABASE_IDS.certificates ?? '')
-  return results.map((page) => {
-    const { properties } = page
-    return {
-      id: properties.id?.number || '',
-      slug: properties.slug?.rich_text?.[0]?.plain_text || '',
-      time: properties.time?.rich_text?.[0]?.plain_text || '',
-      title: properties.title?.title?.[0]?.plain_text || '',
-      certificatorName: properties.certificatorName?.rich_text?.[0]?.plain_text || '',
-      certificatorUrl: properties.certificatorUrl?.url || '',
-      credentialUrl: properties.credentialUrl?.url || '',
-      img: properties.img?.files?.[0]?.file?.url || ''
     }
   })
 }
