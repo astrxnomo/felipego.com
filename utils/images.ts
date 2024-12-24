@@ -1,3 +1,4 @@
+import { notion } from '@/lib/notion'
 import { put } from '@vercel/blob'
 
 export const isNotionUrl = (url: string): boolean => {
@@ -20,7 +21,23 @@ export async function uploadToVercelBlob (url: string, filename: string): Promis
 
 export async function processImageUrl (url: string, id: string, prefix: string): Promise<string> {
   if (isNotionUrl(url)) {
-    return await uploadToVercelBlob(url, `${prefix}-${id}.jpg`)
+    const newUrl = await uploadToVercelBlob(url, `${prefix}-${id}.webp`)
+    await notion.pages.update({
+      page_id: id,
+      properties: {
+        img: {
+          files: [
+            {
+              name: `${prefix}-${id}.webp`,
+              external: {
+                url: newUrl
+              }
+            }
+          ]
+        }
+      }
+    })
+    return newUrl
   }
   return url
 }
