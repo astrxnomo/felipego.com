@@ -9,7 +9,6 @@ export async function exportImage (imageUrl: string, prefix: string, title: stri
 
   // Check if the image is hosted on Notion
   if (!imageUrl.startsWith('https://prod-files-secure.s3.us-west-2.amazonaws.com')) {
-    console.log(`Image is not hosted on Notion: ${imageUrl}`)
     return imageUrl
   }
 
@@ -26,23 +25,23 @@ export async function exportImage (imageUrl: string, prefix: string, title: stri
 
     // Check for existing image with the same name
     const { blobs } = await list({ prefix: `${prefix}/` })
-    const existingBlob = blobs.find(b => b.pathname === imageName)
-    if (existingBlob) {
-      console.log(`Deleting existing image: ${existingBlob.pathname}`)
-      await del(existingBlob.url)
+    const existingImg = blobs.find(img => img.pathname === imageName)
+
+    if (existingImg) {
+      console.log(`Deleting existing image: ${existingImg.pathname}`)
+      await del(existingImg.url)
     }
 
     // Upload new image
     const { url } = await put(imageName, blob, { access: 'public' })
-    console.log(`Uploaded image: ${imageName}`)
+    console.log(`Uploaded image in Blob: ${imageName}`)
 
     // Update Notion with new image URL
     await updateNotionImageUrl(pageId, url)
-    console.log(`Updated image URL for page ${pageId}`)
 
     return url
   } catch (error) {
-    console.error(`Error handling image: ${String(error)}`)
+    console.error(`Error proccesing image: ${imageUrl}, Error: ${String(error)}`)
     return imageUrl
   }
 }
@@ -65,7 +64,7 @@ async function updateNotionImageUrl (pageId: string, newUrl: string) {
         }
       }
     })
-    console.log(`Updated Notion image URL for page ${pageId}`)
+    console.log(`Updated Notion image URL: ${newUrl}`)
   } catch (error) {
     console.error(`Error updating Notion image URL: ${String(error)}`)
   }
