@@ -1,7 +1,7 @@
 import { put, del, list } from '@vercel/blob'
 import { notion } from '@/lib/notion'
 
-export async function handleImageUpload (imageUrl: string, prefix: string, title: string, pageId: string): Promise<string> {
+export async function exportImage (imageUrl: string, prefix: string, title: string, pageId: string): Promise<string> {
   if (!imageUrl) {
     console.log('Image URL is null or undefined')
     return ''

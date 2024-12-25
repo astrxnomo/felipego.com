@@ -1,6 +1,6 @@
 import { notion, DATABASE_IDS } from '@/lib/notion'
 import { type NotionPage, type Certificate, type Experience, type Project, type Education, type Profile } from '@/lib/types'
-import { handleImageUpload } from '@/utils/images'
+import { exportImage } from '@/utils/images'
 
 async function queryDatabase<T> (databaseId: string): Promise<T[]> {
   const response = await notion.databases.query({
@@ -24,8 +24,8 @@ export async function getProfile (): Promise<Profile> {
   const page = results[0]
   const { properties } = page
 
-  const name = properties.name?.title?.[0]?.plain_text || 'profile'
-  const img = await handleImageUpload(properties.img?.files?.[0]?.file?.url || '', 'profile', name, page.id)
+  const name = properties.name?.title?.[0]?.plain_text || 'profiles'
+  const img = await exportImage(properties.img?.files?.[0]?.file?.url || properties.img?.files?.[0]?.external?.url || '', 'profile', name, page.id)
 
   return {
     id: properties.id?.number || '',
@@ -60,8 +60,8 @@ export async function getProjects (): Promise<Project[]> {
   return await Promise.all(results.map(async (page) => {
     const { properties } = page
 
-    const title = properties.title?.title?.[0]?.plain_text || 'project'
-    const img = await handleImageUpload(properties.img?.files?.[0]?.file?.url || '', 'project', title, page.id)
+    const title = properties.title?.title?.[0]?.plain_text || 'projects'
+    const img = await exportImage(properties.img?.files?.[0]?.file?.url || properties.img?.files?.[0]?.external?.url || '', 'projects', title, page.id)
 
     return {
       id: properties.id?.number || '',
@@ -95,8 +95,8 @@ export async function getCertificates (): Promise<Certificate[]> {
   return await Promise.all(results.map(async (page) => {
     const { properties } = page
 
-    const title = properties.title?.title?.[0]?.plain_text || 'certificate'
-    const img = await handleImageUpload(properties.img?.files?.[0]?.file?.url || '', 'certificate', title, page.id)
+    const title = properties.title?.title?.[0]?.plain_text || 'certificates'
+    const img = await exportImage(properties.img?.files?.[0]?.file?.url || properties.img?.files?.[0]?.external?.url || '', 'certificates', title, page.id)
 
     return {
       id: properties.id?.number || '',
