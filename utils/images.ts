@@ -4,11 +4,12 @@ import { notion } from '@/lib/notion'
 export async function handleImageUpload (imageUrl: string, prefix: string, title: string, pageId: string): Promise<string> {
   if (!imageUrl) {
     console.log('Image URL is null or undefined')
-    return imageUrl
+    return ''
   }
 
+  // Check if the image is hosted on Notion
   if (!imageUrl.startsWith('https://prod-files-secure.s3.us-west-2.amazonaws.com')) {
-    console.log(`Invalid image URL or external: ${imageUrl}`)
+    console.log(`Image is not hosted on Notion: ${imageUrl}`)
     return imageUrl
   }
 
@@ -21,14 +22,14 @@ export async function handleImageUpload (imageUrl: string, prefix: string, title
 
     const blob = await response.blob()
     const sanitizedTitle = title.replace(/[^a-z0-9]/gi, '_').toLowerCase()
-    const imageName = `${prefix}-${sanitizedTitle}.webp`
+    const imageName = `${prefix}/${sanitizedTitle}.webp`
 
-    // Delete old image if it exists
-    const { blobs } = await list({ prefix: `${prefix}-` })
-    const oldBlob = blobs.find(b => b.pathname.startsWith(`${prefix}-${sanitizedTitle}`))
-    if (oldBlob) {
-      console.log(`Deleted old image: ${oldBlob.pathname}`)
-      await del(oldBlob.url)
+    // Check for existing image with the same name
+    const { blobs } = await list({ prefix: `${prefix}/` })
+    const existingBlob = blobs.find(b => b.pathname === imageName)
+    if (existingBlob) {
+      console.log(`Deleting existing image: ${existingBlob.pathname}`)
+      await del(existingBlob.url)
     }
 
     // Upload new image
@@ -46,7 +47,7 @@ export async function handleImageUpload (imageUrl: string, prefix: string, title
   }
 }
 
-export async function updateNotionImageUrl (pageId: string, newUrl: string) {
+async function updateNotionImageUrl (pageId: string, newUrl: string) {
   try {
     await notion.pages.update({
       page_id: pageId,
