@@ -19,7 +19,7 @@ export const metadata = {
     siteName: "Felipe Giraldo's Portfolio",
     images: [
       {
-        url: 'https://file.notion.so/f/f/a96fc2d8-c2ff-4207-8f8b-ead87ec386fa/68a1eb3b-069b-44ce-82fc-0a55ca4576ee/image.webp?table=block&id=11623bce-2002-8018-8ab6-dcb0b65994b5&spaceId=a96fc2d8-c2ff-4207-8f8b-ead87ec386fa&expirationTimestamp=1733184000000&signature=v2QTo7CdZJnfSfMAiKh4E58tectNP4rO51rBxM0Nsnw&downloadName=image.webp',
+        url: 'https://xsnn3yjlik38vz3y.public.blob.vercel-storage.com/projects/felipego-RBhVlksmscVIHHkZpIryMDeJLAVhrm.webp',
         width: 1200,
         height: 630
       }
@@ -32,7 +32,7 @@ export const metadata = {
     title: "Felipe Giraldo's Portfolio",
     description: 'A student of Computer Systems Administration at UNAL in Colombia. I am on a journey to become a competent full-stack developer.',
     creator: '@astrxnomo',
-    images: ['https://file.notion.so/f/f/a96fc2d8-c2ff-4207-8f8b-ead87ec386fa/68a1eb3b-069b-44ce-82fc-0a55ca4576ee/image.webp?table=block&id=11623bce-2002-8018-8ab6-dcb0b65994b5&spaceId=a96fc2d8-c2ff-4207-8f8b-ead87ec386fa&expirationTimestamp=1733184000000&signature=v2QTo7CdZJnfSfMAiKh4E58tectNP4rO51rBxM0Nsnw&downloadName=image.webp']
+    images: ['https://xsnn3yjlik38vz3y.public.blob.vercel-storage.com/projects/felipego-RBhVlksmscVIHHkZpIryMDeJLAVhrm.webp']
   },
   keywords: [
     'Full Stack Developer',
@@ -85,7 +85,7 @@ export default function RootLayout ({
             '@type': 'Person',
             name: 'Felipe Giraldo',
             url: 'https://felipego.com',
-            image: 'https://file.notion.so/f/f/a96fc2d8-c2ff-4207-8f8b-ead87ec386fa/68a1eb3b-069b-44ce-82fc-0a55ca4576ee/image.webp?table=block&id=11623bce-2002-8018-8ab6-dcb0b65994b5&spaceId=a96fc2d8-c2ff-4207-8f8b-ead87ec386fa&expirationTimestamp=1733184000000&signature=v2QTo7CdZJnfSfMAiKh4E58tectNP4rO51rBxM0Nsnw&downloadName=image.webp',
+            image: 'https://xsnn3yjlik38vz3y.public.blob.vercel-storage.com/projects/felipego-RBhVlksmscVIHHkZpIryMDeJLAVhrm.webp',
             sameAs: [
               'https://twitter.com/astrxnomo',
               'https://github.com/astrxnomo',
