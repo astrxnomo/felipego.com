@@ -1,11 +1,11 @@
-import { notion, DATABASE_IDS } from '@/lib/notion';
+import { DATABASE_IDS, notion } from '@/lib/notion';
 import {
-  type NotionPage,
   type Certificate,
-  type Experience,
-  type Project,
   type Education,
+  type Experience,
+  type NotionPage,
   type Profile,
+  type Project,
 } from '@/lib/types';
 import { exportImage } from '@/utils/images';
 
@@ -40,7 +40,7 @@ export async function getProfile(): Promise<Profile> {
   );
 
   return {
-    id: properties.id?.number || '',
+    id: page.id,
     name,
     description: properties.description?.rich_text?.[0]?.plain_text || '',
     location: properties.location?.rich_text?.[0]?.plain_text || '',
@@ -58,7 +58,7 @@ export async function getExperience(): Promise<Experience[]> {
   return results.map((page) => {
     const { properties } = page;
     return {
-      id: properties.id?.number || '',
+      id: page.id,
       time: properties.time?.rich_text?.[0]?.plain_text || '',
       title: properties.title?.title?.[0]?.plain_text || '',
       companyUrl: properties.companyUrl?.url || '',
@@ -83,7 +83,7 @@ export async function getProjects(): Promise<Project[]> {
       );
 
       return {
-        id: properties.id?.number || '',
+        id: page.id,
         title,
         description: properties.description?.rich_text?.[0]?.plain_text || '',
         technologies:
@@ -101,7 +101,7 @@ export async function getEducation(): Promise<Education[]> {
   return results.map((page) => {
     const { properties } = page;
     return {
-      id: properties.id?.number || '',
+      id: page.id,
       time: properties.time?.rich_text?.[0]?.plain_text || '',
       title: properties.title?.title?.[0]?.plain_text || '',
       educationName: properties.educationName?.rich_text?.[0]?.plain_text || '',
@@ -126,8 +126,7 @@ export async function getCertificates(): Promise<Certificate[]> {
       );
 
       return {
-        id: properties.id?.number || '',
-        slug: properties.slug?.rich_text?.[0]?.plain_text || '',
+        id: page.id,
         time: properties.time?.rich_text?.[0]?.plain_text || '',
         title,
         certificatorName: properties.certificatorName?.rich_text?.[0]?.plain_text || '',

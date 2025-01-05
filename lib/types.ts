@@ -1,10 +1,42 @@
+export interface NotionText {
+  plain_text: string;
+}
+
+export interface NotionFile {
+  file?: {
+    url: string;
+  };
+  external?: {
+    url: string;
+  };
+}
+
+export interface NotionMultiSelect {
+  name: string;
+}
+
 export interface NotionPage {
   id: string;
-  properties: Record<string, unknown>;
+  properties: {
+    [key: string]: {
+      id: string;
+      type: string;
+      title?: NotionText[];
+      rich_text?: NotionText[];
+      url?: string;
+      files?: NotionFile[];
+      multi_select?: NotionMultiSelect[];
+      checkbox?: boolean;
+      date?: {
+        start: string;
+        end?: string;
+      };
+    };
+  };
 }
 
 export interface Certificate {
-  id?: string;
+  id: string;
   time: string;
   title: string;
   certificatorUrl: string;
