@@ -1,7 +1,7 @@
-export default function Card ({ children }: { children: React.ReactNode }) {
+export default function Card({ children }: { children: React.ReactNode }) {
   return (
-    <section className="flex flex-col p-8 gap-6 rounded-2xl overflow-hidden bg-neutral-200/30 border dark:bg-neutral-900">
-        {children}
+    <section className="flex flex-col gap-6 overflow-hidden rounded-2xl border bg-neutral-200/30 p-8 dark:bg-neutral-900">
+      {children}
     </section>
-  )
+  );
 }

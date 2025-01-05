@@ -4,7 +4,6 @@ const nextConfig = {
     domains: ['prod-files-secure.s3.us-west-2.amazonaws.com'],
     unoptimized: true,
   },
-  
 };
 
 module.exports = nextConfig;

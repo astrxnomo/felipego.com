@@ -1,12 +1,12 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
 
-export default function robots (): MetadataRoute.Robots {
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: '/'
+      allow: '/',
     },
     sitemap: 'https://felipego.com/sitemap.xml',
-    host: 'https://felipego.com'
-  }
+    host: 'https://felipego.com',
+  };
 }
