@@ -36,7 +36,7 @@ export async function getProfile(): Promise<Profile> {
     properties.img?.files?.[0]?.file?.url || properties.img?.files?.[0]?.external?.url || '',
     'profile',
     name,
-    page.id,
+    page.id
   );
 
   return {
@@ -79,7 +79,7 @@ export async function getProjects(): Promise<Project[]> {
         properties.img?.files?.[0]?.file?.url || properties.img?.files?.[0]?.external?.url || '',
         'projects',
         title,
-        page.id,
+        page.id
       );
 
       return {
@@ -92,7 +92,7 @@ export async function getProjects(): Promise<Project[]> {
         previewLink: properties.previewLink?.url,
         img,
       };
-    }),
+    })
   );
 }
 
@@ -122,7 +122,7 @@ export async function getCertificates(): Promise<Certificate[]> {
         properties.img?.files?.[0]?.file?.url || properties.img?.files?.[0]?.external?.url || '',
         'certificates',
         title,
-        page.id,
+        page.id
       );
 
       return {
@@ -134,6 +134,6 @@ export async function getCertificates(): Promise<Certificate[]> {
         credentialUrl: properties.credentialUrl?.url || '',
         img,
       };
-    }),
+    })
   );
 }

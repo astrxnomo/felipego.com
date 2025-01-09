@@ -5,4 +5,7 @@ name = "javascript"
 
   [analyzers.meta]
   plugins = ["react"]
-  environment = ["nodejs"]
+  environment = [
+    "nodejs",
+    "browser"
+  ]

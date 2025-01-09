@@ -1,9 +1,9 @@
 import { Github, LibraryBig, MoveRight, ScreenShare } from 'lucide-react';
 import Image from 'next/image';
 
+import Card from '@/components/card';
 import { getProjects } from '@/lib/queries';
 import { type Project } from '@/lib/types';
-import Card from '@/components/card';
 
 export default async function Projects() {
   const projectsData = await getProjects();

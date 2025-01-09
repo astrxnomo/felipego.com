@@ -5,7 +5,7 @@ export async function exportImage(
   imageUrl: string,
   prefix: string,
   title: string,
-  pageId: string,
+  pageId: string
 ): Promise<string> {
   if (!imageUrl) {
     console.log('Image URL is null or undefined');

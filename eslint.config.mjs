@@ -8,27 +8,37 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  recommendedConfig: {
+    env: {
+      browser: true,
+      es2021: true,
+    },
+    parserOptions: {
+      ecmaVersion: 12,
+      sourceType: 'module',
+    },
+    rules: {
+      'no-unused-vars': 'warn',
+      'no-console': 'off',
+      eqeqeq: 'error',
+      curly: 'error',
+    },
+  },
 });
 
 const eslintConfig = [
   ...compat.extends(
     'next/core-web-vitals',
     'next/typescript',
+    'plugin:@typescript-eslint/recommended',
+    'eslint:recommended',
+    'plugin:@next/next/recommended',
     'plugin:prettier/recommended',
     'plugin:tailwindcss/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
+    'plugin:import/recommended'
   ),
   {
     rules: {
-      'prettier/prettier': 'error',
-      'tailwindcss/classnames-order': 'warn',
-      'jsx-a11y/anchor-is-valid': 'warn',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
       'import/order': [
         'error',
         {
