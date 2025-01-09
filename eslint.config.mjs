@@ -8,22 +8,7 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  recommendedConfig: {
-    env: {
-      browser: true,
-      es2021: true,
-    },
-    parserOptions: {
-      ecmaVersion: 12,
-      sourceType: 'module',
-    },
-    rules: {
-      'no-unused-vars': 'warn',
-      'no-console': 'off',
-      eqeqeq: 'error',
-      curly: 'error',
-    },
-  },
+  recommendedConfig: {},
 });
 
 const eslintConfig = [
