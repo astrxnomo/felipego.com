@@ -1,11 +1,11 @@
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap } from "lucide-react"
 
-import Card from '@/components/card';
-import { getEducation } from '@/lib/queries';
-import { type Education } from '@/lib/types';
+import Card from "@/components/card"
+import { getEducation } from "@/lib/queries"
+import { type Education } from "@/lib/types"
 
 export default async function EducationSection() {
-  const educationData = await getEducation();
+  const educationData = await getEducation()
 
   return (
     <Card>
@@ -20,10 +20,16 @@ export default async function EducationSection() {
         ))}
       </ol>
     </Card>
-  );
+  )
 }
 
-function EducationItem({ time, title, educationUrl, educationName, details }: Education) {
+function EducationItem({
+  time,
+  title,
+  educationUrl,
+  educationName,
+  details,
+}: Education) {
   return (
     <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-neutral-300/20 dark:hover:bg-neutral-800/20">
       <div className="absolute -start-[6.5px] mt-2 size-3 rounded-full border border-neutral-300 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800"></div>
@@ -32,7 +38,9 @@ function EducationItem({ time, title, educationUrl, educationName, details }: Ed
       </time>
 
       <div className="mt-1 flex flex-col space-y-0.5">
-        <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-200">{title}</h3>
+        <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-200">
+          {title}
+        </h3>
         <a
           href={educationUrl}
           target="_blank"
@@ -56,5 +64,5 @@ function EducationItem({ time, title, educationUrl, educationName, details }: Ed
         </div>
       </div>
     </li>
-  );
+  )
 }

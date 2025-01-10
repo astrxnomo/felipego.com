@@ -1,86 +1,87 @@
 export interface NotionText {
-  plain_text: string;
+  plain_text: string
 }
 
 export interface NotionFile {
   file?: {
-    url: string;
-  };
+    url: string
+  }
   external?: {
-    url: string;
-  };
+    url: string
+  }
 }
 
 export interface NotionMultiSelect {
-  name: string;
+  name: string
 }
 
 export interface NotionPage {
-  id: string;
-  properties: {
-    [key: string]: {
-      id: string;
-      type: string;
-      title?: NotionText[];
-      rich_text?: NotionText[];
-      url?: string;
-      files?: NotionFile[];
-      multi_select?: NotionMultiSelect[];
-      checkbox?: boolean;
+  id: string
+  properties: Record<
+    string,
+    {
+      id: string
+      type: string
+      title?: NotionText[]
+      rich_text?: NotionText[]
+      url?: string
+      files?: NotionFile[]
+      multi_select?: NotionMultiSelect[]
+      checkbox?: boolean
       date?: {
-        start: string;
-        end?: string;
-      };
-    };
-  };
+        start: string
+        end?: string
+      }
+    }
+  >
 }
 
 export interface Certificate {
-  id: string;
-  time: string;
-  title: string;
-  certificatorUrl: string;
-  certificatorName: string;
-  credentialUrl: string;
-  img: string;
+  id: string
+  time: string
+  title: string
+  certificatorUrl: string
+  certificatorName: string
+  credentialUrl: string
+  img: string
 }
 
 export interface Experience {
-  id: string;
-  time: string;
-  title: string;
-  companyUrl: string;
-  companyName: string;
-  description: string;
+  id: string
+  time: string
+  title: string
+  companyUrl: string
+  companyName: string
+  description: string
 }
 
 export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  technologies: string[];
-  githubLink?: string;
-  previewLink?: string;
-  img: string;
+  id: string
+  title: string
+  description: string
+  technologies: string[]
+  githubLink?: string
+  previewLink?: string
+  img: string
 }
 
 export interface Education {
-  id: string;
-  time: string;
-  title: string;
-  educationName: string;
-  educationUrl: string;
-  details: string[];
+  id: string
+  time: string
+  title: string
+  educationName: string
+  educationUrl: string
+  details: string[]
 }
 
 export interface Profile {
-  id: string;
-  name: string;
-  description: string;
-  location: string;
-  contactEmail: string;
-  technologies: string[];
-  img: string;
-  workLabel: string;
-  workUrl: string;
+  id: string
+  name: string
+  description: string
+  location: string
+  contactEmail: string
+  technologies: string[]
+  img: string
+  workLabel: string
+  workUrl: string
 }

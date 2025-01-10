@@ -1,6 +1,6 @@
-import Card from '@/components/card';
-import SocialLinks from '@/components/social-links';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import Card from "@/components/card"
+import SocialLinks from "@/components/social-links"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export default function Footer() {
   return (
@@ -12,5 +12,5 @@ export default function Footer() {
         </div>
       </Card>
     </footer>
-  );
+  )
 }

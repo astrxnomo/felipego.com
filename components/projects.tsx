@@ -1,12 +1,12 @@
-import { Github, LibraryBig, MoveRight, ScreenShare } from 'lucide-react';
-import Image from 'next/image';
+import { Github, LibraryBig, MoveRight, ScreenShare } from "lucide-react"
+import Image from "next/image"
 
-import Card from '@/components/card';
-import { getProjects } from '@/lib/queries';
-import { type Project } from '@/lib/types';
+import Card from "@/components/card"
+import { getProjects } from "@/lib/queries"
+import { type Project } from "@/lib/types"
 
 export default async function Projects() {
-  const projectsData = await getProjects();
+  const projectsData = await getProjects()
 
   return (
     <Card>
@@ -31,15 +31,26 @@ export default async function Projects() {
         <MoveRight className="size-4 opacity-70 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" />
       </a>
     </Card>
-  );
+  )
 }
 
-function ProjectItem({ title, description, technologies, img, githubLink, previewLink }: Project) {
+function ProjectItem({
+  title,
+  description,
+  technologies,
+  img,
+  githubLink,
+  previewLink,
+}: Project) {
   return (
     <div className="flex flex-col gap-3 rounded-xl p-4 duration-100 hover:bg-neutral-300/20 dark:hover:bg-neutral-800/20">
       <div className="flex flex-col">
-        <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-300">{title}</h3>
-        <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
+        <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-300">
+          {title}
+        </h3>
+        <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-400">
+          {description}
+        </p>
         <div className="mb-2 flex gap-1">
           {technologies.map((tech) => (
             <span
@@ -84,5 +95,5 @@ function ProjectItem({ title, description, technologies, img, githubLink, previe
         )}
       </div>
     </div>
-  );
+  )
 }

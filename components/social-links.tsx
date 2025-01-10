@@ -1,11 +1,11 @@
-import { Github, Linkedin, Instagram } from 'lucide-react';
+import { Github, Instagram, Linkedin } from "lucide-react"
 
 export default function SocialLinks() {
   const socialLinks = [
-    { url: 'https://github.com/astrxnomo', icon: Github },
-    { url: 'https://www.linkedin.com/in/felipegiraldoo/', icon: Linkedin },
-    { url: 'https://www.instagram.com/astrxnomo/', icon: Instagram },
-  ];
+    { url: "https://github.com/astrxnomo", icon: Github },
+    { url: "https://www.linkedin.com/in/felipegiraldoo/", icon: Linkedin },
+    { url: "https://www.instagram.com/astrxnomo/", icon: Instagram },
+  ]
   return (
     <div className="flex gap-2">
       {socialLinks.map((app) => (
@@ -20,5 +20,5 @@ export default function SocialLinks() {
         </a>
       ))}
     </div>
-  );
+  )
 }

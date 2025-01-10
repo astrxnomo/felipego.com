@@ -1,12 +1,12 @@
-import { ArrowUpRight, MapPin, Sparkle } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowUpRight, MapPin, Sparkle } from "lucide-react"
+import Image from "next/image"
 
-import Card from '@/components/card';
-import SocialLinks from '@/components/social-links';
-import { getProfile } from '@/lib/queries';
+import Card from "@/components/card"
+import SocialLinks from "@/components/social-links"
+import { getProfile } from "@/lib/queries"
 
 export default async function Header() {
-  const profileData = await getProfile();
+  const profileData = await getProfile()
 
   return (
     <header>
@@ -84,5 +84,5 @@ export default async function Header() {
         </div>
       </Card>
     </header>
-  );
+  )
 }

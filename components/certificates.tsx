@@ -1,12 +1,12 @@
-import { ArrowUpRight, FileBadge, MoveRight } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowUpRight, FileBadge, MoveRight } from "lucide-react"
+import Image from "next/image"
 
-import { getCertificates } from '@/lib/queries';
-import Card from '@/components/card';
-import { type Certificate } from '@/lib/types';
+import Card from "@/components/card"
+import { getCertificates } from "@/lib/queries"
+import { type Certificate } from "@/lib/types"
 
 export default async function Certificates() {
-  const certificates = await getCertificates();
+  const certificates = await getCertificates()
 
   return (
     <Card>
@@ -17,7 +17,7 @@ export default async function Certificates() {
 
       <ol className="relative space-y-1 border-s-2 border-neutral-300 dark:border-neutral-800">
         {certificates.map((certificate) => {
-          return <CertificateItem key={certificate.id} {...certificate} />;
+          return <CertificateItem key={certificate.id} {...certificate} />
         })}
       </ol>
 
@@ -31,7 +31,7 @@ export default async function Certificates() {
         <MoveRight className="size-4 opacity-70 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" />
       </a>
     </Card>
-  );
+  )
 }
 
 function CertificateItem({
@@ -43,14 +43,16 @@ function CertificateItem({
   img,
 }: Certificate) {
   return (
-    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-neutral-300/20  dark:hover:bg-neutral-800/20">
+    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-neutral-300/20 dark:hover:bg-neutral-800/20">
       <div className="flex justify-between gap-5 md:flex-row">
         <div className="flex flex-col">
           <div className="absolute -start-[6.5px] mt-2 size-3 rounded-full border border-neutral-300 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800"></div>
           <time className="mb-2 font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400">
             {time}
           </time>
-          <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-200">{title}</h3>
+          <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-200">
+            {title}
+          </h3>
           <a
             href={certificatorUrl}
             target="_blank"
@@ -84,5 +86,5 @@ function CertificateItem({
         </div>
       </div>
     </li>
-  );
+  )
 }

@@ -1,8 +1,9 @@
-module.exports = {
-  singleQuote: true,
-  semi: true,
-  tabWidth: 2,
-  trailingComma: 'es5',
-  printWidth: 100,
-  endOfLine: 'auto',
-};
+/** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
+const config = {
+  semi: false,
+  singleQuote: false,
+  endOfLine: "auto",
+  plugins: ["prettier-plugin-tailwindcss"],
+}
+
+export default config

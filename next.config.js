@@ -1,9 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+/** @type {import("next").NextConfig} */
+const config = {
   images: {
-    domains: ['prod-files-secure.s3.us-west-2.amazonaws.com'],
+    domains: ["prod-files-secure.s3.us-west-2.amazonaws.com"],
     unoptimized: true,
   },
-};
+}
 
-module.exports = nextConfig;
+export default config
