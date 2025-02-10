@@ -10,12 +10,12 @@ export default async function Certificates() {
 
   return (
     <Card>
-      <h2 className="flex items-center gap-3 text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
+      <h2 className="flex items-center gap-3 text-2xl font-semibold">
         <FileBadge />
         Certificates
       </h2>
 
-      <ol className="relative space-y-1 border-s-2 border-neutral-300 dark:border-neutral-800">
+      <ol className="relative space-y-1 border-s-2 border-primary">
         {certificates.map((certificate) => {
           return <CertificateItem key={certificate.id} {...certificate} />
         })}
@@ -24,7 +24,7 @@ export default async function Certificates() {
       <a
         href="https://www.linkedin.com/in/felipegiraldoo/details/certifications/"
         target="_blank"
-        className="group inline-flex w-full items-center justify-center gap-1 rounded-xl bg-neutral-200 px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 dark:bg-neutral-800 dark:hover:text-neutral-50 md:w-auto"
+        className="group inline-flex w-full items-center justify-center gap-2 rounded bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
         aria-label="Explore more certificates"
       >
         More certificates
@@ -43,20 +43,18 @@ function CertificateItem({
   img,
 }: Certificate) {
   return (
-    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-neutral-300/20 dark:hover:bg-neutral-800/20">
+    <li className="ms-3 rounded p-4 duration-100 hover:bg-primary/30">
       <div className="flex justify-between gap-5 md:flex-row">
         <div className="flex flex-col">
-          <div className="absolute -start-[6.5px] mt-2 size-3 rounded-full border border-neutral-300 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800"></div>
-          <time className="mb-2 font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400">
+          <div className="absolute -start-[6.5px] size-3 rounded border border-muted-foreground/50 bg-primary"></div>
+          <time className="mb-2 font-mono text-xs font-normal leading-none text-muted-foreground">
             {time}
           </time>
-          <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-200">
-            {title}
-          </h3>
+          <h3 className="text-lg font-semibold">{title}</h3>
           <a
             href={certificatorUrl}
             target="_blank"
-            className="text-sm font-medium text-neutral-700 opacity-80 duration-150 hover:opacity-100 dark:text-neutral-400"
+            className="text-sm font-medium text-muted-foreground opacity-80 duration-150 hover:opacity-100"
             aria-label="Link to certificator page"
           >
             <span>{certificatorName}</span>
@@ -65,7 +63,7 @@ function CertificateItem({
           <a
             href={credentialUrl}
             target="_blank"
-            className="group mt-1.5 inline-flex h-8 w-28 items-center justify-center gap-1 rounded-xl bg-neutral-300/60 px-3 py-2 text-xs font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 dark:bg-neutral-800"
+            className="group mt-1.5 inline-flex h-8 w-28 items-center justify-center gap-1 rounded bg-primary px-3 py-2 text-xs font-medium opacity-80 transition-opacity duration-150 hover:opacity-100"
             aria-label={`Link to ${title} certificate`}
           >
             Credential
@@ -78,7 +76,7 @@ function CertificateItem({
             <Image
               src={img}
               alt="Certificate badge"
-              className="rounded-xl object-contain"
+              className="rounded object-contain"
               fill
               sizes="(max-width: 96px) 100vw, 96px"
             />

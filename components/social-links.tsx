@@ -12,7 +12,7 @@ export default function SocialLinks() {
         <a
           key={app.url}
           href={app.url}
-          className="inline-flex items-center justify-center rounded-xl bg-neutral-200 p-2 opacity-80 transition-opacity duration-150 hover:opacity-100 dark:bg-neutral-800"
+          className="inline-flex items-center justify-center rounded bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
           target="_blank"
           aria-label={`Link to ${app.url}`}
         >

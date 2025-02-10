@@ -6,7 +6,7 @@
   "scripts": {
     "build": "next build",
     "check": "next lint && tsc --noEmit",
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",
+    "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-switch": "^1.1.2",
     "@vercel/analytics": "^1.4.1",
     "@vercel/blob": "^0.27.0",

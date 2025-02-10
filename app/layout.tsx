@@ -4,7 +4,7 @@ import { ThemeProvider } from "next-themes"
 import { Geist } from "next/font/google"
 
 import Particles from "@/components/particles"
-import "./styles/globals.css"
+import "./globals.css"
 
 const geistFont = Geist({
   subsets: ["latin"],
@@ -74,7 +74,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={geistFont.className} suppressHydrationWarning>
-      <body className="bg-neutral-100 dark:bg-background">
+      <body className="bg-neutral-100 dark:bg-neutral-950">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
