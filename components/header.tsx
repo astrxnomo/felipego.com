@@ -62,7 +62,7 @@ export default async function Header() {
             </div>
           </div>
         </div>
-        <div className="inline-flex w-full flex-nowrap overflow-hidden text-sm font-medium text-neutral-500 [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+        <div className="inline-flex w-full flex-nowrap overflow-hidden text-sm font-medium text-muted-foreground [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
           <ul className="flex animate-infinite-scroll items-center justify-center">
             {profileData.technologies.map((tech) => (
               <li key={tech} className="flex items-center">
