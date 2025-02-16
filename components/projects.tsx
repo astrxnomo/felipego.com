@@ -24,7 +24,7 @@ export default async function Projects() {
       <a
         href="https://github.com/astrxnomo"
         target="_blank"
-        className="group inline-flex w-full items-center justify-center gap-2 rounded bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
         aria-label="Explore more projects"
       >
         More projects
@@ -43,7 +43,7 @@ function ProjectItem({
   previewLink,
 }: Project) {
   return (
-    <div className="flex flex-col gap-3 rounded p-4 duration-100 hover:bg-primary/30">
+    <div className="flex flex-col gap-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
       <div className="flex flex-col">
         <h3 className="text-lg font-semibold">{title}</h3>
         <p className="mb-2 text-sm text-muted-foreground">{description}</p>
@@ -51,7 +51,7 @@ function ProjectItem({
           {technologies.map((tech) => (
             <span
               key={tech}
-              className="flex items-center gap-1 rounded bg-primary px-2.5 py-0.5 text-xs text-muted-foreground"
+              className="flex items-center gap-1 rounded-xl bg-primary px-2.5 py-0.5 text-xs text-muted-foreground"
             >
               {tech}
             </span>
@@ -60,7 +60,7 @@ function ProjectItem({
 
         <div className="relative h-40 w-full">
           <Image
-            className="rounded object-cover object-top"
+            className="rounded-xl object-cover object-top"
             src={img}
             alt="Project image example"
             fill
@@ -72,7 +72,7 @@ function ProjectItem({
         {githubLink && (
           <a
             href={githubLink}
-            className="inline-flex grow items-center justify-center rounded bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+            className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
             target="_blank"
             aria-label="Link to Github repository"
           >
@@ -82,7 +82,7 @@ function ProjectItem({
         {previewLink && (
           <a
             href={previewLink}
-            className="inline-flex grow items-center justify-center rounded bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+            className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
             target="_blank"
             aria-label="Link to live preview"
           >

@@ -24,7 +24,7 @@ export default async function Certificates() {
       <a
         href="https://www.linkedin.com/in/felipegiraldoo/details/certifications/"
         target="_blank"
-        className="group inline-flex w-full items-center justify-center gap-2 rounded bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
         aria-label="Explore more certificates"
       >
         More certificates
@@ -43,10 +43,10 @@ function CertificateItem({
   img,
 }: Certificate) {
   return (
-    <li className="ms-3 rounded p-4 duration-100 hover:bg-primary/30">
+    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
       <div className="flex justify-between gap-5 md:flex-row">
         <div className="flex flex-col">
-          <div className="absolute -start-[6.5px] size-3 rounded border border-muted-foreground/50 bg-primary"></div>
+          <div className="absolute -start-[6.5px] size-3 rounded-xl border border-muted-foreground/50 bg-primary"></div>
           <time className="mb-2 font-mono text-xs font-normal leading-none text-muted-foreground">
             {time}
           </time>
@@ -63,7 +63,7 @@ function CertificateItem({
           <a
             href={credentialUrl}
             target="_blank"
-            className="group mt-1.5 inline-flex h-8 w-28 items-center justify-center gap-1 rounded bg-primary px-3 py-2 text-xs font-medium opacity-80 transition-opacity duration-150 hover:opacity-100"
+            className="group mt-1.5 inline-flex h-8 w-28 items-center justify-center gap-1 rounded-xl bg-primary px-3 py-2 text-xs font-medium opacity-80 transition-opacity duration-150 hover:opacity-100"
             aria-label={`Link to ${title} certificate`}
           >
             Credential
@@ -76,7 +76,7 @@ function CertificateItem({
             <Image
               src={img}
               alt="Certificate badge"
-              className="rounded object-contain"
+              className="rounded-xl object-contain"
               fill
               sizes="(max-width: 96px) 100vw, 96px"
             />

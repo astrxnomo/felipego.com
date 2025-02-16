@@ -31,8 +31,8 @@ function EducationItem({
   details,
 }: Education) {
   return (
-    <li className="ms-3 rounded p-4 duration-100 hover:bg-primary/30">
-      <div className="absolute -start-[6.5px] mt-2 size-3 rounded border border-muted-foreground/50 bg-primary"></div>
+    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
+      <div className="absolute -start-[6.5px] mt-2 size-3 rounded-xl border border-muted-foreground/50 bg-primary"></div>
 
       <time className="mb-2 font-mono text-xs font-normal leading-none text-muted-foreground">
         {time}

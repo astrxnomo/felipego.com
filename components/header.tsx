@@ -14,7 +14,7 @@ export default async function Header() {
         <div className="flex flex-col gap-6 md:flex-row">
           <figure className="relative flex shrink-0 items-center justify-center">
             <Image
-              className="rounded"
+              className="rounded-xl"
               src={profileData.img}
               alt="Profile image"
               width={224}
@@ -25,13 +25,13 @@ export default async function Header() {
             <div className="flex flex-wrap items-center justify-between">
               <a
                 href={profileData.workUrl}
-                className="flex items-center gap-1.5 rounded bg-green-700/20 px-3 py-1.5 text-xs font-medium text-green-600 opacity-80 transition-opacity duration-150 hover:opacity-100 dark:bg-green-800/40 dark:text-green-200"
+                className="flex items-center gap-1.5 rounded-xl bg-green-700/20 px-3 py-1.5 text-xs font-medium text-green-600 opacity-80 transition-opacity duration-150 hover:opacity-100 dark:bg-green-800/40 dark:text-green-200"
                 target="_blank"
                 aria-label="Link to Linkedin profile"
               >
                 <span className="flex size-2 items-center">
-                  <span className="absolute inline-flex size-1.5 animate-ping rounded bg-green-600 dark:bg-green-300"></span>
-                  <span className="relative inline-flex size-1.5 rounded bg-green-600 dark:bg-green-300"></span>
+                  <span className="absolute inline-flex size-1.5 animate-ping rounded-xl bg-green-600 dark:bg-green-300"></span>
+                  <span className="relative inline-flex size-1.5 rounded-xl bg-green-600 dark:bg-green-300"></span>
                 </span>
                 {profileData.workLabel}
               </a>
@@ -52,7 +52,7 @@ export default async function Header() {
                 <a
                   href={`mailto:${profileData.contactEmail}`}
                   target="_blank"
-                  className="group inline-flex w-full items-center justify-center gap-1 rounded bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 dark:hover:text-neutral-50 md:w-auto"
+                  className="group inline-flex w-full items-center justify-center gap-1 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 dark:hover:text-neutral-50 md:w-auto"
                   aria-label="Link to email"
                 >
                   Contact
