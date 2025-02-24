@@ -1,4 +1,5 @@
 import { GraduationCap } from "lucide-react"
+import Link from "next/link"
 
 import Card from "@/components/card"
 import { getEducation } from "@/lib/queries"
@@ -40,14 +41,14 @@ function EducationItem({
 
       <div className="mt-1 flex flex-col space-y-0.5">
         <h3 className="text-lg font-semibold">{title}</h3>
-        <a
+        <Link
           href={educationUrl}
           target="_blank"
           className="text-sm font-medium text-muted-foreground opacity-80 duration-150 hover:opacity-100"
           aria-label="Link to educator site"
         >
           <span>{educationName}</span>
-        </a>
+        </Link>
 
         <div className="p-1">
           <ol>

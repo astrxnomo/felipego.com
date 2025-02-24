@@ -1,5 +1,6 @@
 import { ArrowUpRight, MapPin, Sparkle } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 import Card from "@/components/card"
 import SocialLinks from "@/components/social-links"
@@ -23,7 +24,7 @@ export default async function Header() {
           </figure>
           <div className="flex grow flex-col gap-6">
             <div className="flex flex-wrap items-center justify-between">
-              <a
+              <Link
                 href={profileData.workUrl}
                 className="flex items-center gap-1.5 rounded-xl bg-green-700/20 px-3 py-1.5 text-xs font-medium text-green-600 opacity-80 transition-opacity duration-150 hover:opacity-100 dark:bg-green-800/40 dark:text-green-200"
                 target="_blank"
@@ -34,7 +35,7 @@ export default async function Header() {
                   <span className="relative inline-flex size-1.5 rounded-xl bg-green-600 dark:bg-green-300"></span>
                 </span>
                 {profileData.workLabel}
-              </a>
+              </Link>
               <SocialLinks />
             </div>
             <div className="flex flex-col gap-2">
@@ -49,7 +50,7 @@ export default async function Header() {
                   <MapPin className="size-4" />
                   <p className="text-sm font-medium">{profileData.location}</p>
                 </div>
-                <a
+                <Link
                   href={`mailto:${profileData.contactEmail}`}
                   target="_blank"
                   className="group inline-flex w-full items-center justify-center gap-1 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 dark:hover:text-neutral-50 md:w-auto"
@@ -57,7 +58,7 @@ export default async function Header() {
                 >
                   Contact
                   <ArrowUpRight className="size-4 opacity-70 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

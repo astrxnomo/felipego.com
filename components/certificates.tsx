@@ -1,5 +1,6 @@
 import { ArrowUpRight, FileBadge, MoveRight } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 import Card from "@/components/card"
 import { getCertificates } from "@/lib/queries"
@@ -21,7 +22,7 @@ export default async function Certificates() {
         })}
       </ol>
 
-      <a
+      <Link
         href="https://www.linkedin.com/in/felipegiraldoo/details/certifications/"
         target="_blank"
         className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
@@ -29,7 +30,7 @@ export default async function Certificates() {
       >
         More certificates
         <MoveRight className="size-4 opacity-70 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" />
-      </a>
+      </Link>
     </Card>
   )
 }
@@ -51,16 +52,16 @@ function CertificateItem({
             {time}
           </time>
           <h3 className="text-lg font-semibold">{title}</h3>
-          <a
+          <Link
             href={certificatorUrl}
             target="_blank"
             className="text-sm font-medium text-muted-foreground opacity-80 duration-150 hover:opacity-100"
             aria-label="Link to certificator page"
           >
             <span>{certificatorName}</span>
-          </a>
+          </Link>
 
-          <a
+          <Link
             href={credentialUrl}
             target="_blank"
             className="group mt-1.5 inline-flex h-8 w-28 items-center justify-center gap-1 rounded-xl bg-primary px-3 py-2 text-xs font-medium opacity-80 transition-opacity duration-150 hover:opacity-100"
@@ -68,7 +69,7 @@ function CertificateItem({
           >
             Credential
             <ArrowUpRight className="size-3 opacity-70 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" />
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col items-center justify-center">

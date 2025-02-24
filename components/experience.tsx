@@ -1,4 +1,5 @@
 import { BriefcaseBusiness } from "lucide-react"
+import Link from "next/link"
 
 import Card from "@/components/card"
 import { getExperience } from "@/lib/queries"
@@ -39,14 +40,14 @@ function ExperienceItem({
 
       <div className="mt-2 flex flex-col space-y-0.5">
         <h3 className="text-lg font-semibold">{title}</h3>
-        <a
+        <Link
           href={companyUrl}
           target="_blank"
           className="text-sm font-medium text-muted-foreground opacity-80 duration-150 hover:opacity-100"
           aria-label="Link to company site"
         >
           <span>{companyName}</span>
-        </a>
+        </Link>
       </div>
       <p className="mt-3 text-pretty text-sm text-muted-foreground">
         {description}
