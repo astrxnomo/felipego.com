@@ -1,6 +1,10 @@
+import { NotionRenderer } from "@notion-render/client"
 import { Client } from "@notionhq/client"
-
 export const notion = new Client({ auth: process.env.NOTION_API_KEY })
+
+export const notionRenderer = new NotionRenderer({
+  client: notion,
+})
 
 export const DATABASE_IDS = {
   profile: process.env.NOTION_PROFILE_DB_ID,

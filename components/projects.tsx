@@ -1,8 +1,19 @@
-import { Github, LibraryBig, MoveRight, ScreenShare } from "lucide-react"
+import { Github, Info, LibraryBig, MoveRight, ScreenShare } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 import Card from "@/components/card"
-import { getProjects } from "@/lib/queries"
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { getPageContent, getProjects } from "@/lib/queries"
 import { type Project } from "@/lib/types"
 
 export default async function Projects() {
@@ -21,7 +32,7 @@ export default async function Projects() {
         ))}
       </div>
 
-      <a
+      <Link
         href="https://github.com/astrxnomo"
         target="_blank"
         className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
@@ -29,12 +40,13 @@ export default async function Projects() {
       >
         More projects
         <MoveRight className="size-4 opacity-70 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" />
-      </a>
+      </Link>
     </Card>
   )
 }
 
-function ProjectItem({
+async function ProjectItem({
+  id,
   title,
   description,
   technologies,
@@ -42,6 +54,8 @@ function ProjectItem({
   githubLink,
   previewLink,
 }: Project) {
+  const details = await getPageContent(id)
+
   return (
     <div className="flex flex-col gap-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
       <div className="flex flex-col">
@@ -69,25 +83,56 @@ function ProjectItem({
         </div>
       </div>
       <div className="mt-1 flex gap-2">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>
+              <Info />
+              Detalles
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="flex flex-col gap-0 p-0 sm:max-h-[min(640px,80vh)] sm:max-w-4xl [&>button:last-child]:top-3.5">
+            <DialogHeader className="contents space-y-0 text-left">
+              <DialogTitle className="border-b px-6 py-4 text-base">
+                {title}
+              </DialogTitle>
+              <div className="overflow-y-auto">
+                <DialogDescription asChild>
+                  <div className="px-6 py-4">
+                    <div
+                      className="notion-render"
+                      dangerouslySetInnerHTML={{ __html: details }}
+                    ></div>
+                  </div>
+                </DialogDescription>
+              </div>
+            </DialogHeader>
+            <DialogFooter className="border-t px-6 py-4 sm:items-center">
+              <span className="grow text-xs text-muted-foreground max-sm:text-center">
+                By felipego.com
+              </span>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
         {githubLink && (
-          <a
+          <Link
             href={githubLink}
             className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
             target="_blank"
             aria-label="Link to Github repository"
           >
             <Github className="size-4" />
-          </a>
+          </Link>
         )}
         {previewLink && (
-          <a
+          <Link
             href={previewLink}
             className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
             target="_blank"
             aria-label="Link to live preview"
           >
             <ScreenShare className="size-4" />
-          </a>
+          </Link>
         )}
       </div>
     </div>

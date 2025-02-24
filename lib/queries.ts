@@ -1,4 +1,7 @@
-import { DATABASE_IDS, notion } from "@/lib/notion"
+import bookmarkPlugin from "@notion-render/bookmark-plugin"
+import { type BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+
+import { DATABASE_IDS, notion, notionRenderer } from "@/lib/notion"
 import {
   type Certificate,
   type Education,
@@ -155,4 +158,14 @@ export async function getCertificates(): Promise<Certificate[]> {
       }
     }),
   )
+}
+
+export async function getPageContent(pageId: string) {
+  const blocks = await notion.blocks.children
+    .list({ block_id: pageId })
+    .then((res) => res.results as BlockObjectResponse[])
+  await notionRenderer.use(bookmarkPlugin(undefined))
+  const html = await notionRenderer.render(...blocks)
+
+  return html
 }
