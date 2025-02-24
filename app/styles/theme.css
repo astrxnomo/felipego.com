@@ -1,0 +1,710 @@
+.notion-render a.notion-bookmark {
+  display: flex;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 3px;
+  flex-wrap: wrap-reverse;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+}
+.notion-render a.notion-bookmark .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  overflow: hidden;
+}
+.notion-render a.notion-bookmark .bookmark-info .bookmark-title {
+  font-size: 14px;
+  margin-bottom: 2px;
+  min-height: 24px;
+  line-height: 20px;
+  
+  overflow: hidden;
+}
+.notion-render a.notion-bookmark .bookmark-info .bookmark-description {
+  font-size: 12px;
+  line-height: 16px;
+  
+  height: 32px;
+  overflow: hidden;
+}
+.notion-render a.notion-bookmark .bookmark-footer {
+  display: flex;
+  margin-top: 12px;
+}
+.notion-render a.notion-bookmark .bookmark-footer .bookmark-logo {
+  min-width: 16px;
+  margin-right: 6px;
+  width: 16px;
+  height: 16px;
+}
+.notion-render a.notion-bookmark .bookmark-footer .bookmark-url {
+  font-size: 12px;
+  line-height: 16px;
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.notion-render a.notion-bookmark .bookmark-thumbnail {
+  display: block;
+  flex: 1 1 180px;
+  position: relative;
+}
+.notion-render a.notion-bookmark .bookmark-thumbnail img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.notion-render h1,
+.notion-render h2,
+.notion-render h3 {
+  line-height: 1.3;
+  padding: 3px 2px;
+}
+.notion-render h1 {
+  font-size: 1.875em;
+  margin-top: 1.1em;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.notion-render h2 {
+  font-size: 1.5em;
+  margin-top: 0.93em;
+  margin-bottom: 1px;
+  font-weight: 600;
+}
+.notion-render h3 {
+  font-size: 1.25em;
+  margin-top: 0.8em;
+  margin-bottom: 1px;
+  font-weight: 600;
+}
+.notion-render p {
+  min-height: 1.87em;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding: 3px 2px;
+}
+.notion-render div.notion-code pre code {
+  display: block;
+  padding: 34px 16px 32px 32px;
+  background-color: rgb(247, 246, 243);
+  border-radius: 3px;
+  overflow-x: auto;
+}
+.notion-render div.notion-code legend {
+  padding-top: 6px;
+  padding-left: 6px;
+  padding-left: 2px;
+  line-height: 1.4;
+  font-size: 14px;
+  
+}
+.notion-render hr {
+  margin-top: 7.5px;
+  margin-bottom: 7.5px;
+}
+.notion-render blockquote.notion-callout {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 16px 16px 16px 12px;
+  display: flex;
+  border-radius: 3px;
+}
+.notion-render blockquote.notion-callout.notion-color-blue_background {
+  background-color: rgb(231, 243, 248);
+}
+.notion-render blockquote.notion-callout.notion-color-red_background {
+  background-color: rgb(253, 235, 236);
+}
+.notion-render blockquote.notion-callout.notion-color-yellow_background {
+  background-color: rgb(251, 243, 219);
+}
+.notion-render blockquote.notion-callout.notion-color-gray_background {
+  background-color: rgb(241, 241, 239);
+}
+.notion-render blockquote.notion-callout.notion-color-brown_background {
+  background-color: rgb(244, 238, 238);
+}
+.notion-render blockquote.notion-callout.notion-color-orange_background {
+  background-color: rgb(251, 236, 221);
+}
+.notion-render blockquote.notion-callout.notion-color-green_background {
+  background-color: rgb(237, 243, 236);
+}
+.notion-render blockquote.notion-callout.notion-color-purple_background {
+  background-color: rgba(244, 240, 247, 0.8);
+}
+.notion-render blockquote.notion-callout.notion-color-pink_background {
+  background-color: rgba(249, 238, 243, 0.8);
+}
+.notion-render blockquote.notion-callout.notion-color-brown {
+  color: rgb(159, 107, 83);
+}
+.notion-render blockquote.notion-callout.notion-color-gray {
+  color: rgb(120, 119, 116);
+}
+.notion-render blockquote.notion-callout.notion-color-orange {
+  color: rgb(217, 115, 13);
+}
+.notion-render blockquote.notion-callout.notion-color-yellow {
+  color: rgb(203, 145, 47);
+}
+.notion-render blockquote.notion-callout.notion-color-green {
+  color: rgb(68, 131, 97);
+}
+.notion-render blockquote.notion-callout.notion-color-blue {
+  color: rgb(51, 126, 169);
+}
+.notion-render blockquote.notion-callout.notion-color-purple {
+  color: rgb(144, 101, 176);
+}
+.notion-render blockquote.notion-callout.notion-color-pink {
+  color: rgb(193, 76, 138);
+}
+.notion-render blockquote.notion-callout.notion-color-red {
+  color: rgb(212, 76, 71);
+}
+.notion-render blockquote.notion-callout .icon {
+  height: 24px;
+  width: 24px;
+  border-radius: 0.25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notion-render blockquote.notion-callout .content {
+  margin-left: 8px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.notion-render blockquote.notion-quote {
+  margin: 7px 2px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-left: 3px solid currentcolor;
+}
+.notion-render blockquote.notion-quote.notion-color-blue_background {
+  background-color: rgb(231, 243, 248);
+}
+.notion-render blockquote.notion-quote.notion-color-red_background {
+  background-color: rgb(253, 235, 236);
+}
+.notion-render blockquote.notion-quote.notion-color-yellow_background {
+  background-color: rgb(251, 243, 219);
+}
+.notion-render blockquote.notion-quote.notion-color-gray_background {
+  background-color: rgb(241, 241, 239);
+}
+.notion-render blockquote.notion-quote.notion-color-brown_background {
+  background-color: rgb(244, 238, 238);
+}
+.notion-render blockquote.notion-quote.notion-color-orange_background {
+  background-color: rgb(251, 236, 221);
+}
+.notion-render blockquote.notion-quote.notion-color-green_background {
+  background-color: rgb(237, 243, 236);
+}
+.notion-render blockquote.notion-quote.notion-color-purple_background {
+  background-color: rgba(244, 240, 247, 0.8);
+}
+.notion-render blockquote.notion-quote.notion-color-pink_background {
+  background-color: rgba(249, 238, 243, 0.8);
+}
+.notion-render blockquote.notion-quote.notion-color-brown {
+  color: rgb(159, 107, 83);
+}
+.notion-render blockquote.notion-quote.notion-color-gray {
+  color: rgb(120, 119, 116);
+}
+.notion-render blockquote.notion-quote.notion-color-orange {
+  color: rgb(217, 115, 13);
+}
+.notion-render blockquote.notion-quote.notion-color-yellow {
+  color: rgb(203, 145, 47);
+}
+.notion-render blockquote.notion-quote.notion-color-green {
+  color: rgb(68, 131, 97);
+}
+.notion-render blockquote.notion-quote.notion-color-blue {
+  color: rgb(51, 126, 169);
+}
+.notion-render blockquote.notion-quote.notion-color-purple {
+  color: rgb(144, 101, 176);
+}
+.notion-render blockquote.notion-quote.notion-color-pink {
+  color: rgb(193, 76, 138);
+}
+.notion-render blockquote.notion-quote.notion-color-red {
+  color: rgb(212, 76, 71);
+}
+.notion-render ul.notion-to_do_list li {
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding-left: 2px;
+  padding-top: 3px;
+  padding-bottom: 2px;
+  display: flex;
+}
+.notion-render ul.notion-to_do_list li.notion-color-blue_background {
+  background-color: rgb(231, 243, 248);
+}
+.notion-render ul.notion-to_do_list li.notion-color-red_background {
+  background-color: rgb(253, 235, 236);
+}
+.notion-render ul.notion-to_do_list li.notion-color-yellow_background {
+  background-color: rgb(251, 243, 219);
+}
+.notion-render ul.notion-to_do_list li.notion-color-gray_background {
+  background-color: rgb(241, 241, 239);
+}
+.notion-render ul.notion-to_do_list li.notion-color-brown_background {
+  background-color: rgb(244, 238, 238);
+}
+.notion-render ul.notion-to_do_list li.notion-color-orange_background {
+  background-color: rgb(251, 236, 221);
+}
+.notion-render ul.notion-to_do_list li.notion-color-green_background {
+  background-color: rgb(237, 243, 236);
+}
+.notion-render ul.notion-to_do_list li.notion-color-purple_background {
+  background-color: rgba(244, 240, 247, 0.8);
+}
+.notion-render ul.notion-to_do_list li.notion-color-pink_background {
+  background-color: rgba(249, 238, 243, 0.8);
+}
+.notion-render ul.notion-to_do_list li.notion-color-brown {
+  color: rgb(159, 107, 83);
+}
+.notion-render ul.notion-to_do_list li.notion-color-gray {
+  color: rgb(120, 119, 116);
+}
+.notion-render ul.notion-to_do_list li.notion-color-orange {
+  color: rgb(217, 115, 13);
+}
+.notion-render ul.notion-to_do_list li.notion-color-yellow {
+  color: rgb(203, 145, 47);
+}
+.notion-render ul.notion-to_do_list li.notion-color-green {
+  color: rgb(68, 131, 97);
+}
+.notion-render ul.notion-to_do_list li.notion-color-blue {
+  color: rgb(51, 126, 169);
+}
+.notion-render ul.notion-to_do_list li.notion-color-purple {
+  color: rgb(144, 101, 176);
+}
+.notion-render ul.notion-to_do_list li.notion-color-pink {
+  color: rgb(193, 76, 138);
+}
+.notion-render ul.notion-to_do_list li.notion-color-red {
+  color: rgb(212, 76, 71);
+}
+.notion-render ul.notion-to_do_list li[data-checked=true] {
+  
+  text-decoration: line-through rgba(55, 53, 47, 0.25);
+}
+.notion-render ul.notion-to_do_list li input[type=checkbox] {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  pointer-events: none;
+  background-color: transparent;
+  border-radius: 0;
+  border: solid 2px currentColor;
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.notion-render ul.notion-to_do_list li input[type=checkbox]:checked {
+  background-color: rgb(35, 131, 226);
+  border: 0;
+}
+.notion-render ul.notion-to_do_list li input[type=checkbox]:checked::before {
+  display: block;
+}
+.notion-render ul.notion-to_do_list li input[type=checkbox]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  box-shadow: inset 1em 1em white;
+  display: none;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.notion-render ul {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+.notion-render ul li {
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding-left: 12px;
+  padding-top: 3px;
+  padding-bottom: 2px;
+}
+.notion-render ul li.notion-color-blue_background {
+  background-color: rgb(231, 243, 248);
+}
+.notion-render ul li.notion-color-red_background {
+  background-color: rgb(253, 235, 236);
+}
+.notion-render ul li.notion-color-yellow_background {
+  background-color: rgb(251, 243, 219);
+}
+.notion-render ul li.notion-color-gray_background {
+  background-color: rgb(241, 241, 239);
+}
+.notion-render ul li.notion-color-brown_background {
+  background-color: rgb(244, 238, 238);
+}
+.notion-render ul li.notion-color-orange_background {
+  background-color: rgb(251, 236, 221);
+}
+.notion-render ul li.notion-color-green_background {
+  background-color: rgb(237, 243, 236);
+}
+.notion-render ul li.notion-color-purple_background {
+  background-color: rgba(244, 240, 247, 0.8);
+}
+.notion-render ul li.notion-color-pink_background {
+  background-color: rgba(249, 238, 243, 0.8);
+}
+.notion-render ul li.notion-color-brown {
+  color: rgb(159, 107, 83);
+}
+.notion-render ul li.notion-color-gray {
+  color: rgb(120, 119, 116);
+}
+.notion-render ul li.notion-color-orange {
+  color: rgb(217, 115, 13);
+}
+.notion-render ul li.notion-color-yellow {
+  color: rgb(203, 145, 47);
+}
+.notion-render ul li.notion-color-green {
+  color: rgb(68, 131, 97);
+}
+.notion-render ul li.notion-color-blue {
+  color: rgb(51, 126, 169);
+}
+.notion-render ul li.notion-color-purple {
+  color: rgb(144, 101, 176);
+}
+.notion-render ul li.notion-color-pink {
+  color: rgb(193, 76, 138);
+}
+.notion-render ul li.notion-color-red {
+  color: rgb(212, 76, 71);
+}
+.notion-render ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+.notion-render ol li {
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding-left: 12px;
+  padding-top: 3px;
+  padding-bottom: 2px;
+}
+.notion-render ol li.notion-color-blue_background {
+  background-color: rgb(231, 243, 248);
+}
+.notion-render ol li.notion-color-red_background {
+  background-color: rgb(253, 235, 236);
+}
+.notion-render ol li.notion-color-yellow_background {
+  background-color: rgb(251, 243, 219);
+}
+.notion-render ol li.notion-color-gray_background {
+  background-color: rgb(241, 241, 239);
+}
+.notion-render ol li.notion-color-brown_background {
+  background-color: rgb(244, 238, 238);
+}
+.notion-render ol li.notion-color-orange_background {
+  background-color: rgb(251, 236, 221);
+}
+.notion-render ol li.notion-color-green_background {
+  background-color: rgb(237, 243, 236);
+}
+.notion-render ol li.notion-color-purple_background {
+  background-color: rgba(244, 240, 247, 0.8);
+}
+.notion-render ol li.notion-color-pink_background {
+  background-color: rgba(249, 238, 243, 0.8);
+}
+.notion-render ol li.notion-color-brown {
+  color: rgb(159, 107, 83);
+}
+.notion-render ol li.notion-color-gray {
+  color: rgb(120, 119, 116);
+}
+.notion-render ol li.notion-color-orange {
+  color: rgb(217, 115, 13);
+}
+.notion-render ol li.notion-color-yellow {
+  color: rgb(203, 145, 47);
+}
+.notion-render ol li.notion-color-green {
+  color: rgb(68, 131, 97);
+}
+.notion-render ol li.notion-color-blue {
+  color: rgb(51, 126, 169);
+}
+.notion-render ol li.notion-color-purple {
+  color: rgb(144, 101, 176);
+}
+.notion-render ol li.notion-color-pink {
+  color: rgb(193, 76, 138);
+}
+.notion-render ol li.notion-color-red {
+  color: rgb(212, 76, 71);
+}
+.notion-render div.notion-column_list {
+  display: flex;
+}
+.notion-render div.notion-column_list div.notion-column {
+  flex: 1;
+}
+.notion-render figure legend {
+  padding-top: 6px;
+  padding-left: 6px;
+  padding-left: 2px;
+  line-height: 1.4;
+  font-size: 14px;
+  
+}
+.notion-render details.notion-toggle.notion-color-blue_background {
+  background-color: rgb(231, 243, 248);
+}
+.notion-render details.notion-toggle.notion-color-red_background {
+  background-color: rgb(253, 235, 236);
+}
+.notion-render details.notion-toggle.notion-color-yellow_background {
+  background-color: rgb(251, 243, 219);
+}
+.notion-render details.notion-toggle.notion-color-gray_background {
+  background-color: rgb(241, 241, 239);
+}
+.notion-render details.notion-toggle.notion-color-brown_background {
+  background-color: rgb(244, 238, 238);
+}
+.notion-render details.notion-toggle.notion-color-orange_background {
+  background-color: rgb(251, 236, 221);
+}
+.notion-render details.notion-toggle.notion-color-green_background {
+  background-color: rgb(237, 243, 236);
+}
+.notion-render details.notion-toggle.notion-color-purple_background {
+  background-color: rgba(244, 240, 247, 0.8);
+}
+.notion-render details.notion-toggle.notion-color-pink_background {
+  background-color: rgba(249, 238, 243, 0.8);
+}
+.notion-render details.notion-toggle.notion-color-brown {
+  color: rgb(159, 107, 83);
+}
+.notion-render details.notion-toggle.notion-color-gray {
+  color: rgb(120, 119, 116);
+}
+.notion-render details.notion-toggle.notion-color-orange {
+  color: rgb(217, 115, 13);
+}
+.notion-render details.notion-toggle.notion-color-yellow {
+  color: rgb(203, 145, 47);
+}
+.notion-render details.notion-toggle.notion-color-green {
+  color: rgb(68, 131, 97);
+}
+.notion-render details.notion-toggle.notion-color-blue {
+  color: rgb(51, 126, 169);
+}
+.notion-render details.notion-toggle.notion-color-purple {
+  color: rgb(144, 101, 176);
+}
+.notion-render details.notion-toggle.notion-color-pink {
+  color: rgb(193, 76, 138);
+}
+.notion-render details.notion-toggle.notion-color-red {
+  color: rgb(212, 76, 71);
+}
+.notion-render details.notion-toggle[open]::before {
+  transform: rotate(0deg);
+}
+.notion-render details.notion-toggle summary {
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+}
+.notion-render details.notion-toggle summary::before {
+  content: "";
+  transform: rotate(-90deg);
+  width: 0.6875rem;
+  height: 0.6875rem;
+  margin: 11px;
+  box-shadow: inset 1em 1em black;
+  clip-path: polygon(100% 0%, 5% 0%, 50% 100%);
+}
+.notion-render details.notion-toggle p {
+  padding-left: 33px;
+}
+.notion-render details.notion-toggle-heading_1.notion-color-blue_background,
+.notion-render details.notion-toggle-heading_2.notion-color-blue_background,
+.notion-render details.notion-toggle-heading_3.notion-color-blue_background {
+  background-color: rgb(231, 243, 248);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-red_background,
+.notion-render details.notion-toggle-heading_2.notion-color-red_background,
+.notion-render details.notion-toggle-heading_3.notion-color-red_background {
+  background-color: rgb(253, 235, 236);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-yellow_background,
+.notion-render details.notion-toggle-heading_2.notion-color-yellow_background,
+.notion-render details.notion-toggle-heading_3.notion-color-yellow_background {
+  background-color: rgb(251, 243, 219);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-gray_background,
+.notion-render details.notion-toggle-heading_2.notion-color-gray_background,
+.notion-render details.notion-toggle-heading_3.notion-color-gray_background {
+  background-color: rgb(241, 241, 239);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-brown_background,
+.notion-render details.notion-toggle-heading_2.notion-color-brown_background,
+.notion-render details.notion-toggle-heading_3.notion-color-brown_background {
+  background-color: rgb(244, 238, 238);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-orange_background,
+.notion-render details.notion-toggle-heading_2.notion-color-orange_background,
+.notion-render details.notion-toggle-heading_3.notion-color-orange_background {
+  background-color: rgb(251, 236, 221);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-green_background,
+.notion-render details.notion-toggle-heading_2.notion-color-green_background,
+.notion-render details.notion-toggle-heading_3.notion-color-green_background {
+  background-color: rgb(237, 243, 236);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-purple_background,
+.notion-render details.notion-toggle-heading_2.notion-color-purple_background,
+.notion-render details.notion-toggle-heading_3.notion-color-purple_background {
+  background-color: rgba(244, 240, 247, 0.8);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-pink_background,
+.notion-render details.notion-toggle-heading_2.notion-color-pink_background,
+.notion-render details.notion-toggle-heading_3.notion-color-pink_background {
+  background-color: rgba(249, 238, 243, 0.8);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-brown,
+.notion-render details.notion-toggle-heading_2.notion-color-brown,
+.notion-render details.notion-toggle-heading_3.notion-color-brown {
+  color: rgb(159, 107, 83);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-gray,
+.notion-render details.notion-toggle-heading_2.notion-color-gray,
+.notion-render details.notion-toggle-heading_3.notion-color-gray {
+  color: rgb(120, 119, 116);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-orange,
+.notion-render details.notion-toggle-heading_2.notion-color-orange,
+.notion-render details.notion-toggle-heading_3.notion-color-orange {
+  color: rgb(217, 115, 13);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-yellow,
+.notion-render details.notion-toggle-heading_2.notion-color-yellow,
+.notion-render details.notion-toggle-heading_3.notion-color-yellow {
+  color: rgb(203, 145, 47);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-green,
+.notion-render details.notion-toggle-heading_2.notion-color-green,
+.notion-render details.notion-toggle-heading_3.notion-color-green {
+  color: rgb(68, 131, 97);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-blue,
+.notion-render details.notion-toggle-heading_2.notion-color-blue,
+.notion-render details.notion-toggle-heading_3.notion-color-blue {
+  color: rgb(51, 126, 169);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-purple,
+.notion-render details.notion-toggle-heading_2.notion-color-purple,
+.notion-render details.notion-toggle-heading_3.notion-color-purple {
+  color: rgb(144, 101, 176);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-pink,
+.notion-render details.notion-toggle-heading_2.notion-color-pink,
+.notion-render details.notion-toggle-heading_3.notion-color-pink {
+  color: rgb(193, 76, 138);
+}
+.notion-render details.notion-toggle-heading_1.notion-color-red,
+.notion-render details.notion-toggle-heading_2.notion-color-red,
+.notion-render details.notion-toggle-heading_3.notion-color-red {
+  color: rgb(212, 76, 71);
+}
+.notion-render details.notion-toggle-heading_1[open] h1::before,
+.notion-render details.notion-toggle-heading_1[open] h2::before,
+.notion-render details.notion-toggle-heading_1[open] h3::before,
+.notion-render details.notion-toggle-heading_2[open] h1::before,
+.notion-render details.notion-toggle-heading_2[open] h2::before,
+.notion-render details.notion-toggle-heading_2[open] h3::before,
+.notion-render details.notion-toggle-heading_3[open] h1::before,
+.notion-render details.notion-toggle-heading_3[open] h2::before,
+.notion-render details.notion-toggle-heading_3[open] h3::before {
+  transform: rotate(0deg);
+}
+.notion-render details.notion-toggle-heading_1 summary,
+.notion-render details.notion-toggle-heading_2 summary,
+.notion-render details.notion-toggle-heading_3 summary {
+  display: block;
+  cursor: pointer;
+  user-select: none;
+}
+.notion-render details.notion-toggle-heading_1 summary h1,
+.notion-render details.notion-toggle-heading_1 summary h2,
+.notion-render details.notion-toggle-heading_1 summary h3,
+.notion-render details.notion-toggle-heading_2 summary h1,
+.notion-render details.notion-toggle-heading_2 summary h2,
+.notion-render details.notion-toggle-heading_2 summary h3,
+.notion-render details.notion-toggle-heading_3 summary h1,
+.notion-render details.notion-toggle-heading_3 summary h2,
+.notion-render details.notion-toggle-heading_3 summary h3 {
+  display: flex;
+  align-items: center;
+}
+.notion-render details.notion-toggle-heading_1 summary h1::before,
+.notion-render details.notion-toggle-heading_1 summary h2::before,
+.notion-render details.notion-toggle-heading_1 summary h3::before,
+.notion-render details.notion-toggle-heading_2 summary h1::before,
+.notion-render details.notion-toggle-heading_2 summary h2::before,
+.notion-render details.notion-toggle-heading_2 summary h3::before,
+.notion-render details.notion-toggle-heading_3 summary h1::before,
+.notion-render details.notion-toggle-heading_3 summary h2::before,
+.notion-render details.notion-toggle-heading_3 summary h3::before {
+  content: "";
+  transform: rotate(-90deg);
+  width: 0.6875rem;
+  height: 0.6875rem;
+  margin: 11px;
+  box-shadow: inset 1em 1em black;
+  clip-path: polygon(100% 0%, 5% 0%, 50% 100%);
+}
+.notion-render details.notion-toggle-heading_1 p,
+.notion-render details.notion-toggle-heading_2 p,
+.notion-render details.notion-toggle-heading_3 p {
+  padding-left: 33px;
+}
+.notion-render table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.notion-render table tr td {
+  border: 1px solid var(--primary-foreground);
+  min-width: 120px;
+  max-width: 240px;
+  min-height: 32px;
+  vertical-align: top;
+  padding: 7px 9px;
+  
+}

@@ -4,7 +4,7 @@ import { ThemeProvider } from "next-themes"
 import { Geist } from "next/font/google"
 
 import Particles from "@/components/particles"
-import "./globals.css"
+import "./styles/globals.css"
 
 const geistFont = Geist({
   subsets: ["latin"],
