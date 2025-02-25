@@ -26,9 +26,9 @@ export async function ProjectItem({
   const details = await getPageContent(id)
 
   return (
-    <div className="group flex cursor-pointer flex-col gap-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
+    <div className="flex cursor-pointer flex-col gap-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger className="group" asChild>
           <div className="flex flex-col">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">{title}</h3>
