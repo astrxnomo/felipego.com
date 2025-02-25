@@ -89,7 +89,7 @@
 .notion-render div.notion-code pre code {
   display: block;
   padding: 34px 16px 32px 32px;
-  background-color: rgb(247, 246, 243);
+  background-color: rgba(55, 53, 47, 0.16);
   border-radius: 3px;
   overflow-x: auto;
 }
@@ -700,7 +700,7 @@
   border-spacing: 0;
 }
 .notion-render table tr td {
-  border: 1px solid var(--primary-foreground);
+  border: 1px solid rgba(55, 53, 47, 0.16);
   min-width: 120px;
   max-width: 240px;
   min-height: 32px;
