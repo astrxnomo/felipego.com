@@ -70,7 +70,7 @@ export async function ProjectItem({
               <DialogDescription asChild>
                 <div className="px-6 py-4">
                   <div
-                    className="notion-render"
+                    className="notion-render text-primary-foreground"
                     dangerouslySetInnerHTML={{ __html: details }}
                   ></div>
                 </div>
