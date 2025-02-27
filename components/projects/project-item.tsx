@@ -1,4 +1,4 @@
-import { CirclePlus, Github, ScreenShare } from "lucide-react"
+import { CirclePlus, Github, LibraryBig, ScreenShare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/dialog"
 import { getPageContent } from "@/lib/queries"
 import { type Project } from "@/lib/types"
+
+import { Button } from "../ui/button"
 
 export async function ProjectItem({
   id,
@@ -63,8 +65,9 @@ export async function ProjectItem({
         </DialogTrigger>
         <DialogContent className="flex flex-col gap-0 p-0 sm:max-h-[min(640px,80vh)] sm:max-w-4xl [&>button:last-child]:top-3.5">
           <DialogHeader className="contents space-y-0 text-left">
-            <DialogTitle className="border-b px-6 py-4 text-base">
-              {title}
+            <DialogTitle className="flex items-center gap-2 border-b px-6 py-4 text-xl">
+              <LibraryBig />
+              <span className="text-lg font-semibold">{title}</span>
             </DialogTitle>
             <div className="overflow-y-auto">
               <DialogDescription asChild>
@@ -78,9 +81,32 @@ export async function ProjectItem({
             </div>
           </DialogHeader>
           <DialogFooter className="border-t px-6 py-4 sm:items-center">
-            <span className="grow text-xs text-muted-foreground max-sm:text-center">
-              By felipego.com
-            </span>
+            <div className="mt-1 flex w-full gap-2">
+              {githubLink && (
+                <Button asChild>
+                  <Link
+                    href={githubLink}
+                    className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+                    target="_blank"
+                    aria-label="Link to Github repository"
+                  >
+                    <Github className="size-4" /> Repository
+                  </Link>
+                </Button>
+              )}
+              {previewLink && (
+                <Button asChild>
+                  <Link
+                    href={previewLink}
+                    className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+                    target="_blank"
+                    aria-label="Link to live preview"
+                  >
+                    <ScreenShare className="size-4" /> Live Preview
+                  </Link>
+                </Button>
+              )}
+            </div>
           </DialogFooter>
         </DialogContent>
       </Dialog>
