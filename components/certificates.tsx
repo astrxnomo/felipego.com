@@ -16,7 +16,7 @@ export default async function Certificates() {
         Certificates
       </h2>
 
-      <ol className="relative space-y-1 border-s-2 border-primary">
+      <ol className="border-primary relative space-y-1 border-s-2">
         {certificates.map((certificate) => {
           return <CertificateItem key={certificate.id} {...certificate} />
         })}
@@ -25,7 +25,7 @@ export default async function Certificates() {
       <Link
         href="https://www.linkedin.com/in/felipegiraldoo/details/certifications/"
         target="_blank"
-        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
+        className="group bg-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
         aria-label="Explore more certificates"
       >
         More certificates
@@ -44,18 +44,18 @@ function CertificateItem({
   img,
 }: Certificate) {
   return (
-    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
+    <li className="hover:bg-primary/30 ms-3 rounded-xl p-4 duration-100">
       <div className="flex justify-between gap-5 md:flex-row">
         <div className="flex flex-col">
-          <div className="absolute -start-[6.5px] size-3 rounded-xl border border-muted-foreground/50 bg-primary"></div>
-          <time className="mb-2 font-mono text-xs font-normal leading-none text-muted-foreground">
+          <div className="border-muted-foreground/50 bg-primary absolute -start-[6.5px] size-3 rounded-xl border"></div>
+          <time className="text-muted-foreground mb-2 font-mono text-xs leading-none font-normal">
             {time}
           </time>
           <h3 className="text-lg font-semibold">{title}</h3>
           <Link
             href={certificatorUrl}
             target="_blank"
-            className="text-sm font-medium text-muted-foreground opacity-80 duration-150 hover:opacity-100"
+            className="text-muted-foreground text-sm font-medium opacity-80 duration-150 hover:opacity-100"
             aria-label="Link to certificator page"
           >
             <span>{certificatorName}</span>
@@ -64,7 +64,7 @@ function CertificateItem({
           <Link
             href={credentialUrl}
             target="_blank"
-            className="group mt-1.5 inline-flex h-8 w-28 items-center justify-center gap-1 rounded-xl bg-primary px-3 py-2 text-xs font-medium opacity-80 transition-opacity duration-150 hover:opacity-100"
+            className="group bg-primary mt-1.5 inline-flex h-8 w-28 items-center justify-center gap-1 rounded-xl px-3 py-2 text-xs font-medium opacity-80 transition-opacity duration-150 hover:opacity-100"
             aria-label={`Link to ${title} certificate`}
           >
             Credential

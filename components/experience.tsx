@@ -15,7 +15,7 @@ export default async function ExperienceSection() {
         Experience
       </h2>
 
-      <ol className="relative space-y-1 border-s-2 border-primary">
+      <ol className="border-primary relative space-y-1 border-s-2">
         {experienceData.map((experience) => (
           <ExperienceItem key={experience.id} {...experience} />
         ))}
@@ -31,10 +31,10 @@ function ExperienceItem({
   description,
 }: Experience) {
   return (
-    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
-      <div className="absolute -start-[6.5px] mt-2 size-3 rounded-xl border border-muted-foreground/50 bg-primary"></div>
+    <li className="hover:bg-primary/30 ms-3 rounded-xl p-4 duration-100">
+      <div className="border-muted-foreground/50 bg-primary absolute -start-[6.5px] mt-2 size-3 rounded-xl border"></div>
 
-      <time className="mb-2 font-mono text-xs font-normal leading-none text-muted-foreground">
+      <time className="text-muted-foreground mb-2 font-mono text-xs leading-none font-normal">
         {time}
       </time>
 
@@ -43,13 +43,13 @@ function ExperienceItem({
         <Link
           href={companyUrl}
           target="_blank"
-          className="text-sm font-medium text-muted-foreground opacity-80 duration-150 hover:opacity-100"
+          className="text-muted-foreground text-sm font-medium opacity-80 duration-150 hover:opacity-100"
           aria-label="Link to company site"
         >
           <span>{companyName}</span>
         </Link>
       </div>
-      <p className="mt-3 text-pretty text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-3 text-sm text-pretty">
         {description}
       </p>
     </li>

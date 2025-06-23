@@ -82,7 +82,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Particles className="fixed inset-0 -z-10" quantity={120} />
-          <main className="mx-auto mt-4 flex w-full flex-col gap-6 p-5 duration-1000 ease-out animate-in fade-in md:max-w-4xl">
+          <main className="animate-in fade-in mx-auto mt-4 flex w-full flex-col gap-6 p-5 duration-1000 ease-out md:max-w-4xl">
             {children}
           </main>
         </ThemeProvider>

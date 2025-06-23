@@ -15,7 +15,7 @@ export default async function EducationSection() {
         Education
       </h2>
 
-      <ol className="relative space-y-1 border-s-2 border-primary">
+      <ol className="border-primary relative space-y-1 border-s-2">
         {educationData.map((education) => (
           <EducationItem key={education.id} {...education} />
         ))}
@@ -32,10 +32,10 @@ function EducationItem({
   details,
 }: Education) {
   return (
-    <li className="ms-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
-      <div className="absolute -start-[6.5px] mt-2 size-3 rounded-xl border border-muted-foreground/50 bg-primary"></div>
+    <li className="hover:bg-primary/30 ms-3 rounded-xl p-4 duration-100">
+      <div className="border-muted-foreground/50 bg-primary absolute -start-[6.5px] mt-2 size-3 rounded-xl border"></div>
 
-      <time className="mb-2 font-mono text-xs font-normal leading-none text-muted-foreground">
+      <time className="text-muted-foreground mb-2 font-mono text-xs leading-none font-normal">
         {time}
       </time>
 
@@ -44,7 +44,7 @@ function EducationItem({
         <Link
           href={educationUrl}
           target="_blank"
-          className="text-sm font-medium text-muted-foreground opacity-80 duration-150 hover:opacity-100"
+          className="text-muted-foreground text-sm font-medium opacity-80 duration-150 hover:opacity-100"
           aria-label="Link to educator site"
         >
           <span>{educationName}</span>
@@ -55,7 +55,7 @@ function EducationItem({
             {details.map((detail) => (
               <li
                 key={detail}
-                className="flex items-center gap-1 px-2.5 py-0.5 text-xs text-muted-foreground"
+                className="text-muted-foreground flex items-center gap-1 px-2.5 py-0.5 text-xs"
               >
                 {detail}
               </li>

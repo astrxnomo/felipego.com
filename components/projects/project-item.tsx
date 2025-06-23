@@ -28,25 +28,25 @@ export async function ProjectItem({
   const details = await getPageContent(id)
 
   return (
-    <div className="flex cursor-pointer flex-col gap-3 rounded-xl p-4 duration-100 hover:bg-primary/30">
+    <div className="hover:bg-primary/30 flex cursor-pointer flex-col gap-3 rounded-xl p-4 duration-100">
       <Dialog>
         <DialogTrigger className="group" asChild>
           <div className="flex flex-col">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">{title}</h3>
 
-              <span className="inline-flex items-center gap-1 rounded-xl bg-primary px-2.5 py-0.5 text-xs text-muted-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              <span className="bg-primary text-muted-foreground inline-flex items-center gap-1 rounded-xl px-2.5 py-0.5 text-xs opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                 <CirclePlus className="size-3" />
                 Read more
               </span>
             </div>
 
-            <p className="mb-2 text-sm text-muted-foreground">{description}</p>
+            <p className="text-muted-foreground mb-2 text-sm">{description}</p>
             <div className="mb-2 flex gap-1">
               {technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="flex items-center gap-1 rounded-xl bg-primary px-2.5 py-0.5 text-xs text-muted-foreground"
+                  className="bg-primary text-muted-foreground flex items-center gap-1 rounded-xl px-2.5 py-0.5 text-xs"
                 >
                   {tech}
                 </span>
@@ -86,7 +86,7 @@ export async function ProjectItem({
                 <Button asChild>
                   <Link
                     href={githubLink}
-                    className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+                    className="bg-primary inline-flex grow items-center justify-center rounded-xl p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
                     target="_blank"
                     aria-label="Link to Github repository"
                   >
@@ -98,7 +98,7 @@ export async function ProjectItem({
                 <Button asChild>
                   <Link
                     href={previewLink}
-                    className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+                    className="bg-primary inline-flex grow items-center justify-center rounded-xl p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
                     target="_blank"
                     aria-label="Link to live preview"
                   >
@@ -115,7 +115,7 @@ export async function ProjectItem({
         {githubLink && (
           <Link
             href={githubLink}
-            className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+            className="bg-primary inline-flex grow items-center justify-center rounded-xl p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
             target="_blank"
             aria-label="Link to Github repository"
           >
@@ -125,7 +125,7 @@ export async function ProjectItem({
         {previewLink && (
           <Link
             href={previewLink}
-            className="inline-flex grow items-center justify-center rounded-xl bg-primary p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
+            className="bg-primary inline-flex grow items-center justify-center rounded-xl p-2 opacity-80 transition-opacity duration-150 hover:opacity-100"
             target="_blank"
             aria-label="Link to live preview"
           >

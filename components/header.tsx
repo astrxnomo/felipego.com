@@ -40,20 +40,20 @@ export default async function Header() {
             </div>
             <div className="flex flex-col gap-2">
               <h1 className="text-3xl font-semibold">{profileData.name}</h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 {profileData.description}
               </p>
             </div>
             <div className="flex grow flex-col justify-end">
               <div className="flex flex-col justify-between gap-4 md:flex-row">
-                <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="text-muted-foreground flex items-center gap-2">
                   <MapPin className="size-4" />
                   <p className="text-sm font-medium">{profileData.location}</p>
                 </div>
                 <Link
                   href={`mailto:${profileData.contactEmail}`}
                   target="_blank"
-                  className="group inline-flex w-full items-center justify-center gap-1 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 dark:hover:text-neutral-50 md:w-auto"
+                  className="group bg-primary inline-flex w-full items-center justify-center gap-1 rounded-xl px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto dark:hover:text-neutral-50"
                   aria-label="Link to email"
                 >
                   Contact
@@ -63,8 +63,8 @@ export default async function Header() {
             </div>
           </div>
         </div>
-        <div className="inline-flex w-full flex-nowrap overflow-hidden text-sm font-medium text-muted-foreground [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-          <ul className="flex animate-infinite-scroll items-center justify-center">
+        <div className="text-muted-foreground inline-flex w-full flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)] text-sm font-medium">
+          <ul className="animate-infinite-scroll flex items-center justify-center">
             {profileData.technologies.map((tech) => (
               <li key={tech} className="flex items-center">
                 <Sparkle className="mx-4 size-3" />
@@ -72,7 +72,7 @@ export default async function Header() {
               </li>
             ))}
           </ul>
-          <ul className="flex animate-infinite-scroll items-center justify-center">
+          <ul className="animate-infinite-scroll flex items-center justify-center">
             {profileData.technologies.map((tech) => (
               <li key={tech} className="flex items-center">
                 <Sparkle className="mx-4 size-3" />

@@ -25,7 +25,7 @@ export default async function Projects() {
       <Link
         href="https://github.com/astrxnomo"
         target="_blank"
-        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
+        className="group bg-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium opacity-80 transition-opacity duration-150 hover:opacity-100 md:w-auto"
         aria-label="Explore more projects"
       >
         More projects
