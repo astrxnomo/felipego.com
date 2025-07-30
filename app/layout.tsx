@@ -1,5 +1,3 @@
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "next-themes"
 import { Geist } from "next/font/google"
 
@@ -86,8 +84,6 @@ export default function RootLayout({
             {children}
           </main>
         </ThemeProvider>
-        <Analytics />
-        <SpeedInsights />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
