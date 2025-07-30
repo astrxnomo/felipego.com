@@ -9,11 +9,18 @@ if (!BUCKET_ID || !PROJECT_ID || !ENDPOINT) {
   throw new Error("Appwrite environment variables missing")
 }
 
-export async function exportImage(imageUrl: string, prefix: string, name: string, pageId: string): Promise<string> {
+export async function exportImage(
+  imageUrl: string,
+  prefix: string,
+  name: string,
+  pageId: string,
+): Promise<string> {
   if (!imageUrl?.trim()) return ""
-  
+
   if (
-    imageUrl.startsWith("https://prod-files-secure.s3.us-west-2.amazonaws.com") ||
+    imageUrl.startsWith(
+      "https://prod-files-secure.s3.us-west-2.amazonaws.com",
+    ) ||
     imageUrl.startsWith("https://file.notion.so")
   ) {
   } else {
@@ -25,7 +32,7 @@ export async function exportImage(imageUrl: string, prefix: string, name: string
     if (!response.ok) throw new Error(`Fetch failed: ${response.status}`)
 
     const blob = await response.blob()
- 
+
     try {
       await storage.deleteFile(BUCKET_ID!, pageId)
     } catch (e: any) {
@@ -53,7 +60,10 @@ export async function exportImage(imageUrl: string, prefix: string, name: string
   }
 }
 
-export async function updateNotionImageUrl(pageId: string, newUrl: string): Promise<boolean> {
+export async function updateNotionImageUrl(
+  pageId: string,
+  newUrl: string,
+): Promise<boolean> {
   if (!pageId || !newUrl) return false
 
   try {
