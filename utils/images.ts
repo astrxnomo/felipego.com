@@ -39,18 +39,15 @@ export async function exportImage(
       if (e?.code !== 404 && e?.response?.code !== 404) throw e
     }
 
-    // Subir nuevo archivo
     const fileName = `${prefix}-${name
       .replace(/[^a-z0-9\-_.]/gi, "_")
-      .toLowerCase()
-      .substring(0, 100)}`
+      .toLowerCase()}`
     const file = new File([blob], fileName, { type: blob.type || "image/jpeg" })
 
     await storage.createFile(BUCKET_ID!, pageId, file)
 
     const publicUrl = `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${pageId}/view?project=${PROJECT_ID}`
 
-    // Actualizar Notion
     updateNotionImageUrl(pageId, publicUrl)
 
     return publicUrl

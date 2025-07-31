@@ -1,10 +1,10 @@
 "use client"
 
-import { Dialog as DialogPrimitive } from "radix-ui"
 import { XIcon } from "lucide-react"
+import { Dialog as DialogPrimitive } from "radix-ui"
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/utils/cn"
 
 function Dialog({
   ...props
@@ -134,5 +134,6 @@ export {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 }
+

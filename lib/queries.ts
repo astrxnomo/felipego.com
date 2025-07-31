@@ -164,8 +164,11 @@ export async function getPageContent(pageId: string) {
   const blocks = await notion.blocks.children
     .list({ block_id: pageId })
     .then((res) => res.results as BlockObjectResponse[])
+  
+  const renderableBlocks = blocks.filter(block => block.type !== 'child_page')
+  
   await notionRenderer.use(bookmarkPlugin(undefined))
-  const html = await notionRenderer.render(...blocks)
+  const html = await notionRenderer.render(...renderableBlocks)
 
   return html
 }
