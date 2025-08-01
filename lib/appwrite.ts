@@ -1,18 +1,13 @@
-import { Client, Storage } from "appwrite"
+const sdk = require("node-appwrite")
 
-const client = new Client()
-
-if (
-  !process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ||
-  !process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID
-) {
-  throw new Error("Missing Appwrite environment variables")
-}
+let client = new sdk.Client()
 
 client
-  .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
-  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID)
+  .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!)
+  .setKey(process.env.APPWRITE_API_KEY!)
 
-const storage = new Storage(client)
+let storage = new sdk.Storage(client)
+let sites = new sdk.Sites(client)
 
-export { client, storage }
+export { sites, storage }

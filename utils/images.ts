@@ -1,13 +1,9 @@
 import { storage } from "@/lib/appwrite"
 import { notion } from "@/lib/notion"
 
-const BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID
-const PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID
-const ENDPOINT = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT
-
-if (!BUCKET_ID || !PROJECT_ID || !ENDPOINT) {
-  throw new Error("Appwrite environment variables missing")
-}
+const BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID!
+const PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!
+const ENDPOINT = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!
 
 export async function exportImage(
   imageUrl: string,
