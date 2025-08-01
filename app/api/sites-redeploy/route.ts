@@ -9,7 +9,6 @@ const APPWRITE_SITE_ID = process.env.APPWRITE_SITE_ID!
 export async function POST(request: Request) {
   try {
     const notionSecret = request.headers.get("X-Notion-Secret")
-    console.log("Received X-Notion-Secret:", notionSecret)
 
     if (!notionSecret || notionSecret !== NOTION_WEBHOOK_KEY) {
       console.log("Unauthorized request")
