@@ -1,6 +1,7 @@
-import { sites } from "@/lib/appwrite"
 import { NextResponse } from "next/server"
 import { VCSDeploymentType } from "node-appwrite"
+
+import { sites } from "@/lib/appwrite"
 
 const NOTION_WEBHOOK_KEY = process.env.NOTION_WEBHOOK_KEY
 const APPWRITE_SITE_ID = process.env.APPWRITE_SITE_ID!
