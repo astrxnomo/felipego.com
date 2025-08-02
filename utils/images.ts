@@ -30,9 +30,10 @@ export async function exportImage(
     const blob = await response.blob()
 
     try {
-      await storage.deleteFile(BUCKET_ID!, pageId)
-    } catch (e: any) {
-      if (e?.code !== 404 && e?.response?.code !== 404) throw e
+      await storage.deleteFile(BUCKET_ID, pageId)
+    } catch (e: unknown) {
+      const err = e as { code?: number; response?: { code?: number } }
+      if (err?.code !== 404 && err?.response?.code !== 404) throw e
     }
 
     const fileName = `${prefix}-${name
@@ -40,15 +41,19 @@ export async function exportImage(
       .toLowerCase()}`
     const file = new File([blob], fileName, { type: blob.type || "image/jpeg" })
 
-    await storage.createFile(BUCKET_ID!, pageId, file)
+    await storage.createFile(BUCKET_ID, pageId, file)
 
     const publicUrl = `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${pageId}/view?project=${PROJECT_ID}`
 
-    updateNotionImageUrl(pageId, publicUrl)
+    await updateNotionImageUrl(pageId, publicUrl)
 
     return publicUrl
-  } catch (error: any) {
-    console.error("Upload error:", error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Upload error:", error.message)
+    } else {
+      console.error("Upload error:", error)
+    }
     return imageUrl
   }
 }
@@ -75,8 +80,12 @@ export async function updateNotionImageUrl(
       },
     })
     return true
-  } catch (error: any) {
-    console.error("Notion update error:", error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Notion update error:", error.message)
+    } else {
+      console.error("Notion update error:", error)
+    }
     return false
   }
 }
