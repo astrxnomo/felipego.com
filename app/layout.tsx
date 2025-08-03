@@ -1,23 +1,9 @@
-"use client"
-
 import { ThemeProvider } from "next-themes"
 
+import { EasterEggProvider } from "@/components/easter-egg-provider"
 import Particles from "@/components/particles"
-import { useEasterEgg } from "@/utils/easter-egg"
 import "./styles/globals.css"
 
-function ClientLayout({ children }: { children: React.ReactNode }) {
-  useEasterEgg() // Activate Easter egg functionality
-
-  return (
-    <>
-      <Particles className="fixed inset-0 -z-10" quantity={120} />
-      <main className="animate-in fade-in mx-auto mt-4 flex w-full flex-col gap-6 p-5 duration-1000 ease-out md:max-w-4xl">
-        {children}
-      </main>
-    </>
-  )
-}
 export const metadata = {
   title: "Felipe Giraldo's Portfolio",
   description:
@@ -76,6 +62,17 @@ export const metadata = {
   publisher: "Felipe Giraldo",
 }
 
+function ClientLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Particles className="fixed inset-0 -z-10" quantity={120} />
+      <main className="animate-in fade-in mx-auto mt-4 flex w-full flex-col gap-6 p-5 duration-1000 ease-out md:max-w-4xl">
+        {children}
+      </main>
+    </>
+  )
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -90,6 +87,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <EasterEggProvider />
           <ClientLayout>{children}</ClientLayout>
         </ThemeProvider>
         <script
