@@ -1,12 +1,7 @@
 import { ThemeProvider } from "next-themes"
-import { Geist } from "next/font/google"
 
 import Particles from "@/components/particles"
 import "./styles/globals.css"
-
-const geistFont = Geist({
-  subsets: ["latin"],
-})
 export const metadata = {
   title: "Felipe Giraldo's Portfolio",
   description:
@@ -71,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={geistFont.className} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-neutral-100 dark:bg-neutral-950">
         <ThemeProvider
           attribute="class"
