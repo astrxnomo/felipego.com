@@ -125,8 +125,29 @@ export default function Particles({
       context.current.translate(translateX, translateY)
       context.current.beginPath()
       context.current.arc(x, y, size, 0, 2 * Math.PI)
-      context.current.fillStyle = `rgba(255, 255, 255, ${alpha})`
+
+      // Enhanced particle rendering with gradient and glow effect
+      const gradient = context.current.createRadialGradient(
+        x,
+        y,
+        0,
+        x,
+        y,
+        size * 3,
+      )
+      gradient.addColorStop(0, `rgba(147, 197, 253, ${alpha})`) // Blue-300
+      gradient.addColorStop(0.5, `rgba(96, 165, 250, ${alpha * 0.6})`) // Blue-400
+      gradient.addColorStop(1, `rgba(59, 130, 246, ${alpha * 0.1})`) // Blue-500
+
+      context.current.fillStyle = gradient
       context.current.fill()
+
+      // Add a subtle glow effect
+      context.current.shadowColor = `rgba(147, 197, 253, ${alpha * 0.8})`
+      context.current.shadowBlur = size * 2
+      context.current.fill()
+      context.current.shadowBlur = 0
+
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       if (!update) {
@@ -197,6 +218,43 @@ export default function Particles({
       circle.translateY +=
         (mouse.current.y / (staticity / circle.magnetism) - circle.translateY) /
         ease
+
+      // Draw connections between nearby particles
+      circles.current.forEach((otherCircle: Circle, j: number) => {
+        if (i !== j) {
+          const dx =
+            circle.x +
+            circle.translateX -
+            (otherCircle.x + otherCircle.translateX)
+          const dy =
+            circle.y +
+            circle.translateY -
+            (otherCircle.y + otherCircle.translateY)
+          const distance = Math.sqrt(dx * dx + dy * dy)
+
+          if (distance < 120) {
+            const opacity =
+              ((120 - distance) / 120) *
+              Math.min(circle.alpha, otherCircle.alpha) *
+              0.3
+            if (context.current && opacity > 0.01) {
+              context.current.beginPath()
+              context.current.moveTo(
+                circle.x + circle.translateX,
+                circle.y + circle.translateY,
+              )
+              context.current.lineTo(
+                otherCircle.x + otherCircle.translateX,
+                otherCircle.y + otherCircle.translateY,
+              )
+              context.current.strokeStyle = `rgba(147, 197, 253, ${opacity})`
+              context.current.lineWidth = 0.5
+              context.current.stroke()
+            }
+          }
+        }
+      })
+
       // circle gets out of the canvas
       if (
         circle.x < -circle.size ||

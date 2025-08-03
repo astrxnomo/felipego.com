@@ -63,23 +63,38 @@ export default async function Header() {
             </div>
           </div>
         </div>
-        <div className="text-muted-foreground inline-flex w-full flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)] text-sm font-medium">
-          <ul className="animate-infinite-scroll flex items-center justify-center">
-            {profileData.technologies.map((tech) => (
-              <li key={tech} className="flex items-center">
-                <Sparkle className="mx-4 size-3" />
-                {tech}
-              </li>
-            ))}
-          </ul>
-          <ul className="animate-infinite-scroll flex items-center justify-center">
-            {profileData.technologies.map((tech) => (
-              <li key={tech} className="flex items-center">
-                <Sparkle className="mx-4 size-3" />
-                {tech}
-              </li>
-            ))}
-          </ul>
+        <div className="text-muted-foreground group relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 text-sm font-medium dark:from-blue-950/20 dark:to-purple-950/20">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="relative flex w-full items-center justify-center [mask-image:_linear-gradient(to_right,transparent_0,_black_64px,_black_calc(100%-64px),transparent_100%)]">
+            <ul className="animate-infinite-scroll flex items-center justify-center md:gap-8">
+              {profileData.technologies.map((tech, index) => (
+                <li
+                  key={tech}
+                  className="flex items-center transition-transform duration-200 hover:scale-110"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <Sparkle className="mx-4 size-3 text-blue-400 dark:text-blue-300" />
+                  <span className="font-medium whitespace-nowrap text-blue-700 dark:text-blue-200">
+                    {tech}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <ul className="animate-infinite-scroll flex items-center justify-center md:gap-8">
+              {profileData.technologies.map((tech, index) => (
+                <li
+                  key={tech}
+                  className="flex items-center transition-transform duration-200 hover:scale-110"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <Sparkle className="mx-4 size-3 text-blue-400 dark:text-blue-300" />
+                  <span className="font-medium whitespace-nowrap text-blue-700 dark:text-blue-200">
+                    {tech}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </Card>
     </header>
