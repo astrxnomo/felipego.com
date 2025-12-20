@@ -16,7 +16,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
     "motion": "^12.23.26",
-    "next": "16.0.10",
+    "next": "16.1.0",
     "next-themes": "^0.4.6",
     "node-appwrite": "^21.0.0",
     "notion-to-md": "^3.1.9",
