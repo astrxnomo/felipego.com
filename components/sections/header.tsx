@@ -1,6 +1,5 @@
-"use client"
-
-import { useLanguage } from "@/components/language-provider"
+import { Language, Profile } from "@/lib/notion"
+import { translations } from "@/lib/translations"
 import {
   ArrowUpRight,
   Github,
@@ -20,9 +19,14 @@ const socialLinks = [
   { url: "https://www.instagram.com/astrxnomo/", icon: Instagram },
 ]
 
-export default function Header() {
-  const { data } = useLanguage()
-  const profile = data.profile
+interface HeaderProps {
+  profile: Profile | null
+  lang: Language
+}
+
+export default function Header({ profile, lang }: HeaderProps) {
+  const t = translations[lang]
+
   if (!profile) {
     return null
   }
@@ -88,7 +92,7 @@ export default function Header() {
                     href={`mailto:${profile.contactEmail}`}
                     aria-label="Link to email"
                   >
-                    Contact
+                    {t.contact}
                     <ArrowUpRight className="size-3" />
                   </Link>
                 </Button>
