@@ -1,4 +1,5 @@
 import { exportImage } from "@/lib/utils/images"
+import { NotionToMarkdown } from "notion-to-md"
 
 import {
   type DataSourceCategory,
@@ -15,6 +16,21 @@ import type {
   Profile,
   Project,
 } from "./types"
+
+// Initialize NotionToMarkdown
+const n2m = new NotionToMarkdown({ notionClient: notion })
+
+// Function to get page content as markdown
+export async function getProjectContent(pageId: string): Promise<string> {
+  try {
+    const mdBlocks = await n2m.pageToMarkdown(pageId)
+    const mdString = n2m.toMarkdownString(mdBlocks)
+    return mdString.parent || ""
+  } catch (error) {
+    console.error(`Error getting content for page ${pageId}:`, error)
+    return ""
+  }
+}
 
 async function queryDataSource<T>(
   category: DataSourceCategory,
@@ -143,10 +159,14 @@ export async function getProjects(lang: Language): Promise<Project[]> {
         page.id,
       )
 
+      // Get page content as markdown
+      const content = await getProjectContent(page.id)
+
       return {
         id: page.id,
         title,
         description: properties.description?.rich_text?.[0]?.plain_text ?? "",
+        content,
         technologies:
           properties.technologies?.multi_select?.map(
             (tag: { name: string }) => tag.name,

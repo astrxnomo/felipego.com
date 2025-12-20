@@ -1,8 +1,11 @@
-import { Project } from "@/lib/notion"
-import { translations, type Language } from "@/lib/translations"
+import { Language, Project } from "@/lib/notion"
+import { translations } from "@/lib/translations"
 import { Github, LibraryBig, ScreenShare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import ReactMarkdown from "react-markdown"
+import rehypeRaw from "rehype-raw"
+import remarkGfm from "remark-gfm"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card"
@@ -15,6 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog"
+import { markdownComponents } from "../ui/markdown"
 
 interface ProjectsProps {
   projects: Project[]
@@ -62,6 +66,7 @@ export default function Projects({ projects, lang }: ProjectsProps) {
 function ProjectItem({
   title,
   description,
+  content,
   technologies,
   img,
   githubLink,
@@ -104,55 +109,31 @@ function ProjectItem({
         </div>
       </DialogTrigger>
 
-      <DialogContent className="flex max-h-[90vh] flex-col gap-0 p-0 sm:max-w-4xl [&>button:last-child]:top-3.5">
+      <DialogContent className="flex max-h-[95vh] flex-col gap-0 p-0 sm:max-w-4xl [&>button:last-child]:top-3.5">
         <DialogHeader className="contents space-y-0 text-left">
-          <DialogTitle className="flex items-center gap-2 border-b px-6 py-4 text-xl">
+          <DialogTitle className="text-foreground flex shrink-0 items-center gap-2 border-b px-6 py-4 text-xl">
             <LibraryBig className="size-5" />
             <span className="text-lg font-semibold">{title}</span>
           </DialogTitle>
-          <div className="overflow-y-auto">
+          <div className="min-h-0 flex-1 overflow-y-auto">
             <DialogDescription asChild>
-              <div className="flex flex-col gap-4 px-6 py-4">
-                {img && (
-                  <div className="relative h-64 w-full overflow-hidden rounded">
-                    <Image
-                      className="object-cover object-center"
-                      src={img}
-                      alt={`${title} preview`}
-                      fill
-                      sizes="(max-width: 896px) 100vw, 896px"
-                      priority
-                    />
-                  </div>
-                )}
-
-                <div>
-                  <h4 className="mb-2 text-sm font-semibold">
-                    {t.description}
-                  </h4>
+              <div className="flex flex-col px-6 py-4">
+                {content ? (
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                    components={markdownComponents}
+                  >
+                    {content}
+                  </ReactMarkdown>
+                ) : (
                   <p className="text-muted-foreground text-sm">{description}</p>
-                </div>
-
-                <div>
-                  <h4 className="mb-2 text-sm font-semibold">
-                    {t.technologies}
-                  </h4>
-                  <div className="flex flex-wrap gap-1">
-                    {technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-secondary text-secondary-foreground rounded px-2.5 py-1 text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                )}
               </div>
             </DialogDescription>
           </div>
         </DialogHeader>
-        <DialogFooter className="border-t px-6 py-4 sm:items-center">
+        <DialogFooter className="shrink-0 border-t px-6 py-4 sm:items-center">
           <div className="flex w-full gap-2">
             {githubLink && (
               <Button variant="outline" asChild className="grow">

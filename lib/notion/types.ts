@@ -59,6 +59,7 @@ export interface Project {
   id: string
   title: string
   description: string
+  content?: string
   technologies: string[]
   githubLink?: string
   previewLink?: string
