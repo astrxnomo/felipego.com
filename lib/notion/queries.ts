@@ -209,7 +209,7 @@ export async function getCertificates(lang: Language): Promise<Certificate[]> {
   )
 }
 
-export async function getAllPageData(lang: Language) {
+export async function getData(lang: Language) {
   const [profile, experience, projects, education, certificates] =
     await Promise.all([
       getProfile(lang),
@@ -228,11 +228,8 @@ export async function getAllPageData(lang: Language) {
   }
 }
 
-export async function getAllPageDataBothLangs() {
-  const [es, en] = await Promise.all([
-    getAllPageData("es"),
-    getAllPageData("en"),
-  ])
+export async function getAllData() {
+  const [es, en] = await Promise.all([getData("es"), getData("en")])
 
   return { es, en }
 }
