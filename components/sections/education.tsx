@@ -1,16 +1,20 @@
-"use client"
-
-import { useLanguage } from "@/components/language-provider"
 import { Education } from "@/lib/notion"
+import { translations, type Language } from "@/lib/translations"
 import { GraduationCap } from "lucide-react"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader } from "../ui/card"
 
-export default function EducationSection() {
-  const { data } = useLanguage()
-  const education = data.education
+interface EducationSectionProps {
+  education: Education[]
+  lang: Language
+}
 
+export default function EducationSection({
+  education,
+  lang,
+}: EducationSectionProps) {
+  const t = translations[lang]
   if (education.length === 0) {
     return null
   }
@@ -20,11 +24,11 @@ export default function EducationSection() {
       <CardHeader>
         <h2 className="flex items-center gap-3 p-1 text-xl font-semibold">
           <GraduationCap className="size-5" />
-          Education
+          {t.education}
         </h2>
       </CardHeader>
       <CardContent className="flex flex-col">
-        <ol className="border-muted relative -end-2 border-s-2">
+        <ol className="border-muted-foreground/20 relative -end-2 border-s-2">
           {education.map((edu) => (
             <EducationItem key={edu.id} {...edu} />
           ))}
