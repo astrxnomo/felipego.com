@@ -1,15 +1,20 @@
-"use client"
-
-import { useLanguage } from "@/components/language-provider"
 import { Experience } from "@/lib/notion"
+import { translations, type Language } from "@/lib/translations"
 import { BriefcaseBusiness } from "lucide-react"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader } from "../ui/card"
 
-export default function ExperienceSection() {
-  const { data } = useLanguage()
-  const experience = data.experience
+interface ExperienceSectionProps {
+  experience: Experience[]
+  lang: Language
+}
+
+export default function ExperienceSection({
+  experience,
+  lang,
+}: ExperienceSectionProps) {
+  const t = translations[lang]
 
   if (experience.length === 0) {
     return null
@@ -20,11 +25,11 @@ export default function ExperienceSection() {
       <CardHeader>
         <h2 className="flex items-center gap-3 p-1 text-xl font-semibold">
           <BriefcaseBusiness className="size-5" />
-          Experience
+          {t.experience}
         </h2>
       </CardHeader>
       <CardContent className="flex flex-col">
-        <ol className="border-muted relative -end-2 border-s-2">
+        <ol className="border-muted-foreground/20 relative -end-2 border-s-2">
           {experience.map((exp) => (
             <ExperienceItem key={exp.id} {...exp} />
           ))}
