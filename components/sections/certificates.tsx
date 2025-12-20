@@ -1,16 +1,21 @@
-"use client"
-
-import { useLanguage } from "@/components/language-provider"
 import { Certificate } from "@/lib/notion"
+import { translations, type Language } from "@/lib/translations"
 import { ArrowUpRight, FileBadge } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card"
 
-export default function Certificates() {
-  const { data } = useLanguage()
-  const certificates = data.certificates
+interface CertificatesProps {
+  certificates: Certificate[]
+  lang: Language
+}
+
+export default function Certificates({
+  certificates,
+  lang,
+}: CertificatesProps) {
+  const t = translations[lang]
 
   if (certificates.length === 0) {
     return null
@@ -21,12 +26,12 @@ export default function Certificates() {
       <CardHeader>
         <h2 className="flex items-center gap-3 p-1 text-xl font-semibold">
           <FileBadge className="size-5" />
-          Certificates
+          {t.certificates}
         </h2>
       </CardHeader>
 
       <CardContent className="flex flex-col">
-        <ol className="border-muted relative -end-2 border-s-2">
+        <ol className="border-muted-foreground/20 relative -end-2 border-s-2">
           {certificates.map((certificate) => (
             <CertificateItem key={certificate.id} {...certificate} />
           ))}
@@ -40,7 +45,7 @@ export default function Certificates() {
             target="_blank"
             aria-label="Explore more certificates on LinkedIn"
           >
-            More certificates
+            {t.moreCertificates}
           </Link>
         </Button>
       </CardFooter>
