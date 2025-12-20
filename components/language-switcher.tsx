@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const SpainFlag = () => (
   <svg
@@ -64,13 +65,12 @@ const USAFlag = () => (
   </svg>
 )
 
-interface LanguageSwitcherProps {
-  currentLang: "en" | "es"
-}
-
-export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
-  const isSpanish = currentLang === "es"
-  const targetUrl = isSpanish ? "/" : "/es"
+export function LanguageSwitcher() {
+  const pathname = usePathname()
+  const isSpanish = pathname.startsWith("/es")
+  const targetUrl = isSpanish
+    ? pathname.replace(/^\/es/, "") || "/"
+    : `/es${pathname}`
 
   return (
     <Button variant="outline" size="icon-lg" asChild>
