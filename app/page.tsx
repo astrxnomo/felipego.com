@@ -29,7 +29,7 @@ export default async function Page() {
         <LanguageSwitcher currentLang="en" />
         <ThemeToggle />
       </div>
-      <main className="animate-in fade-in relative z-10 mx-auto flex w-full flex-col gap-6 p-5 duration-1000 ease-out md:max-w-3xl">
+      <main className="animate-in fade-in relative z-10 mx-auto flex w-full flex-col gap-4 p-4 duration-1000 ease-out md:max-w-3xl">
         <Header profile={data.profile} lang="en" />
         <Experience experience={data.experience} lang="en" />
         <Projects projects={data.projects} lang="en" />

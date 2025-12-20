@@ -1,6 +1,6 @@
 import { Certificate } from "@/lib/notion"
 import { translations, type Language } from "@/lib/translations"
-import { ArrowUpRight, FileBadge } from "lucide-react"
+import { ArrowRight, ArrowUpRight, FileBadge } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
@@ -44,8 +44,10 @@ export default function Certificates({
             href="https://www.linkedin.com/in/felipegiraldoo/details/certifications/"
             target="_blank"
             aria-label="Explore more certificates on LinkedIn"
+            className="flex gap-1"
           >
             {t.moreCertificates}
+            <ArrowRight className="size-3" />
           </Link>
         </Button>
       </CardFooter>

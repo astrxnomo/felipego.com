@@ -1,6 +1,6 @@
 import { Language, Project } from "@/lib/notion"
 import { translations } from "@/lib/translations"
-import { Github, LibraryBig, ScreenShare } from "lucide-react"
+import { ArrowRight, Github, LibraryBig, ScreenShare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import ReactMarkdown from "react-markdown"
@@ -54,8 +54,10 @@ export default function Projects({ projects, lang }: ProjectsProps) {
             href="https://github.com/astrxnomo"
             target="_blank"
             aria-label="Explore more projects on GitHub"
+            className="flex gap-1"
           >
             {t.moreProjects}
+            <ArrowRight className="size-3" />
           </Link>
         </Button>
       </CardFooter>
@@ -152,6 +154,7 @@ function ProjectItem({
                   href={previewLink}
                   target="_blank"
                   aria-label="Link to live preview"
+                  className="flex gap-1"
                 >
                   <ScreenShare className="size-4" /> {t.livePreview}
                 </Link>
