@@ -184,7 +184,7 @@ export const ThemeToggleButton = ({
       size="icon-lg"
       onClick={handleClick}
       className={cn(
-        "relative overflow-hidden transition-all",
+        "relative cursor-pointer overflow-hidden transition-all",
         showLabel && "gap-2",
         className,
       )}
