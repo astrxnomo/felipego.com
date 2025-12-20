@@ -1,7 +1,5 @@
-"use client"
-
-import { useLanguage } from "@/components/language-provider"
 import { Project } from "@/lib/notion"
+import { translations, type Language } from "@/lib/translations"
 import { Github, LibraryBig, ScreenShare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -18,10 +16,13 @@ import {
   DialogTrigger,
 } from "../ui/dialog"
 
-export default function Projects() {
-  const { data } = useLanguage()
-  const projects = data.projects
+interface ProjectsProps {
+  projects: Project[]
+  lang: Language
+}
 
+export default function Projects({ projects, lang }: ProjectsProps) {
+  const t = translations[lang]
   if (projects.length === 0) {
     return null
   }
@@ -31,14 +32,14 @@ export default function Projects() {
       <CardHeader>
         <h2 className="flex items-center gap-3 p-1 text-xl font-semibold">
           <LibraryBig className="size-5" />
-          Projects
+          {t.projects}
         </h2>
       </CardHeader>
 
       <CardContent className="flex flex-col gap-4">
         <div className="grid grid-cols-1 gap-3">
           {projects.map((project) => (
-            <ProjectItem key={project.id} {...project} />
+            <ProjectItem key={project.id} {...project} lang={lang} />
           ))}
         </div>
       </CardContent>
@@ -50,7 +51,7 @@ export default function Projects() {
             target="_blank"
             aria-label="Explore more projects on GitHub"
           >
-            More projects
+            {t.moreProjects}
           </Link>
         </Button>
       </CardFooter>
@@ -65,7 +66,9 @@ function ProjectItem({
   img,
   githubLink,
   previewLink,
-}: Project) {
+  lang,
+}: Project & { lang: Language }) {
+  const t = translations[lang]
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -87,7 +90,7 @@ function ProjectItem({
             </div>
 
             {img && (
-              <div className="relative h-32 w-full shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-40">
+              <div className="relative h-32 w-full shrink-0 overflow-hidden rounded sm:h-24 sm:w-40">
                 <Image
                   className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                   src={img}
@@ -101,7 +104,7 @@ function ProjectItem({
         </div>
       </DialogTrigger>
 
-      <DialogContent className="flex flex-col gap-0 p-0 sm:max-h-[min(640px,80vh)] sm:max-w-4xl [&>button:last-child]:top-3.5">
+      <DialogContent className="flex max-h-[90vh] flex-col gap-0 p-0 sm:max-w-4xl [&>button:last-child]:top-3.5">
         <DialogHeader className="contents space-y-0 text-left">
           <DialogTitle className="flex items-center gap-2 border-b px-6 py-4 text-xl">
             <LibraryBig className="size-5" />
@@ -111,7 +114,7 @@ function ProjectItem({
             <DialogDescription asChild>
               <div className="flex flex-col gap-4 px-6 py-4">
                 {img && (
-                  <div className="relative h-64 w-full overflow-hidden rounded-lg">
+                  <div className="relative h-64 w-full overflow-hidden rounded">
                     <Image
                       className="object-cover object-center"
                       src={img}
@@ -124,17 +127,21 @@ function ProjectItem({
                 )}
 
                 <div>
-                  <h4 className="mb-2 text-sm font-semibold">Description</h4>
+                  <h4 className="mb-2 text-sm font-semibold">
+                    {t.description}
+                  </h4>
                   <p className="text-muted-foreground text-sm">{description}</p>
                 </div>
 
                 <div>
-                  <h4 className="mb-2 text-sm font-semibold">Technologies</h4>
+                  <h4 className="mb-2 text-sm font-semibold">
+                    {t.technologies}
+                  </h4>
                   <div className="flex flex-wrap gap-1">
                     {technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-secondary text-secondary-foreground rounded-md px-2.5 py-1 font-mono text-xs"
+                        className="bg-secondary text-secondary-foreground rounded px-2.5 py-1 text-xs"
                       >
                         {tech}
                       </span>
@@ -154,7 +161,7 @@ function ProjectItem({
                   target="_blank"
                   aria-label="Link to GitHub repository"
                 >
-                  <Github className="size-4" /> Repository
+                  <Github className="size-4" /> {t.repository}
                 </Link>
               </Button>
             )}
@@ -165,7 +172,7 @@ function ProjectItem({
                   target="_blank"
                   aria-label="Link to live preview"
                 >
-                  <ScreenShare className="size-4" /> Live Preview
+                  <ScreenShare className="size-4" /> {t.livePreview}
                 </Link>
               </Button>
             )}
