@@ -25,7 +25,7 @@ interface HeaderProps {
   lang: Language
 }
 
-export default function Header({ profile, lang }: HeaderProps) {
+export default function Profile({ profile, lang }: HeaderProps) {
   const t = translations[lang]
 
   if (!profile) {
