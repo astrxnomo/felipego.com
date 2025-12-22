@@ -1,4 +1,4 @@
-import { Language, Profile } from "@/lib/notion"
+import { Language, Profile as ProfileType } from "@/lib/notion"
 import { translations } from "@/lib/translations"
 import {
   ArrowUpRight,
@@ -21,7 +21,7 @@ const socialLinks = [
 ]
 
 interface HeaderProps {
-  profile: Profile | null
+  profile: ProfileType | null
   lang: Language
 }
 
