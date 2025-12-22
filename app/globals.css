@@ -116,7 +116,7 @@
   --card-foreground: oklch(0.3012 0 0);
   --popover: oklch(0.8359 0 0);
   --popover-foreground: oklch(0.3867 0 0);
-  --primary: oklch(0.5452 0 0);
+  --primary: oklch(39.418% 0.00004 271.152);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.7952 0 0);
   --secondary-foreground: oklch(0.3867 0 0);
@@ -177,7 +177,7 @@
 
 .dark {
   --background: oklch(0.1913 0 0);
-  --foreground: oklch(0.7508 0 0);
+  --foreground: oklch(81.406% 0.00009 271.152);
   --card: oklch(0.2308 0 0);
   --card-foreground: oklch(0.8607 0 0);
   --popover: oklch(0.2308 0 0);
@@ -242,5 +242,8 @@
   body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
+  }
+  html {
+    scrollbar-gutter: stable;
   }
 }
