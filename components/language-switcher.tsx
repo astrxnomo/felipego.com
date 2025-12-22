@@ -73,7 +73,7 @@ export function LanguageSwitcher() {
     : `/es${pathname}`
 
   return (
-    <Button variant="outline" size="icon-lg" asChild>
+    <Button variant="outline" size="icon-lg" asChild className="z-99">
       <Link href={targetUrl} scroll={false}>
         {isSpanish ? <SpainFlag /> : <USAFlag />}
         <span className="sr-only">
