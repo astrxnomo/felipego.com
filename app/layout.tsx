@@ -1,3 +1,4 @@
+import { Header } from "@/components/header"
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import type { Metadata } from "next"
 import { Outfit, Roboto_Mono } from "next/font/google"
@@ -49,6 +50,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           <main>{children}</main>
         </ThemeProvider>
       </body>
