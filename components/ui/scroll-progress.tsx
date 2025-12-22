@@ -1,7 +1,7 @@
 "use client"
 
-import { motion, SpringOptions, useScroll, useSpring } from "motion/react"
 import { cn } from "@/lib/utils"
+import { motion, SpringOptions, useScroll, useSpring } from "motion/react"
 import { RefObject } from "react"
 
 export type ScrollProgressProps = {
@@ -23,7 +23,6 @@ export function ScrollProgress({
 }: ScrollProgressProps) {
   const { scrollYProgress } = useScroll({
     container: containerRef,
-    layoutEffect: Boolean(containerRef?.current),
   })
 
   const scaleX = useSpring(scrollYProgress, {
