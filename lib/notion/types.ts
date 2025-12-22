@@ -87,6 +87,19 @@ export interface Profile {
   workUrl: string
 }
 
+export interface BlogPost {
+  id: string
+  slug: string
+  title: string
+  description: string
+  content: string
+  coverImage: string
+  author: string
+  publishedAt: string
+  tags: string[]
+  readTime: string
+}
+
 export interface PageData {
   profile: Profile
   experience: Experience[]

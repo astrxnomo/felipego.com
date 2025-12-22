@@ -9,6 +9,7 @@ import {
   notion,
 } from "./client"
 import type {
+  BlogPost,
   Certificate,
   Education,
   Experience,

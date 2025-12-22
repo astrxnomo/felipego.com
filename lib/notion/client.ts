@@ -10,6 +10,7 @@ export type DataSourceCategory =
   | "projects"
   | "education"
   | "certificates"
+  | "blog"
 
 // Data source IDs por idioma
 const DATA_SOURCE_IDS: Record<Language, Record<DataSourceCategory, string>> = {
@@ -19,6 +20,7 @@ const DATA_SOURCE_IDS: Record<Language, Record<DataSourceCategory, string>> = {
     projects: process.env.NOTION_PROJECTS_ES_ID ?? "",
     education: process.env.NOTION_EDUCATION_ES_ID ?? "",
     certificates: process.env.NOTION_CERTIFICATES_ES_ID ?? "",
+    blog: process.env.NOTION_BLOG_ES_ID ?? "",
   },
   en: {
     profile: process.env.NOTION_PROFILE_EN_ID ?? "",
@@ -26,6 +28,7 @@ const DATA_SOURCE_IDS: Record<Language, Record<DataSourceCategory, string>> = {
     projects: process.env.NOTION_PROJECTS_EN_ID ?? "",
     education: process.env.NOTION_EDUCATION_EN_ID ?? "",
     certificates: process.env.NOTION_CERTIFICATES_EN_ID ?? "",
+    blog: process.env.NOTION_BLOG_EN_ID ?? "",
   },
 }
 
