@@ -13,6 +13,7 @@ export const translations = {
     technologies: "Technologies",
     repository: "Repository",
     livePreview: "Live Preview",
+    readMore: "Read more",
   },
   es: {
     experience: "Experiencia",
@@ -26,5 +27,6 @@ export const translations = {
     technologies: "Tecnologías",
     repository: "Repositorio",
     livePreview: "Vista previa",
+    readMore: "Leer más",
   },
 } as const

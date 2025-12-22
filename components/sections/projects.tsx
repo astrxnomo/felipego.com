@@ -1,14 +1,24 @@
+"use client"
 import { Language, Project } from "@/lib/notion"
 import { translations } from "@/lib/translations"
-import { ArrowRight, Github, LibraryBig, ScreenShare } from "lucide-react"
+import {
+  ArrowRight,
+  Github,
+  LibraryBig,
+  MousePointerClick,
+  ScreenShare,
+} from "lucide-react"
+import { motion } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRef, useState } from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card"
+import { Cursor } from "../ui/cursor"
 import {
   Dialog,
   DialogContent,
@@ -19,6 +29,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog"
 import { markdownComponents } from "../ui/markdown"
+import { Spotlight } from "../ui/spotlight"
 
 interface ProjectsProps {
   projects: Project[]
@@ -49,7 +60,7 @@ export default function Projects({ projects, lang }: ProjectsProps) {
       </CardContent>
 
       <CardFooter className="mt-2">
-        <Button variant="outline" asChild className="w-full">
+        <Button asChild variant="outline" className="w-full">
           <Link
             href="https://github.com/astrxnomo"
             target="_blank"
@@ -76,11 +87,64 @@ function ProjectItem({
   lang,
 }: Project & { lang: Language }) {
   const t = translations[lang]
+  const targetRef = useRef<HTMLDivElement>(null)
+  const [isHovering, setIsHovering] = useState(false)
+
+  const handlePositionChange = (x: number, y: number) => {
+    if (targetRef.current) {
+      const rect = targetRef.current.getBoundingClientRect()
+      const isInside =
+        x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
+      setIsHovering(isInside)
+    }
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="group hover:bg-primary/5 cursor-pointer rounded">
-          <CardContent className="flex flex-col gap-3 p-4 py-2 sm:flex-row">
+        <div
+          ref={targetRef}
+          className="group relative cursor-pointer overflow-hidden rounded-lg"
+        >
+          <Cursor
+            attachToParent
+            variants={{
+              initial: { scale: 0.3, opacity: 0 },
+              animate: { scale: 1, opacity: 1 },
+              exit: { scale: 0.3, opacity: 0 },
+            }}
+            springConfig={{
+              bounce: 0.4,
+            }}
+            transition={{
+              ease: "easeInOut",
+              duration: 0.15,
+            }}
+            onPositionChange={handlePositionChange}
+          >
+            <motion.div
+              animate={{
+                scale: isHovering ? [1, 1.1, 1] : 1,
+              }}
+              transition={{
+                repeat: isHovering ? Infinity : 0,
+                duration: 1.5,
+              }}
+              className="bg-muted-foreground/20 flex items-center gap-1 rounded px-2 py-1 text-xs font-medium backdrop-blur-xs"
+            >
+              <MousePointerClick className="size-4" />
+              {t.readMore}
+            </motion.div>
+          </Cursor>
+          <Spotlight
+            className="bg-muted-foreground/5 blur-2xl"
+            size={400}
+            springOptions={{
+              bounce: 0.3,
+              duration: 0.1,
+            }}
+          />
+          <CardContent className="relative z-10 flex flex-col gap-3 p-4 py-2 sm:flex-row">
             <div className="flex min-w-0 grow flex-col gap-2">
               <div className="flex flex-col gap-1">
                 <h3 className="text-base font-semibold">{title}</h3>

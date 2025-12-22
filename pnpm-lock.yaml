@@ -52,6 +52,9 @@ importers:
       react-syntax-highlighter:
         specifier: ^16.1.0
         version: 16.1.0(react@19.2.1)
+      react-use-measure:
+        specifier: ^2.1.7
+        version: 2.1.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       rehype-raw:
         specifier: ^7.0.0
         version: 7.0.0
@@ -5822,6 +5825,18 @@ packages:
     peerDependencies:
       react: ">= 0.14.0"
 
+  react-use-measure@2.1.7:
+    resolution:
+      {
+        integrity: sha512-KrvcAo13I/60HpwGO5jpW7E9DfusKyLPLvuHlUyP5zqnmAPhNc6qTRjUQrdTADl0lpPpDVU2/Gg51UlOGHXbdg==,
+      }
+    peerDependencies:
+      react: ">=16.13"
+      react-dom: ">=16.13"
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
   react@19.2.1:
     resolution:
       {
@@ -10858,6 +10873,12 @@ snapshots:
       prismjs: 1.30.0
       react: 19.2.1
       refractor: 5.0.0
+
+  react-use-measure@2.1.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
+    dependencies:
+      react: 19.2.1
+    optionalDependencies:
+      react-dom: 19.2.1(react@19.2.1)
 
   react@19.2.1: {}
 

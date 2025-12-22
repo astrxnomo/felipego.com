@@ -12,6 +12,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardFooter } from "../ui/card"
+import { InfiniteSlider } from "../ui/infinite-slider"
 
 const socialLinks = [
   { url: "https://github.com/astrxnomo", icon: Github },
@@ -102,27 +103,19 @@ export default function Header({ profile, lang }: HeaderProps) {
         </CardContent>
         {profile.technologies.length > 0 && (
           <CardFooter className="mt-3">
-            <div className="text-muted-foreground overflow-hidden mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-200px),transparent_100%)] text-xs font-medium">
-              <div className="animate-infinite-scroll inline-flex">
-                {[0, 1].map((i) => (
-                  <ul
-                    key={i}
-                    className="flex items-center"
-                    aria-hidden={i === 1}
-                  >
-                    {profile.technologies.map((tech) => (
-                      <li
-                        key={`${tech}-${i}`}
-                        className="flex items-center whitespace-nowrap"
-                      >
-                        <Sparkle className="mx-3 size-2.5" />
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-            </div>
+            <InfiniteSlider
+              gap={10}
+              speed={70}
+              speedOnHover={40}
+              className="text-muted-foreground mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-200px),transparent_100%)] text-xs font-medium"
+            >
+              {profile.technologies.map((tech) => (
+                <div key={tech} className="flex items-center gap-2">
+                  <Sparkle className="size-2.5" />
+                  {tech}
+                </div>
+              ))}
+            </InfiniteSlider>
           </CardFooter>
         )}
       </Card>
