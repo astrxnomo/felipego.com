@@ -254,3 +254,60 @@ export async function getAllData() {
 
   return { es, en }
 }
+
+// Blog queries
+export async function getBlogPosts(lang: Language): Promise<BlogPost[]> {
+  const results = await queryDataSource<NotionPage>("blog", lang)
+
+  const posts = await Promise.all(
+    results.map(async (page) => {
+      const props = page.properties
+      const slug = props.slug?.rich_text?.[0]?.plain_text || ""
+
+      const title = props.title?.title?.[0]?.plain_text || ""
+      const coverImage = await exportImage(
+        props.cover?.files?.[0]?.file?.url ??
+          props.cover?.files?.[0]?.external?.url ??
+          "",
+        "blog",
+        title,
+        page.id,
+      )
+
+      return {
+        id: page.id,
+        slug,
+        title,
+        description: props.description?.rich_text?.[0]?.plain_text || "",
+        content: "", // Will be loaded on individual page
+        coverImage,
+        author: props.author?.rich_text?.[0]?.plain_text || "",
+        publishedAt: props.publishedAt?.date?.start || "",
+        tags: props.tags?.multi_select?.map((tag) => tag.name) || [],
+        readTime: props.readTime?.rich_text?.[0]?.plain_text || "5 min",
+      }
+    }),
+  )
+
+  return posts.filter((post) => post.slug)
+}
+
+export async function getBlogPost(
+  slug: string,
+  lang: Language,
+): Promise<BlogPost | null> {
+  const posts = await getBlogPosts(lang)
+  const post = posts.find((p) => p.slug === slug)
+
+  if (!post) return null
+
+  // Load full content
+  post.content = await getProjectContent(post.id)
+
+  return post
+}
+
+export async function getAllBlogSlugs(lang: Language): Promise<string[]> {
+  const posts = await getBlogPosts(lang)
+  return posts.map((post) => post.slug)
+}
