@@ -1,6 +1,6 @@
 import { type BlogPost, type Language } from "@/lib/notion"
 import { translations } from "@/lib/translations"
-import { Calendar, Clock } from "lucide-react"
+import { Calendar, Clock, Newspaper } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "../ui/badge"
@@ -17,15 +17,23 @@ export default function BlogList({ posts, lang }: BlogListProps) {
   if (posts.length === 0) {
     return (
       <div className="container mx-auto max-w-6xl px-4 py-12">
-        <h1 className="mb-8 text-4xl font-bold">{t.blog}</h1>
+        <h1 className="mb-8 text-4xl font-bold">{t.posts}</h1>
         <p className="text-muted-foreground">No posts available.</p>
       </div>
     )
   }
 
   return (
-    <section className="mx-auto flex w-full flex-col gap-4 px-4 py-12 md:max-w-4xl">
-      <h1 className="mb-4 text-4xl font-bold">{t.blog}</h1>
+    <section className="mx-auto flex w-full flex-col space-y-4 md:max-w-4xl">
+      <div className="my-10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Newspaper className="size-6" />
+          <h1 className="text-3xl font-bold">{t.posts}</h1>
+        </div>
+        <Badge variant="secondary" className="font-mono text-sm">
+          {posts.length}
+        </Badge>
+      </div>
 
       <div className="grid grid-cols-1 gap-3">
         {posts.map((post) => (
@@ -33,19 +41,19 @@ export default function BlogList({ posts, lang }: BlogListProps) {
             key={post.id}
             href={`${lang === "es" ? "/es" : ""}/blog/${post.slug}`}
           >
-            <div className="group relative overflow-hidden rounded-lg">
+            <div className="group border-border bg-card relative overflow-hidden rounded-lg border shadow-md">
               <Spotlight
-                className="bg-muted-foreground/5 blur-2xl"
-                size={300}
+                className="bg-muted-foreground/5 blur-3xl"
+                size={550}
                 springOptions={{
                   bounce: 0.3,
                   duration: 0.1,
                 }}
               />
-              <div className="relative z-10 flex flex-col gap-3 p-4 sm:flex-row">
+              <div className="flex flex-col gap-3 p-5 sm:flex-row">
                 <div className="flex min-w-0 grow flex-col gap-3">
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-lg font-semibold">{post.title}</h3>
+                    <h2 className="text-xl font-semibold">{post.title}</h2>
                     <p className="text-muted-foreground line-clamp-2 text-sm">
                       {post.description}
                     </p>
