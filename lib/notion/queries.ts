@@ -18,16 +18,24 @@ import type {
   Project,
 } from "./types"
 
-const converter = new NotionConverter(notion).downloadMediaTo({
-  outputDir: path.join(process.cwd(), "public", "notion-media"),
-  transformPath: (localPath) => {
-    const fileName = path.basename(localPath)
-    return `/notion-media/${fileName}`
-  },
-  enableFor: ["block", "database_property", "page_property"],
-  preserveExternalUrls: false,
-  failForward: true,
-})
+// En producción serverless (Vercel), usa URLs directas sin descargar
+// porque el filesystem es read-only excepto /tmp
+const isProduction = process.env.NODE_ENV === "production"
+const isVercel = process.env.VERCEL === "1"
+
+const converter =
+  isProduction && isVercel
+    ? new NotionConverter(notion)
+    : new NotionConverter(notion).downloadMediaTo({
+        outputDir: path.join(process.cwd(), "public", "notion-media"),
+        transformPath: (localPath) => {
+          const fileName = path.basename(localPath)
+          return `/notion-media/${fileName}`
+        },
+        enableFor: ["block", "database_property", "page_property"],
+        preserveExternalUrls: false,
+        failForward: true,
+      })
 
 // Function to get page content as MDX with frontmatter
 export async function getProjectContent(pageId: string): Promise<string> {
