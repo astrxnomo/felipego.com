@@ -42,13 +42,13 @@ export function BlogPostLayout({
       </div>
 
       <div className="relative w-full p-6">
-        <aside className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards pointer-events-none fixed top-24 left-8 hidden w-64 delay-500 duration-500 xl:block">
+        <aside className="animate-in fade-in slide-in-from-bottom-4 pointer-events-none fixed top-24 left-8 hidden w-64 delay-500 duration-500 xl:block">
           <div className="pointer-events-auto sticky top-24">
             <TableOfContents content={post.content} />
           </div>
         </aside>
 
-        <article className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards mx-auto w-full max-w-4xl space-y-4 delay-200 duration-300">
+        <article className="animate-in fade-in slide-in-from-bottom-4 mx-auto w-full max-w-4xl space-y-4 delay-200 duration-300">
           <Button variant="ghost" size="lg" asChild>
             <Link href={backToBlogUrl}>
               <ArrowLeft className="size-4" />

@@ -20,7 +20,7 @@ export default function ExperienceSection({
   }
 
   return (
-    <Card className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards delay-100 duration-500">
+    <Card>
       <CardHeader>
         <h2 className="flex items-center gap-3 p-1 text-xl font-semibold">
           <BriefcaseBusiness className="size-5" />
