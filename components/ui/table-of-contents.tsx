@@ -1,14 +1,17 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { translations, type Language } from "@/lib/translations"
+import { useMemo } from "react"
 
 interface TableOfContentsProps {
   content: string
+  lang?: Language
 }
 
-export function TableOfContents({ content }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>("")
-
+export function TableOfContents({
+  content,
+  lang = "en",
+}: TableOfContentsProps) {
   const headings = useMemo(() => {
     const headingRegex = /^(#{1,6})\s+(.+)$/gm
     const matches = [...content.matchAll(headingRegex)]
@@ -25,78 +28,39 @@ export function TableOfContents({ content }: TableOfContentsProps) {
     })
   }, [content])
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        })
-      },
-      {
-        rootMargin: "-100px 0px -80% 0px",
-      },
-    )
-
-    headings.forEach(({ id }) => {
-      const element = document.getElementById(id)
-      if (element) {
-        observer.observe(element)
-      }
-    })
-
-    return () => observer.disconnect()
-  }, [headings])
-
   if (headings.length === 0) return null
 
+  const filteredHeadings = headings.filter((h) => h.level === 2)
+
   return (
-    <aside className="hidden xl:block">
-      <nav className="sticky top-24 max-h-[calc(100vh-6rem)] w-64 overflow-y-auto">
-        <div className="border-border border-l-2 pl-4">
-          <ul className="space-y-2.5 text-sm">
-            {headings.map((heading) => (
-              <li
-                key={heading.id}
-                style={{
-                  paddingLeft: `${(heading.level - 2) * 0.75}rem`,
-                }}
-                className="relative"
-              >
-                <a
-                  href={`#${heading.id}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const element = document.getElementById(heading.id)
-                    if (element) {
-                      const offset = 100
-                      const elementPosition =
-                        element.getBoundingClientRect().top
-                      const offsetPosition =
-                        elementPosition + window.pageYOffset - offset
-                      window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth",
-                      })
-                    }
-                  }}
-                  className={`group block py-0.5 transition-all ${
-                    activeId === heading.id
-                      ? "text-primary font-medium"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <span className="line-clamp-2">{heading.text}</span>
-                  {activeId === heading.id && (
-                    <span className="bg-primary absolute top-1/2 -left-[1.1rem] h-5 w-0.5 -translate-y-1/2 rounded-full" />
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
-    </aside>
+    <nav className="">
+      <h2 className="mb-4 text-sm font-semibold tracking-wide">
+        {translations[lang].tableOfContents}
+      </h2>
+      <ol className="ml-2 space-y-2.5 text-sm">
+        {filteredHeadings.map((heading, index) => (
+          <li key={heading.id}>
+            <a
+              href={`#${heading.id}`}
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById(heading.id)?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+              }}
+              className="group flex items-start gap-2"
+            >
+              <span className="text-muted-foreground font-medium">
+                {index + 1}.
+              </span>
+              <span className="text-foreground flex-1 underline decoration-dotted decoration-[1.5px] underline-offset-5 hover:opacity-80">
+                {heading.text}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
   )
 }

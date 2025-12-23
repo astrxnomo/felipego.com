@@ -19,8 +19,10 @@ export const translations = {
     publishedOn: "Published on",
     minRead: "min read",
     backToBlog: "Back to posts",
+    backToProjects: "Back to projects",
     readingTime: "reading time",
     onThisPage: "On this page",
+    tableOfContents: "Table of Contents",
   },
   es: {
     experience: "Experiencia",
@@ -40,7 +42,9 @@ export const translations = {
     publishedOn: "Publicado el",
     minRead: "min de lectura",
     backToBlog: "Volver a las publicaciones",
+    backToProjects: "Volver a proyectos",
     readingTime: "tiempo de lectura",
     onThisPage: "En esta página",
+    tableOfContents: "Tabla de Contenidos",
   },
 } as const

@@ -31,11 +31,14 @@ export function ScrollProgress({
   })
 
   return (
-    <motion.div
-      className={cn("inset-x-0 top-0 h-1 origin-left", className)}
-      style={{
-        scaleX,
-      }}
-    />
+    <div className="pointer-events-none fixed top-0 left-0 z-50 w-full">
+      <div className="bg-border absolute top-0 left-0 h-1 w-full" />
+      <motion.div
+        className={cn("inset-x-0 top-0 h-1 origin-left", className)}
+        style={{
+          scaleX,
+        }}
+      />
+    </div>
   )
 }

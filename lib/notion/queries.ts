@@ -1,6 +1,5 @@
 import { downloadImage } from "@/lib/utils/images"
 import { NotionConverter } from "notion-to-md"
-import path from "path"
 
 import {
   type DataSourceCategory,
@@ -19,13 +18,7 @@ import type {
   Project,
 } from "./types"
 
-const converter = new NotionConverter(notion).downloadMediaTo({
-  outputDir: path.join(process.cwd(), "public", "notion-media"),
-  transformPath: (localPath) => {
-    const fileName = path.basename(localPath)
-    return `/notion-media/${fileName}`
-  },
-})
+const converter = new NotionConverter(notion)
 
 // Function to get page content as MDX with frontmatter
 export async function getProjectContent(pageId: string): Promise<string> {
@@ -151,9 +144,10 @@ export async function getExperience(lang: Language): Promise<Experience[]> {
 export async function getProjects(lang: Language): Promise<Project[]> {
   const results = await queryDataSource<NotionPage>("projects", lang)
 
-  return await Promise.all(
+  const projects = await Promise.all(
     results.map(async (page) => {
       const { properties } = page
+      const slug = properties.slug?.rich_text?.[0]?.plain_text || ""
 
       const title = properties.title?.title?.[0]?.plain_text ?? "Project"
       const img = await downloadImage(
@@ -170,6 +164,7 @@ export async function getProjects(lang: Language): Promise<Project[]> {
 
       return {
         id: page.id,
+        slug,
         title,
         description: properties.description?.rich_text?.[0]?.plain_text ?? "",
         content,
@@ -183,6 +178,8 @@ export async function getProjects(lang: Language): Promise<Project[]> {
       }
     }),
   )
+
+  return projects.filter((project) => project.slug)
 }
 
 export async function getEducation(lang: Language): Promise<Education[]> {
@@ -315,4 +312,22 @@ export async function getBlogPost(
 export async function getAllBlogSlugs(lang: Language): Promise<string[]> {
   const posts = await getBlogPosts(lang)
   return posts.map((post) => post.slug)
+}
+
+export async function getProject(
+  slug: string,
+  lang: Language,
+): Promise<Project | null> {
+  const projects = await getProjects(lang)
+  const project = projects.find((p) => p.slug === slug)
+
+  if (!project) return null
+
+  // Content is already loaded in getProjects
+  return project
+}
+
+export async function getAllProjectSlugs(lang: Language): Promise<string[]> {
+  const projects = await getProjects(lang)
+  return projects.map((project) => project.slug)
 }
