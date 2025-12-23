@@ -26,7 +26,7 @@ interface HomeLayoutProps {
 export function HomeLayout({ data, lang }: HomeLayoutProps) {
   return (
     <>
-      <section className="animate-in fade-in mx-auto flex w-full flex-col gap-4 p-4 duration-700 md:max-w-3xl">
+      <section className="animate-in fade-in fill-mode-backwards mx-auto flex w-full flex-col gap-4 p-4 duration-700 md:max-w-3xl">
         <Profile profile={data.profile} lang={lang} />
         <Experience experience={data.experience} lang={lang} />
         <Projects projects={data.projects} lang={lang} />
