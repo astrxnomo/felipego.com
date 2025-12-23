@@ -35,7 +35,7 @@ export default function BlogList({ posts, lang }: BlogListProps) {
         </Badge>
       </div>
 
-      <div className="animate-in fade-in slide-in-from-bottom-4 grid grid-cols-1 gap-3 delay-200 duration-500">
+      <div className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards grid grid-cols-1 gap-3 delay-200 duration-500">
         {posts.map((post) => (
           <Link
             key={post.id}
