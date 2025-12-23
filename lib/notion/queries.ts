@@ -1,5 +1,5 @@
-import { downloadImage } from "@/lib/utils/images"
 import { NotionConverter } from "notion-to-md"
+import path from "path"
 
 import {
   type DataSourceCategory,
@@ -18,7 +18,16 @@ import type {
   Project,
 } from "./types"
 
-const converter = new NotionConverter(notion)
+const converter = new NotionConverter(notion).downloadMediaTo({
+  outputDir: path.join(process.cwd(), "public", "notion-media"),
+  transformPath: (localPath) => {
+    const fileName = path.basename(localPath)
+    return `/notion-media/${fileName}`
+  },
+  enableFor: ["block", "database_property", "page_property"],
+  preserveExternalUrls: false,
+  failForward: true,
+})
 
 // Function to get page content as MDX with frontmatter
 export async function getProjectContent(pageId: string): Promise<string> {
@@ -100,14 +109,10 @@ export async function getProfile(lang: Language): Promise<Profile | null> {
   const { properties } = page
 
   const name = properties.name?.title?.[0]?.plain_text ?? "Profile"
-  const img = await downloadImage(
+  const img =
     properties.img?.files?.[0]?.file?.url ??
-      properties.img?.files?.[0]?.external?.url ??
-      "",
-    "profile",
-    name,
-    page.id,
-  )
+    properties.img?.files?.[0]?.external?.url ??
+    ""
 
   return {
     id: page.id,
@@ -150,14 +155,10 @@ export async function getProjects(lang: Language): Promise<Project[]> {
       const slug = properties.slug?.rich_text?.[0]?.plain_text || ""
 
       const title = properties.title?.title?.[0]?.plain_text ?? "Project"
-      const img = await downloadImage(
+      const img =
         properties.img?.files?.[0]?.file?.url ??
-          properties.img?.files?.[0]?.external?.url ??
-          "",
-        "projects",
-        title,
-        page.id,
-      )
+        properties.img?.files?.[0]?.external?.url ??
+        ""
 
       return {
         id: page.id,
@@ -206,14 +207,10 @@ export async function getCertificates(lang: Language): Promise<Certificate[]> {
       const { properties } = page
 
       const title = properties.title?.title?.[0]?.plain_text ?? "Certificate"
-      const img = await downloadImage(
+      const img =
         properties.img?.files?.[0]?.file?.url ??
-          properties.img?.files?.[0]?.external?.url ??
-          "",
-        "certificates",
-        title,
-        page.id,
-      )
+        properties.img?.files?.[0]?.external?.url ??
+        ""
 
       return {
         id: page.id,
@@ -264,14 +261,10 @@ export async function getBlogPosts(lang: Language): Promise<BlogPost[]> {
       const slug = props.slug?.rich_text?.[0]?.plain_text || ""
 
       const title = props.title?.title?.[0]?.plain_text || ""
-      const coverImage = await downloadImage(
+      const coverImage =
         props.cover?.files?.[0]?.file?.url ??
-          props.cover?.files?.[0]?.external?.url ??
-          "",
-        "blog",
-        title,
-        page.id,
-      )
+        props.cover?.files?.[0]?.external?.url ??
+        ""
 
       return {
         id: page.id,
