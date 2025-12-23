@@ -19,6 +19,7 @@ import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card"
 import { Cursor } from "../ui/cursor"
+
 import {
   Dialog,
   DialogContent,
@@ -113,9 +114,6 @@ function ProjectItem({
               animate: { scale: 1, opacity: 1 },
               exit: { scale: 0.3, opacity: 0 },
             }}
-            springConfig={{
-              bounce: 0.4,
-            }}
             transition={{
               ease: "easeInOut",
               duration: 0.15,
@@ -182,7 +180,7 @@ function ProjectItem({
             <span className="text-lg font-semibold">{title}</span>
           </DialogTitle>
           <div className="min-h-0 flex-1 overflow-y-auto">
-            <DialogDescription asChild>
+            <DialogDescription asChild className="text-base">
               <div className="flex flex-col px-6 py-4">
                 {content ? (
                   <ReactMarkdown
