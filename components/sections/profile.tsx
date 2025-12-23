@@ -33,7 +33,7 @@ export default function Profile({ profile, lang }: HeaderProps) {
   }
 
   return (
-    <header>
+    <header className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards delay-0 duration-500">
       <Card>
         <CardContent className="flex flex-col gap-4 md:flex-row">
           {profile.img && (

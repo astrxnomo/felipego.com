@@ -35,7 +35,7 @@ export function HomeLayout({ data, lang }: HomeLayoutProps) {
           pixelClassName="bg-card-foreground/50"
         />
       </div>
-      <section className="animate-in fade-in relative z-10 mx-auto flex w-full flex-col gap-4 p-4 duration-1000 ease-out md:max-w-3xl">
+      <section className="relative z-10 mx-auto flex w-full flex-col gap-4 p-4 md:max-w-3xl">
         <Profile profile={data.profile} lang={lang} />
         <Experience experience={data.experience} lang={lang} />
         <Projects projects={data.projects} lang={lang} />

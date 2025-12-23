@@ -73,7 +73,7 @@ export function Header() {
   const langPrefix = isSpanish ? "/es" : ""
 
   return (
-    <>
+    <div className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards delay-200 duration-500">
       <div className="bg-background/50 fixed right-0 bottom-0 z-20 m-1 flex gap-2 rounded p-1 backdrop-blur-md lg:bottom-auto lg:m-3">
         <Button variant="outline" size="icon-lg" asChild>
           <Link
@@ -109,6 +109,6 @@ export function Header() {
           </Link>
         </Button>
       </div>
-    </>
+    </div>
   )
 }
