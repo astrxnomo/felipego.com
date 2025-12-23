@@ -20,6 +20,7 @@ export const translations = {
     minRead: "min read",
     backToBlog: "Back to posts",
     readingTime: "reading time",
+    onThisPage: "On this page",
   },
   es: {
     experience: "Experiencia",
@@ -40,5 +41,6 @@ export const translations = {
     minRead: "min de lectura",
     backToBlog: "Volver a las publicaciones",
     readingTime: "tiempo de lectura",
+    onThisPage: "En esta página",
   },
 } as const
