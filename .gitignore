@@ -38,4 +38,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Notion to MD media and metadata
+/.notion-to-md/
 next-env.d.ts
+
+# notion media cache
+/public/notion-media

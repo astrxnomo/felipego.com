@@ -41,14 +41,14 @@ export function BlogPostLayout({
         <ScrollProgress className="bg-primary absolute top-0" />
       </div>
 
-      <div className="relative w-full p-8">
-        <aside className="pointer-events-none fixed top-24 left-8 hidden w-64 xl:block">
+      <div className="relative w-full p-6">
+        <aside className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards pointer-events-none fixed top-24 left-8 hidden w-64 delay-500 duration-500 xl:block">
           <div className="pointer-events-auto sticky top-24">
-            <TableOfContents content={post.content} lang={locale} />
+            <TableOfContents content={post.content} />
           </div>
         </aside>
 
-        <article className="mx-auto w-full max-w-4xl space-y-4">
+        <article className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards mx-auto w-full max-w-4xl space-y-4 delay-200 duration-300">
           <Button variant="ghost" size="lg" asChild>
             <Link href={backToBlogUrl}>
               <ArrowLeft className="size-4" />
@@ -114,15 +114,13 @@ export function BlogPostLayout({
 
           <hr className="my-8" />
 
-          <div className="prose prose-neutral dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-p:text-foreground prose-a:text-primary prose-a:no-underline prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:underline prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-transparent prose-pre:p-0 prose-img:rounded-lg prose-img:border prose-img:border-border max-w-none">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]}
-              components={markdownComponents}
-            >
-              {post.content}
-            </ReactMarkdown>
-          </div>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+            components={markdownComponents}
+          >
+            {post.content}
+          </ReactMarkdown>
 
           <hr className="my-8" />
 

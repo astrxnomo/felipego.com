@@ -36,7 +36,7 @@ export const markdownComponents: Components = {
   p: ({ ...props }) => <p className="text-muted-foreground" {...props} />,
   a: ({ ...props }) => (
     <a
-      className="text-foreground hover:text-primary/80 underline decoration-2 underline-offset-2 transition-colors"
+      className="text-foreground underline decoration-dotted decoration-[1.5px] underline-offset-5 hover:opacity-80"
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -51,7 +51,7 @@ export const markdownComponents: Components = {
   li: ({ ...props }) => <li className="text-muted-foreground" {...props} />,
   blockquote: ({ ...props }) => (
     <blockquote
-      className="border-primary/50 bg-muted/50 [&>*]:text-muted-foreground my-6 border-l-4 py-4 pr-4 pl-6 italic"
+      className="border-primary/50 bg-muted/50 *:text-muted-foreground my-6 border-l-4 py-4 pr-4 pl-6 italic"
       {...props}
     />
   ),

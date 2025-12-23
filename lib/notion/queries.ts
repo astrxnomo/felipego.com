@@ -1,5 +1,6 @@
-import { exportImage } from "@/lib/utils/images"
-import { NotionToMarkdown } from "notion-to-md"
+import { downloadImage } from "@/lib/utils/images"
+import { NotionConverter } from "notion-to-md"
+import path from "path"
 
 import {
   type DataSourceCategory,
@@ -18,15 +19,19 @@ import type {
   Project,
 } from "./types"
 
-// Initialize NotionToMarkdown
-const n2m = new NotionToMarkdown({ notionClient: notion })
+const converter = new NotionConverter(notion).downloadMediaTo({
+  outputDir: path.join(process.cwd(), "public", "notion-media"),
+  transformPath: (localPath) => {
+    const fileName = path.basename(localPath)
+    return `/notion-media/${fileName}`
+  },
+})
 
-// Function to get page content as markdown
+// Function to get page content as MDX with frontmatter
 export async function getProjectContent(pageId: string): Promise<string> {
   try {
-    const mdBlocks = await n2m.pageToMarkdown(pageId)
-    const mdString = n2m.toMarkdownString(mdBlocks)
-    return mdString.parent || ""
+    const result = await converter.convert(pageId)
+    return result.content
   } catch (error) {
     console.error(`Error getting content for page ${pageId}:`, error)
     return ""
@@ -102,7 +107,7 @@ export async function getProfile(lang: Language): Promise<Profile | null> {
   const { properties } = page
 
   const name = properties.name?.title?.[0]?.plain_text ?? "Profile"
-  const img = await exportImage(
+  const img = await downloadImage(
     properties.img?.files?.[0]?.file?.url ??
       properties.img?.files?.[0]?.external?.url ??
       "",
@@ -151,7 +156,7 @@ export async function getProjects(lang: Language): Promise<Project[]> {
       const { properties } = page
 
       const title = properties.title?.title?.[0]?.plain_text ?? "Project"
-      const img = await exportImage(
+      const img = await downloadImage(
         properties.img?.files?.[0]?.file?.url ??
           properties.img?.files?.[0]?.external?.url ??
           "",
@@ -207,7 +212,7 @@ export async function getCertificates(lang: Language): Promise<Certificate[]> {
       const { properties } = page
 
       const title = properties.title?.title?.[0]?.plain_text ?? "Certificate"
-      const img = await exportImage(
+      const img = await downloadImage(
         properties.img?.files?.[0]?.file?.url ??
           properties.img?.files?.[0]?.external?.url ??
           "",
@@ -265,7 +270,7 @@ export async function getBlogPosts(lang: Language): Promise<BlogPost[]> {
       const slug = props.slug?.rich_text?.[0]?.plain_text || ""
 
       const title = props.title?.title?.[0]?.plain_text || ""
-      const coverImage = await exportImage(
+      const coverImage = await downloadImage(
         props.cover?.files?.[0]?.file?.url ??
           props.cover?.files?.[0]?.external?.url ??
           "",

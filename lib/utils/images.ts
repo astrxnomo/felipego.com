@@ -1,15 +1,15 @@
-import { BUCKET_ID, ENDPOINT, PROJECT_ID, getStorage } from "@/lib/appwrite"
-import { notion } from "@/lib/notion/client"
+import { promises as fs } from "fs"
+import path from "path"
 
-export async function exportImage(
+export async function downloadImage(
   imageUrl: string,
-  prefix: string,
+  category: string,
   name: string,
   pageId: string,
 ): Promise<string> {
   if (!imageUrl?.trim()) return ""
 
-  // Only process Notion-hosted images
+  // Return non-Notion URLs as-is
   if (
     !imageUrl.startsWith(
       "https://prod-files-secure.s3.us-west-2.amazonaws.com",
@@ -19,78 +19,42 @@ export async function exportImage(
     return imageUrl
   }
 
-  // Skip if Appwrite is not configured
-  if (!BUCKET_ID || !ENDPOINT || !PROJECT_ID) {
-    console.warn("Appwrite not configured, skipping image export")
-    return imageUrl
-  }
-
-  const storage = getStorage()
-
   try {
+    // Create output directory
+    const outputDir = path.join(process.cwd(), "public", "notion-media")
+    await fs.mkdir(outputDir, { recursive: true })
+
+    // Use pageId for unique filename (replaces old images)
+    const extension =
+      imageUrl.match(/\.(jpg|jpeg|png|gif|webp|svg)/i)?.[1] || "jpg"
+    const fileName = `${pageId}.${extension}`
+    const filePath = path.join(outputDir, fileName)
+
+    // Delete old files with the same pageId but different extensions
+    const possibleExtensions = ["jpg", "jpeg", "png", "gif", "webp", "svg"]
+    for (const ext of possibleExtensions) {
+      const oldFilePath = path.join(outputDir, `${pageId}.${ext}`)
+      try {
+        await fs.unlink(oldFilePath)
+      } catch {
+        // File doesn't exist, ignore
+      }
+    }
+
+    // Download image
     const response = await fetch(imageUrl)
     if (!response.ok) throw new Error(`Fetch failed: ${response.status}`)
 
-    const blob = await response.blob()
+    const buffer = await response.arrayBuffer()
+    await fs.writeFile(filePath, Buffer.from(buffer))
 
-    // Try to delete existing file
-    try {
-      await storage.deleteFile(BUCKET_ID, pageId)
-    } catch (e: unknown) {
-      const err = e as { code?: number; response?: { code?: number } }
-      if (err?.code !== 404 && err?.response?.code !== 404) throw e
-    }
-
-    const fileName = `${prefix}-${name
-      .replace(/[^a-z0-9\-_.]/gi, "_")
-      .toLowerCase()}`
-    const file = new File([blob], fileName, { type: blob.type || "image/jpeg" })
-
-    await storage.createFile(BUCKET_ID, pageId, file)
-
-    const publicUrl = `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${pageId}/view?project=${PROJECT_ID}`
-
-    await updateNotionImageUrl(pageId, publicUrl)
-
-    return publicUrl
+    return `/notion-media/${fileName}`
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error("Upload error:", error.message)
+      console.error("Download error:", error.message)
     } else {
-      console.error("Upload error:", error)
+      console.error("Download error:", error)
     }
     return imageUrl
-  }
-}
-
-export async function updateNotionImageUrl(
-  pageId: string,
-  newUrl: string,
-): Promise<boolean> {
-  if (!pageId || !newUrl) return false
-
-  try {
-    await notion.pages.update({
-      page_id: pageId,
-      properties: {
-        img: {
-          files: [
-            {
-              type: "external",
-              name: "Updated Image",
-              external: { url: newUrl },
-            },
-          ],
-        },
-      },
-    })
-    return true
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("Notion update error:", error.message)
-    } else {
-      console.error("Notion update error:", error)
-    }
-    return false
   }
 }

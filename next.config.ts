@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
         hostname: "file.notion.so",
       },
     ],
+    unoptimized: true,
   },
 }
 
