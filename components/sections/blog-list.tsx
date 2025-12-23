@@ -24,7 +24,7 @@ export default function BlogList({ posts, lang }: BlogListProps) {
   }
 
   return (
-    <section className="mx-auto flex w-full flex-col space-y-4 md:max-w-4xl">
+    <section className="mx-auto flex w-full flex-col space-y-4 p-6 md:max-w-4xl">
       <div className="my-10 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Newspaper className="size-6" />
