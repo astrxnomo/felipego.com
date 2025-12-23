@@ -1,23 +1,16 @@
 "use client"
 import { Language, Project } from "@/lib/notion"
 import { translations } from "@/lib/translations"
-import {
-  Github,
-  LibraryBig,
-  MousePointerClick,
-  ScreenShare,
-} from "lucide-react"
-import { motion } from "motion/react"
+import { Github, LibraryBig, ScreenShare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { CardContent } from "../ui/card"
-import { Cursor } from "../ui/cursor"
 
 import {
   Dialog,
@@ -43,16 +36,6 @@ export function ProjectItem({
 }: Project & { lang: Language }) {
   const t = translations[lang]
   const targetRef = useRef<HTMLDivElement>(null)
-  const [isHovering, setIsHovering] = useState(false)
-
-  const handlePositionChange = (x: number, y: number) => {
-    if (targetRef.current) {
-      const rect = targetRef.current.getBoundingClientRect()
-      const isInside =
-        x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
-      setIsHovering(isInside)
-    }
-  }
 
   return (
     <Dialog>
@@ -61,33 +44,6 @@ export function ProjectItem({
           ref={targetRef}
           className="group relative cursor-pointer overflow-hidden rounded-lg"
         >
-          <Cursor
-            attachToParent
-            variants={{
-              initial: { scale: 0.3, opacity: 0 },
-              animate: { scale: 1, opacity: 1 },
-              exit: { scale: 0.3, opacity: 0 },
-            }}
-            transition={{
-              ease: "easeInOut",
-              duration: 0.15,
-            }}
-            onPositionChange={handlePositionChange}
-          >
-            <motion.div
-              animate={{
-                scale: isHovering ? [1, 1.1, 1] : 1,
-              }}
-              transition={{
-                repeat: isHovering ? Infinity : 0,
-                duration: 1.5,
-              }}
-              className="bg-muted-foreground/20 flex items-center gap-1 rounded px-2 py-1 text-xs font-medium backdrop-blur-xs"
-            >
-              <MousePointerClick className="size-4" />
-              {t.readMore}
-            </motion.div>
-          </Cursor>
           <Spotlight
             className="bg-muted-foreground/5 blur-2xl"
             size={400}
