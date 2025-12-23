@@ -18,7 +18,7 @@ interface BlogPostLayoutProps {
   lang: "en" | "es"
 }
 
-export function BlogPostLayout({
+export function PostLayout({
   post,
   backToBlogText,
   backToBlogUrl,

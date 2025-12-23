@@ -1,4 +1,4 @@
-import { BlogPostLayout } from "@/components/blog-post-layout"
+import { PostLayout } from "@/components/post-layout"
 import { getAllBlogSlugs, getBlogPost } from "@/lib/notion/queries"
 import { translations } from "@/lib/translations"
 import type { Metadata } from "next"
@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <BlogPostLayout
+    <PostLayout
       post={post}
       backToBlogText={t.backToBlog}
       backToBlogUrl="/blog"

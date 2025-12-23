@@ -159,15 +159,12 @@ export async function getProjects(lang: Language): Promise<Project[]> {
         page.id,
       )
 
-      // Get page content as markdown
-      const content = await getProjectContent(page.id)
-
       return {
         id: page.id,
         slug,
         title,
         description: properties.description?.rich_text?.[0]?.plain_text ?? "",
-        content,
+        content: "", // Will be loaded on individual page
         technologies:
           properties.technologies?.multi_select?.map(
             (tag: { name: string }) => tag.name,
@@ -323,7 +320,9 @@ export async function getProject(
 
   if (!project) return null
 
-  // Content is already loaded in getProjects
+  // Load full content
+  project.content = await getProjectContent(project.id)
+
   return project
 }
 
