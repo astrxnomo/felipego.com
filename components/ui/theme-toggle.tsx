@@ -1,16 +1,20 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ThemeToggleButton, useThemeTransition } from "./theme-toggle-button"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const { startTransition } = useThemeTransition()
-  const [mounted] = useState(true)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   if (!mounted) {
-    return null
+    return <div className="h-[2.5rem] w-[2.5rem]" />
   }
 
   const handleToggle = () => {

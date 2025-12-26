@@ -40,15 +40,13 @@ export default function RootLayout({
           src="https://tweakcn.com/live-preview.min.js"
         />
       </head>
-      <body
-        className={`${robotoMono.variable} antialiased`}
-        suppressHydrationWarning
-      >
+      <body className={`${robotoMono.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
+          enableColorScheme={false}
         >
           <Header />
           <main>{children}</main>

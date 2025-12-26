@@ -21,7 +21,7 @@ export function ProjectLayout({ project, lang }: ProjectLayoutProps) {
     <>
       <ScrollProgress className="bg-primary absolute top-0" />
 
-      <article className="mx-auto max-w-4xl px-6 py-12">
+      <article className="animate-in fade-in slide-in-from-bottom-4 fill-mode-backwards mx-auto max-w-4xl px-6 py-12 delay-200 duration-500">
         <Button variant="ghost" asChild className="mb-8">
           <Link href="/">
             <ArrowLeft className="size-3" />

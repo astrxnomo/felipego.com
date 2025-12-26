@@ -10,9 +10,6 @@ importers:
       "@notionhq/client":
         specifier: ^5.6.0
         version: 5.6.0
-      "@types/prismjs":
-        specifier: ^1.26.5
-        version: 1.26.5
       "@types/react-syntax-highlighter":
         specifier: ^15.5.13
         version: 15.5.13
@@ -34,12 +31,6 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      node-appwrite:
-        specifier: ^21.1.0
-        version: 21.1.0
-      prismjs:
-        specifier: ^1.30.0
-        version: 1.30.0
       radix-ui:
         specifier: ^1.4.3
         version: 1.4.3(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -4810,12 +4801,6 @@ packages:
       sass:
         optional: true
 
-  node-appwrite@21.1.0:
-    resolution:
-      {
-        integrity: sha512-HRK5BzN19vgvaH/EeNsigK24t4ngJ1AoiltK5JtahxP6uyMRztzkD8cXP+z9jj/xOjz7ySfQ9YypNyhNr6zVkA==,
-      }
-
   node-domexception@1.0.0:
     resolution:
       {
@@ -4823,12 +4808,6 @@ packages:
       }
     engines: { node: ">=10.5.0" }
     deprecated: Use your platform's native DOMException instead
-
-  node-fetch-native-with-agent@1.7.2:
-    resolution:
-      {
-        integrity: sha512-5MaOOCuJEvcckoz7/tjdx1M6OusOY6Xc5f459IaruGStWnKzlI1qpNgaAwmn4LmFYcsSlj+jBMk84wmmRxfk5g==,
-      }
 
   node-fetch@3.3.2:
     resolution:
@@ -9423,13 +9402,7 @@ snapshots:
       - "@babel/core"
       - babel-plugin-macros
 
-  node-appwrite@21.1.0:
-    dependencies:
-      node-fetch-native-with-agent: 1.7.2
-
   node-domexception@1.0.0: {}
-
-  node-fetch-native-with-agent@1.7.2: {}
 
   node-fetch@3.3.2:
     dependencies:
