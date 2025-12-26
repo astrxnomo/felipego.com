@@ -1,5 +1,5 @@
+import { storage } from "@/lib/appwrite"
 import { NotionConverter } from "notion-to-md"
-import path from "path"
 
 import {
   type DataSourceCategory,
@@ -18,26 +18,49 @@ import type {
   Project,
 } from "./types"
 
-// En producción serverless (Vercel), usa URLs directas sin descargar
-// porque el filesystem es read-only excepto /tmp
-const isProduction = process.env.NODE_ENV === "production"
-const isVercel = process.env.VERCEL === "1"
+// Appwrite Storage configuration
+const BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID!
+const PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!
+const ENDPOINT = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!
 
-const converter =
-  isProduction && isVercel
-    ? new NotionConverter(notion)
-    : new NotionConverter(notion).downloadMediaTo({
-        outputDir: path.join(process.cwd(), "public", "notion-media"),
-        transformPath: (localPath) => {
-          const fileName = path.basename(localPath)
-          return `/notion-media/${fileName}`
-        },
-        enableFor: ["block", "database_property", "page_property"],
-        preserveExternalUrls: false,
-        failForward: true,
+const converter = new NotionConverter(notion).uploadMediaUsing({
+  uploadHandler: async (originalUrl, contextId) => {
+    try {
+      const response = await fetch(originalUrl)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch from Notion: ${response.status}`)
+      }
+
+      const blob = await response.blob()
+      const buffer = await blob.arrayBuffer()
+
+      try {
+        await storage.deleteFile(BUCKET_ID, contextId)
+      } catch (e: unknown) {
+        const err = e as { code?: number; response?: { code?: number } }
+        if (err?.code !== 404 && err?.response?.code !== 404) throw e
+      }
+
+      // Create file in Appwrite using contextId as fileId
+      const file = new File([buffer], contextId, {
+        type: blob.type || "application/octet-stream",
       })
+      await storage.createFile(BUCKET_ID, contextId, file)
 
-// Function to get page content as MDX with frontmatter
+      // Return public URL
+      return `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${contextId}/view?project=${PROJECT_ID}`
+    } catch (error) {
+      console.error(`Error uploading media ${contextId}:`, error)
+      // Return original URL as fallback
+      return originalUrl
+    }
+  },
+  transformPath: (uploadedUrl) => uploadedUrl,
+  enableFor: ["block", "database_property", "page_property"],
+  preserveExternalUrls: true,
+  failForward: true,
+})
+
 export async function getProjectContent(pageId: string): Promise<string> {
   try {
     const result = await converter.convert(pageId)
