@@ -1,16 +1,13 @@
+import { NotionContent } from "@/components/notion-blocks/notion-content"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { markdownComponents } from "@/components/ui/markdown"
 import { ScrollProgress } from "@/components/ui/scroll-progress"
 import { TableOfContents } from "@/components/ui/table-of-contents"
-import { Project } from "@/lib/notion"
+import type { Project } from "@/lib/notion/types"
 import { translations } from "@/lib/translations"
 import { ArrowLeft, Github, ScreenShare } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import ReactMarkdown from "react-markdown"
-import rehypeRaw from "rehype-raw"
-import remarkGfm from "remark-gfm"
 
 interface ProjectLayoutProps {
   project: Project
@@ -19,22 +16,21 @@ interface ProjectLayoutProps {
 
 export function ProjectLayout({ project, lang }: ProjectLayoutProps) {
   const t = translations[lang]
-  const backUrl = lang === "es" ? "/es" : "/"
 
   return (
     <>
       <ScrollProgress className="bg-primary absolute top-0" />
 
-      <article className="mx-auto max-w-4xl space-y-8 px-6 py-12">
-        <Button variant="ghost" asChild>
-          <Link href={backUrl}>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <Button variant="ghost" asChild className="mb-8">
+          <Link href="/">
             <ArrowLeft className="size-3" />
-            {t.backToProjects}
+            {t.back}
           </Link>
         </Button>
 
         {project.img && (
-          <div className="relative h-80 w-full overflow-hidden rounded-lg">
+          <div className="relative mb-8 h-80 w-full overflow-hidden rounded-lg">
             <Image
               src={project.img}
               alt={project.title}
@@ -45,34 +41,30 @@ export function ProjectLayout({ project, lang }: ProjectLayoutProps) {
           </div>
         )}
 
-        <header className="space-y-4">
+        <header className="mb-8 space-y-4">
           <h1 className="text-4xl font-bold">{project.title}</h1>
           <p className="text-muted-foreground text-lg">{project.description}</p>
 
-          <div className="flex flex-wrap gap-2">
-            {project.githubLink && (
-              <Button variant="outline" size="sm" asChild>
-                <Link
-                  href={project.githubLink}
-                  target="_blank"
-                  aria-label="Link to GitHub repository"
-                >
-                  <Github className="size-4" /> {t.repository}
-                </Link>
-              </Button>
-            )}
-            {project.previewLink && (
-              <Button variant="outline" size="sm" asChild>
-                <Link
-                  href={project.previewLink}
-                  target="_blank"
-                  aria-label="Link to live preview"
-                >
-                  <ScreenShare className="size-4" /> {t.livePreview}
-                </Link>
-              </Button>
-            )}
-          </div>
+          {(project.githubLink || project.previewLink) && (
+            <div className="flex flex-wrap gap-2">
+              {project.githubLink && (
+                <Button variant="outline" size="sm" asChild>
+                  <Link href={project.githubLink} target="_blank">
+                    <Github className="size-4" />
+                    {lang === "es" ? "Código" : "Code"}
+                  </Link>
+                </Button>
+              )}
+              {project.previewLink && (
+                <Button variant="outline" size="sm" asChild>
+                  <Link href={project.previewLink} target="_blank">
+                    <ScreenShare className="size-4" />
+                    {lang === "es" ? "Vista previa" : "Preview"}
+                  </Link>
+                </Button>
+              )}
+            </div>
+          )}
 
           {project.technologies.length > 0 && (
             <div className="flex flex-wrap gap-2">
@@ -85,37 +77,26 @@ export function ProjectLayout({ project, lang }: ProjectLayoutProps) {
           )}
         </header>
 
-        <hr />
+        <hr className="my-8" />
 
-        <TableOfContents content={project.content || ""} lang={lang} />
+        <TableOfContents blocks={project.blocks || []} lang={lang} />
+        <hr className="my-8" />
 
-        <hr />
+        <NotionContent blocks={project.blocks || []} />
 
-        <div className="prose prose-neutral dark:prose-invert max-w-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
-            components={markdownComponents}
-          >
-            {project.content || ""}
-          </ReactMarkdown>
-        </div>
+        <hr className="my-8" />
 
-        <hr />
+        <footer className="flex items-center justify-between">
+          <Button variant="ghost" size="lg" asChild>
+            <Link href="/">
+              <ArrowLeft className="size-3" />
+              {t.back}
+            </Link>
+          </Button>
 
-        <footer className="border-t pt-4">
-          <div className="flex items-center justify-between">
-            <Button variant="ghost" size="lg" asChild>
-              <Link href={backUrl}>
-                <ArrowLeft className="size-3" />
-                {t.backToProjects}
-              </Link>
-            </Button>
-
-            <span className="text-muted-foreground font-mono text-xs">
-              &copy; {new Date().getFullYear()} Felipe Giraldo
-            </span>
-          </div>
+          <span className="text-muted-foreground font-mono text-xs">
+            &copy; {new Date().getFullYear()} Felipe Giraldo
+          </span>
         </footer>
       </article>
     </>

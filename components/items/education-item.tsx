@@ -1,4 +1,4 @@
-import { Education } from "@/lib/notion"
+import { Education } from "@/lib/notion/types"
 import Link from "next/link"
 import { Button } from "../ui/button"
 

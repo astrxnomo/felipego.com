@@ -1,5 +1,5 @@
-import { type BlogPost, type Language } from "@/lib/notion"
-import { translations } from "@/lib/translations"
+import { BlogPost } from "@/lib/notion/types"
+import { Language, translations } from "@/lib/translations"
 import { Calendar, Clock, Newspaper } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"

@@ -1,6 +1,3 @@
-import { storage } from "@/lib/appwrite"
-import { NotionConverter } from "notion-to-md"
-
 import {
   type DataSourceCategory,
   getDataSourceId,
@@ -8,6 +5,7 @@ import {
   type Language,
   notion,
 } from "./client"
+import { fetchPageBlocks } from "./transformer"
 import type {
   BlogPost,
   Certificate,
@@ -16,54 +14,19 @@ import type {
   NotionPage,
   Profile,
   Project,
+  TransformedBlock,
 } from "./types"
 
-const BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID!
-const PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!
-const ENDPOINT = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!
-
-const converter = new NotionConverter(notion).uploadMediaUsing({
-  uploadHandler: async (originalUrl, contextId) => {
-    try {
-      const response = await fetch(originalUrl)
-      if (!response.ok) {
-        throw new Error(`Failed to fetch from Notion: ${response.status}`)
-      }
-
-      const blob = await response.blob()
-      const buffer = await blob.arrayBuffer()
-
-      try {
-        await storage.deleteFile(BUCKET_ID, contextId)
-      } catch (e: unknown) {
-        const err = e as { code?: number; response?: { code?: number } }
-        if (err?.code !== 404 && err?.response?.code !== 404) throw e
-      }
-
-      const file = new File([buffer], contextId, {
-        type: blob.type || "application/octet-stream",
-      })
-      await storage.createFile(BUCKET_ID, contextId, file)
-
-      return `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${contextId}/view?project=${PROJECT_ID}`
-    } catch (error) {
-      console.error(`Error uploading media ${contextId}:`, error)
-      return originalUrl
-    }
-  },
-  transformPath: (uploadedUrl) => uploadedUrl,
-  enableFor: ["block", "page_property"],
-  preserveExternalUrls: false,
-  failForward: true,
-})
-
-export async function getProjectContent(pageId: string): Promise<string> {
+export async function getNotionBlocks(
+  pageId: string,
+): Promise<TransformedBlock[]> {
   try {
-    const result = await converter.convert(pageId)
-    return result.content
+    const blocks = await fetchPageBlocks(pageId)
+    console.log(`Fetched ${blocks.length} blocks for page ${pageId}`)
+    return blocks
   } catch (error) {
-    console.error(`Error getting content for page ${pageId}:`, error)
-    return ""
+    console.error(`Error fetching page blocks for ${pageId}:`, error)
+    return []
   }
 }
 
@@ -192,7 +155,6 @@ export async function getProjects(lang: Language): Promise<Project[]> {
         slug,
         title,
         description: properties.description?.rich_text?.[0]?.plain_text ?? "",
-        content: "", // Will be loaded on individual page
         technologies:
           properties.technologies?.multi_select?.map(
             (tag: { name: string }) => tag.name,
@@ -298,7 +260,6 @@ export async function getBlogPosts(lang: Language): Promise<BlogPost[]> {
         slug,
         title,
         description: props.description?.rich_text?.[0]?.plain_text || "",
-        content: "", // Will be loaded on individual page
         coverImage,
         author: props.author?.rich_text?.[0]?.plain_text || "",
         publishedAt: props.publishedAt?.date?.start || "",
@@ -320,8 +281,8 @@ export async function getBlogPost(
 
   if (!post) return null
 
-  // Load full content
-  post.content = await getProjectContent(post.id)
+  // Load blocks with new transformer
+  post.blocks = await getNotionBlocks(post.id)
 
   return post
 }
@@ -340,8 +301,8 @@ export async function getProject(
 
   if (!project) return null
 
-  // Load full content
-  project.content = await getProjectContent(project.id)
+  // Load blocks with new transformer
+  project.blocks = await getNotionBlocks(project.id)
 
   return project
 }

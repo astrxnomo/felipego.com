@@ -3,7 +3,6 @@ import EducationSection from "@/components/sections/education"
 import Experience from "@/components/sections/experience"
 import Profile from "@/components/sections/profile"
 import Projects from "@/components/sections/projects"
-import type { Language } from "@/lib/notion"
 import type {
   Certificate,
   Education,
@@ -11,6 +10,7 @@ import type {
   Profile as ProfileType,
   Project,
 } from "@/lib/notion/types"
+import { Language } from "@/lib/translations"
 
 interface HomeLayoutProps {
   data: {

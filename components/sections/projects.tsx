@@ -1,5 +1,5 @@
-import { Language, Project } from "@/lib/notion"
-import { translations } from "@/lib/translations"
+import { Project } from "@/lib/notion/types"
+import { Language, translations } from "@/lib/translations"
 import { ArrowRight, LibraryBig } from "lucide-react"
 import Link from "next/link"
 import { ProjectItem } from "../items/project-item"

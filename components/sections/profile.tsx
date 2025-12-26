@@ -1,5 +1,5 @@
-import { Language, Profile as ProfileType } from "@/lib/notion"
-import { translations } from "@/lib/translations"
+import { Profile as ProfileType } from "@/lib/notion/types"
+import { Language, translations } from "@/lib/translations"
 import {
   ArrowUpRight,
   Github,

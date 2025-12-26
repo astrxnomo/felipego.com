@@ -11,4 +11,3 @@ const storage = new sdk.Storage(client)
 const sites = new sdk.Sites(client)
 
 export { sites, storage }
-

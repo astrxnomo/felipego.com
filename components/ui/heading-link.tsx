@@ -4,16 +4,20 @@ import React, { type HTMLAttributes } from "react"
 
 interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   level: 1 | 2 | 3 | 4 | 5 | 6
+  id?: string
   children: React.ReactNode
 }
 
-export function HeadingLink({ level, children, ...props }: HeadingProps) {
-  // Generate slug from children
-  const text = typeof children === "string" ? children : ""
-  const slug = text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "")
+export function HeadingLink({ level, id, children, ...props }: HeadingProps) {
+  // Use provided id or generate slug from children
+  const slug =
+    id ||
+    (typeof children === "string"
+      ? children
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "")
+      : "")
 
   const Tag = `h${level}` as const
 

@@ -1,43 +1,36 @@
+import { NotionContent } from "@/components/notion-blocks/notion-content"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { markdownComponents } from "@/components/ui/markdown"
 import { ScrollProgress } from "@/components/ui/scroll-progress"
 import { TableOfContents } from "@/components/ui/table-of-contents"
-import { BlogPost } from "@/lib/notion"
+import type { BlogPost } from "@/lib/notion/types"
+import { translations } from "@/lib/translations"
 import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import ReactMarkdown from "react-markdown"
-import rehypeRaw from "rehype-raw"
-import remarkGfm from "remark-gfm"
 
-interface BlogPostLayoutProps {
+interface PostLayoutProps {
   post: BlogPost
-  backToBlogText: string
-  backToBlogUrl: string
   lang: "en" | "es"
 }
 
-export function PostLayout({
-  post,
-  backToBlogText,
-  backToBlogUrl,
-  lang: locale,
-}: BlogPostLayoutProps) {
+export function PostLayout({ post, lang }: PostLayoutProps) {
+  const t = translations[lang]
+
   return (
     <>
       <ScrollProgress className="bg-primary absolute top-0" />
 
-      <article className="mx-auto max-w-4xl space-y-8 px-6 py-12">
-        <Button variant="ghost" asChild>
-          <Link href={backToBlogUrl}>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <Button variant="ghost" asChild className="mb-8">
+          <Link href="/blog">
             <ArrowLeft className="size-3" />
-            {backToBlogText}
+            {t.back}
           </Link>
         </Button>
 
         {post.coverImage && (
-          <div className="relative h-80 w-full overflow-hidden rounded-lg">
+          <div className="relative mb-8 h-80 w-full overflow-hidden rounded-lg">
             <Image
               src={post.coverImage}
               alt={post.title}
@@ -48,15 +41,15 @@ export function PostLayout({
           </div>
         )}
 
-        <header className="space-y-4">
+        <header className="mb-8 space-y-4">
           <h1 className="text-4xl font-bold">{post.title}</h1>
           <p className="text-muted-foreground text-lg">{post.description}</p>
 
           <div className="text-muted-foreground flex flex-wrap gap-4 text-sm">
-            {post.author && <span>{post.author}</span>}
+            <span>{post.author}</span>
             <time dateTime={post.publishedAt}>
               {new Date(post.publishedAt).toLocaleDateString(
-                locale === "es" ? "es-ES" : "en-US",
+                lang === "es" ? "es-ES" : "en-US",
                 {
                   year: "numeric",
                   month: "long",
@@ -78,29 +71,20 @@ export function PostLayout({
           )}
         </header>
 
-        <hr />
+        <hr className="my-8" />
 
-        <TableOfContents content={post.content} lang={locale} />
+        <TableOfContents blocks={post.blocks || []} lang={lang} />
+        <hr className="my-8" />
 
-        <hr />
+        <NotionContent blocks={post.blocks || []} />
 
-        <div className="prose prose-neutral dark:prose-invert max-w-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
-            components={markdownComponents}
-          >
-            {post.content}
-          </ReactMarkdown>
-        </div>
-
-        <hr />
+        <hr className="my-8" />
 
         <footer className="flex items-center justify-between">
           <Button variant="ghost" size="lg" asChild>
-            <Link href={backToBlogUrl}>
+            <Link href="/blog">
               <ArrowLeft className="size-3" />
-              {backToBlogText}
+              {t.back}
             </Link>
           </Button>
 

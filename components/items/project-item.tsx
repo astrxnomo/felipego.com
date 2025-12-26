@@ -1,5 +1,6 @@
 "use client"
-import { Language, Project } from "@/lib/notion"
+import { Project } from "@/lib/notion/types"
+import { Language } from "@/lib/translations"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef } from "react"
@@ -16,7 +17,8 @@ export function ProjectItem({
   lang,
 }: Project & { lang: Language }) {
   const targetRef = useRef<HTMLDivElement>(null)
-  const projectUrl = lang === "es" ? `/es/projects/${slug}` : `/projects/${slug}`
+  const projectUrl =
+    lang === "es" ? `/es/projects/${slug}` : `/projects/${slug}`
 
   return (
     <Link href={projectUrl}>

@@ -1,4 +1,4 @@
-import { Experience } from "@/lib/notion"
+import { Experience } from "@/lib/notion/types"
 import Link from "next/link"
 import { Button } from "../ui/button"
 

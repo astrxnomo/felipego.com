@@ -1,3 +1,32 @@
+import type { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+
+export type NotionBlock = BlockObjectResponse
+
+export interface RichText {
+  type: "text"
+  text: {
+    content: string
+    link: { url: string } | null
+  }
+  annotations: {
+    bold: boolean
+    italic: boolean
+    strikethrough: boolean
+    underline: boolean
+    code: boolean
+    color: string
+  }
+  plain_text: string
+  href: string | null
+}
+
+export interface TransformedBlock {
+  id: string
+  type: string
+  content: any
+  children?: TransformedBlock[]
+}
+
 export interface NotionText {
   plain_text: string
 }
@@ -60,7 +89,7 @@ export interface Project {
   slug: string
   title: string
   description: string
-  content?: string
+  blocks?: TransformedBlock[]
   technologies: string[]
   githubLink?: string
   previewLink?: string
@@ -93,7 +122,7 @@ export interface BlogPost {
   slug: string
   title: string
   description: string
-  content: string
+  blocks?: TransformedBlock[]
   coverImage: string
   author: string
   publishedAt: string

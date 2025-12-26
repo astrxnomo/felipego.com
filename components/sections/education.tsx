@@ -1,4 +1,4 @@
-import { Education } from "@/lib/notion"
+import { Education } from "@/lib/notion/types"
 import { translations, type Language } from "@/lib/translations"
 import { GraduationCap } from "lucide-react"
 import { EducationItem } from "../items/education-item"

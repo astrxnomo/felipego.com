@@ -1,4 +1,4 @@
-import { Certificate } from "@/lib/notion"
+import { Certificate } from "@/lib/notion/types"
 import { translations, type Language } from "@/lib/translations"
 import { ArrowRight, FileBadge } from "lucide-react"
 import Link from "next/link"

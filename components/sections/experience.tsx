@@ -1,4 +1,4 @@
-import { Experience } from "@/lib/notion"
+import { Experience } from "@/lib/notion/types"
 import { translations, type Language } from "@/lib/translations"
 import { BriefcaseBusiness } from "lucide-react"
 import { ExperienceItem } from "../items/experience-item"

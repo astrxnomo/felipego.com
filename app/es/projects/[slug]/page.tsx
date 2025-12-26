@@ -1,5 +1,5 @@
 import { ProjectLayout } from "@/components/project-layout"
-import { getAllProjectSlugs, getProject } from "@/lib/notion"
+import { getAllProjectSlugs, getProject } from "@/lib/notion/queries"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 

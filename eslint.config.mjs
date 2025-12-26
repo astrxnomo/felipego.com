@@ -17,6 +17,7 @@ const eslintConfig = defineConfig([
       react: reactPlugin,
     },
     rules: {
+      "@typescript-eslint/no-explicit-any": "off",
       "no-unused-vars": "off",
       "import/no-dynamic-require": "warn",
       "import/no-nodejs-modules": "warn",

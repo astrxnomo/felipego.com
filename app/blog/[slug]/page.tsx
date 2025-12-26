@@ -1,6 +1,5 @@
 import { PostLayout } from "@/components/post-layout"
 import { getAllBlogSlugs, getBlogPost } from "@/lib/notion/queries"
-import { translations } from "@/lib/translations"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
@@ -50,18 +49,10 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const post = await getBlogPost(slug, "en")
-  const t = translations.en
 
   if (!post) {
     notFound()
   }
 
-  return (
-    <PostLayout
-      post={post}
-      backToBlogText={t.backToBlog}
-      backToBlogUrl="/blog"
-      lang="en"
-    />
-  )
+  return <PostLayout post={post} lang="en" />
 }

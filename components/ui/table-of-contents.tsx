@@ -1,32 +1,51 @@
 "use client"
 
+import type { TransformedBlock } from "@/lib/notion/types"
 import { translations, type Language } from "@/lib/translations"
 import { useMemo } from "react"
 
-interface TableOfContentsProps {
-  content: string
+interface NotionTableOfContentsProps {
+  blocks: TransformedBlock[]
   lang?: Language
 }
 
 export function TableOfContents({
-  content,
+  blocks,
   lang = "en",
-}: TableOfContentsProps) {
+}: NotionTableOfContentsProps) {
   const headings = useMemo(() => {
-    const headingRegex = /^(#{1,6})\s+(.+)$/gm
-    const matches = [...content.matchAll(headingRegex)]
+    const extractHeadings = (
+      blocks: TransformedBlock[],
+    ): Array<{ id: string; text: string; level: number }> => {
+      const result: Array<{ id: string; text: string; level: number }> = []
 
-    return matches.map((match) => {
-      const level = match[1].length
-      const text = match[2]
-      const id = text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "")
+      for (const block of blocks) {
+        if (
+          block.type === "heading_1" ||
+          block.type === "heading_2" ||
+          block.type === "heading_3"
+        ) {
+          const level =
+            block.type === "heading_1" ? 1 : block.type === "heading_2" ? 2 : 3
 
-      return { id, text, level }
-    })
-  }, [content])
+          result.push({
+            id: block.content.id,
+            text: block.content.text,
+            level,
+          })
+        }
+
+        // Recursively check children
+        if (block.children && block.children.length > 0) {
+          result.push(...extractHeadings(block.children))
+        }
+      }
+
+      return result
+    }
+
+    return extractHeadings(blocks)
+  }, [blocks])
 
   if (headings.length === 0) return null
 
