@@ -18,7 +18,6 @@ import type {
   Project,
 } from "./types"
 
-// Appwrite Storage configuration
 const BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID!
 const PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!
 const ENDPOINT = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!
@@ -41,23 +40,20 @@ const converter = new NotionConverter(notion).uploadMediaUsing({
         if (err?.code !== 404 && err?.response?.code !== 404) throw e
       }
 
-      // Create file in Appwrite using contextId as fileId
       const file = new File([buffer], contextId, {
         type: blob.type || "application/octet-stream",
       })
       await storage.createFile(BUCKET_ID, contextId, file)
 
-      // Return public URL
       return `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${contextId}/view?project=${PROJECT_ID}`
     } catch (error) {
       console.error(`Error uploading media ${contextId}:`, error)
-      // Return original URL as fallback
       return originalUrl
     }
   },
   transformPath: (uploadedUrl) => uploadedUrl,
-  enableFor: ["block", "database_property", "page_property"],
-  preserveExternalUrls: true,
+  enableFor: ["block", "page_property"],
+  preserveExternalUrls: false,
   failForward: true,
 })
 
