@@ -14,13 +14,15 @@ export function ImageBlock({ url, caption }: ImageBlockProps) {
 
   return (
     <figure className="my-8">
-      <div className="border-border relative h-96 w-full overflow-hidden rounded-lg border shadow-sm">
+      <div className="relative w-full overflow-hidden rounded-lg">
         <Image
           src={url}
           alt={captionText || "Image"}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 896px"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="h-auto w-full"
+          style={{ width: "100%", height: "auto" }}
         />
       </div>
       {captionText && (

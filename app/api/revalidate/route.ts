@@ -14,7 +14,6 @@ export async function POST(request: Request) {
 
     await request.json().catch(() => ({}))
 
-    // Revalidate the specified path and all nested routes
     revalidatePath(pathToRevalidate, "layout")
 
     return NextResponse.json({
